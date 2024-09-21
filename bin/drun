@@ -6,10 +6,11 @@ nf='#ffffff'
 sb='#ffffff'
 sf='#000000'
 
-dmenu_run -b -h 23 \
+# doing funny geometry because dmenu doesnt have an
+# offset opt like lemonbar does to center text better 
+
+dmenu_run -b -h 23  \
 -x 60 -y -3 -z 2440 \
 -nb "$nb" -nf "$nf" \
 -sb "$sb" -sf "$sf" \
 -fn "$fn"
-    	 
-

@@ -3,14 +3,14 @@ let
     plan9cur = pkgs.callPackage ./xcursor-plan9.nix {};
 in
 {
-	imports = [
-	    # wm w/ conf
-		#./2bwm
-		./cwm
+    imports = [
+        # wm w/ conf
+        #./2bwm
+        ./cwm
         #./windowchef
-	];
+    ];
 
-	xsession = {
+    xsession = {
         enable = true;
         scriptPath = ".config/sx/sxrc";
         initExtra = lib.concatStringsSep "\n" [

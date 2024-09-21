@@ -11,11 +11,11 @@
 
     boot.tmp.cleanOnBoot = true;
   
-	hardware.opengl = {
-		enable = true;
-		driSupport = true;
-		driSupport32Bit = true;
-	};
+    hardware.opengl = {
+        enable = true;
+        driSupport = true;
+        driSupport32Bit = true;
+    };
 
     fileSystems."/" = { 
         device = "/dev/disk/by-uuid/651a31fd-f525-435e-8d34-a8d18381e48d";

@@ -16,58 +16,58 @@ fifo="/tmp/panel_fifo"
 mkfifo "$fifo"
 
 groups() {
-  groups="$(xprop -root WINDOWCHEF_ACTIVE_GROUPS | cut -d\  -f3- | sed 's/,//g')"
-  declare {g1,g2,g3,g4,g0}="%{B-}"
-  for g in $groups; do
-    case $g in
-      1*) g1="%{B${tg}}" ;;
-      2*) g2="%{B${tg}}" ;;
-      3*) g3="%{B${tg}}" ;;
-      4*) g4="%{B${tg}}" ;;
-      5*) g0="%{B${tg}}" ;;
-    esac
-  done
-  tags="${g1}%{A:${toggrp} 1:}%{O6}1%{O6}%{A}"
-  tags+="${g2}%{A:${toggrp} 2:}%{O6}2%{O6}%{A}"
-  tags+="${g3}%{A:${toggrp} 3:}%{O6}3%{O6}%{A}"
-  tags+="${g4}%{A:${toggrp} 4:}%{O6}4%{O6}%{A}"
-  void="${g0}%{A:${toggrp} 5:}%{O6}~%{O6}%{A}"
-  printf "%s\n" "groups${tags}"
-  printf "%s\n" "voided${void}"
+    groups="$(xprop -root WINDOWCHEF_ACTIVE_GROUPS | cut -d\  -f3- | sed 's/,//g')"
+    declare {g1,g2,g3,g4,g0}="%{B-}"
+    for g in $groups; do
+        case $g in
+            1*) g1="%{B${tg}}" ;;
+            2*) g2="%{B${tg}}" ;;
+            3*) g3="%{B${tg}}" ;;
+            4*) g4="%{B${tg}}" ;;
+            5*) g0="%{B${tg}}" ;;
+        esac
+    done
+    tags="${g1}%{A:${toggrp} 1:}%{O6}1%{O6}%{A}"
+    tags="${tags}${g2}%{A:${toggrp} 2:}%{O6}2%{O6}%{A}"
+    tags="${tags}${g3}%{A:${toggrp} 3:}%{O6}3%{O6}%{A}"
+    tags="${tags}${g4}%{A:${toggrp} 4:}%{O6}4%{O6}%{A}"
+    void="${g0}%{A:${toggrp} 5:}%{O6}~%{O6}%{A}"
+    printf "%s\n" "groups${tags}"
+    printf "%s\n" "voided${void}"
 }
 
 activeWindow() {
-	window="$(xdotool getactivewindow getwindowname)"
-	[[ $window != "bar" ]] && printf "%s\n" "activeWindow${window}"
+    window="$(xdotool getactivewindow getwindowname)"
+    [[ $window != "bar" ]] && printf "%s\n" "activeWindow${window}"
 }
 
 clock() {
-	time="$(date "+%I:%M")"
-	printf "%s\n" "clock${time}"
+    time="$(date "+%I:%M")"
+    printf "%s\n" "clock${time}"
 }
 
 # check for windowchef in sxrc
 # if it is not there skip groups
 if [[ -n $(cat $HOME/.config/sx/sxrc | grep windowchef) ]]; then
-  while :; do groups; sleep .1s; done > "$fifo" &
+    while :; do groups; sleep .1s; done > "$fifo" &
 fi
 
 while :; do activeWindow; sleep .1s; done > "$fifo" &
 while :; do clock; sleep 5s; done > "$fifo" &
 
 while read -r line ; do
-	case $line in
-	  groups*) 
-	    groups="${line:6}" ;;
-		voided*) 
-		  voided="${line:6}" ;;
-		activeWindow*) 
-		  activeWindow="${line:12}" ;;
-		clock*) 
-		  clock="${line:5}" ;;
-	esac
-		echo "%{B${fg}}%{F${bg}}%{O8}%{A:drun:}start%{A}%{O8}%{B-}%{F-}${groups}%{B-}" \
-				 "%{c}${activeWindow}" \
+    case $line in
+        groups*) 
+            groups="${line:6}" ;;
+        voided*) 
+            voided="${line:6}" ;;
+        activeWindow*) 
+            activeWindow="${line:12}" ;;
+        clock*) 
+            clock="${line:5}" ;;
+    esac
+    echo "%{B${fg}}%{F${bg}}%{O8}%{A:drun:}start%{A}%{O8}%{B-}%{F-}${groups}%{B-}" \
+         "%{c}${activeWindow}" \
          "%{r}${voided}%{B${fg}}%{F${bg}}%{O8}${clock}%{O8}%{B-}%{F-}"
 done < "$fifo" | lemonbar -b -o 1 -g "$g" -B "$bg" -F "$fg" -f "$fn" | sh
 

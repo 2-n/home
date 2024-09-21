@@ -1,50 +1,50 @@
 { config, lib, pkgs, ... }:
 
 {
-	programs.firefox = {
-		enable = true;
-		policies = {
-			AutofillCreditCardEnabled = false;
-			DisableFirefoxStudies = true;
-			DisablePocket = true;
-			DisableTelemetry = true;
-			DisplayBookmarksToolbar = "newtab";
-			EncryptedMediaExtensions = true;
-			HardwareAcceleration = true;
-			HttpsOnlyMode = "enabled";
-			NoDefaultBookmarks = true;
-			OfferToSaveLogins = false;
-			PasswordManagerEnabled = false;
-			PrimaryPassword = false;
-			SearchBar = "unified";
-			ShowHomeButton = false;
-			Extensions.Install = [
-				"https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/latest.xpi"
-				"https://addons.mozilla.org/en-US/firefox/addon/sponsorblock/latest.xpi"
-				"https://addons.mozilla.org/en-US/firefox/addon/return-youtube-dislikes/latest.xpi"
-				"https://addons.mozilla.org/en-US/firefox/addon/facebook-container/latest.xpi"
-			];
-			FirefoxHome = {
-				"Search" = false;
-				"TopSites" = false;
-				"SponsoredTopSights" = false;
-				"Highlights" = false;
-				"Pocket" = false;
-				"SponsoredPocket" = false;
-				"Snippets" = false;
-				"Locked" = false;
-			};
-			Preferences = {
-				"general.autoScroll" = true;
-				"general.smoothScroll" = true;
-			};
-		};
-	    profiles.eli = {
-	        search = {
-	            force = true;
-	            default = "Google";
-	            engines = {
-	                "Home Manager" = {
+    programs.firefox = {
+        enable = true;
+        policies = {
+            AutofillCreditCardEnabled = false;
+            DisableFirefoxStudies = true;
+            DisablePocket = true;
+            DisableTelemetry = true;
+            DisplayBookmarksToolbar = "newtab";
+            EncryptedMediaExtensions = true;
+            HardwareAcceleration = true;
+            HttpsOnlyMode = "enabled";
+            NoDefaultBookmarks = true;
+            OfferToSaveLogins = false;
+            PasswordManagerEnabled = false;
+            PrimaryPassword = false;
+            SearchBar = "unified";
+            ShowHomeButton = false;
+            Extensions.Install = [
+                "https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/latest.xpi"
+                "https://addons.mozilla.org/en-US/firefox/addon/sponsorblock/latest.xpi"
+                "https://addons.mozilla.org/en-US/firefox/addon/return-youtube-dislikes/latest.xpi"
+                "https://addons.mozilla.org/en-US/firefox/addon/facebook-container/latest.xpi"
+            ];
+            FirefoxHome = {
+                "Search" = false;
+                "TopSites" = false;
+                "SponsoredTopSights" = false;
+                "Highlights" = false;
+                "Pocket" = false;
+                "SponsoredPocket" = false;
+                "Snippets" = false;
+                "Locked" = false;
+            };
+            Preferences = {
+                "general.autoScroll" = true;
+                "general.smoothScroll" = true;
+            };
+        };
+        profiles.eli = {
+            search = {
+                force = true;
+                default = "Google";
+                engines = {
+                    "Home Manager" = {
                         definedAliases = [ "@hm" ];
                         urls = [{ template = "https://home-manager-options.extranix.com/?query={searchTerms}&release=release-24.05"; }];
                     };
@@ -69,8 +69,8 @@
                     "DuckDuckGo".metaData.hidden = true;
                     "eBay".metaData.hidden = true;
                     "Wikipedia (en)".metaData.hidden = true;
-	            };
-	        };
-	    };
-	};
+                };
+            };
+        };
+    };
 }

@@ -14,8 +14,8 @@
 
     home.file.".mkshrc".source = ../../dots/mkshrc;
     home.file."bin" = {
-      source = ../../bin;
-      recursive = true;  
+        source = ../../bin;
+        recursive = true;  
     };
 
     home.packages = (with pkgs; [
@@ -32,8 +32,8 @@
         _9menu
         dzen2
         lemonbar-xft
-        xdotool
-             
+        xdotool 
+            
         plan9port
         
         imv
@@ -45,12 +45,12 @@
         gimp
         pcmanfm
         xarchiver
-        lxappearance    
-
+        lxappearance 
+           
         prismlauncher
         openrct2
         protonup-ng
-    
+        
         unifont
         uw-ttyp0
         dejavu_fonts

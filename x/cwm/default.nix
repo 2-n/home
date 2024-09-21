@@ -3,12 +3,14 @@
 {	
     xsession.windowManager.command = "exec cwm";
 
-	home.packages = (with pkgs; [
-		(cwm.overrideAttrs (oldAttrs: rec {
-			patches = [ 
-			    ./cwm-center.diff
-				./cwm-nomwmhints.diff
-			];
-		})) 
-	]);
+    home.file.".cwmrc".source = ../../dots/cwmrc;
+
+    home.packages = (with pkgs; [
+        (cwm.overrideAttrs (oldAttrs: rec {
+            patches = [ 
+                ./cwm-center.diff
+                ./cwm-nomwmhints.diff
+            ];
+        })) 
+    ]);
 }
