@@ -17,6 +17,7 @@ in
             "xrandr -s 2560x1440 -r 144"
             "[[ -e $HOME/.Xresources ]] && xrdb -merge $HOME/.Xresources"
             "${pkgs.hsetroot}/bin/hsetroot -fill $HOME/.bg.png"
+            "xsetroot -cursor_name left_ptr"
             "qbittorrent &"
             "corectrl &"
             "bar &"
@@ -25,10 +26,10 @@ in
 
     home.file.".bg.png".source = ../dots/bg.png;
 
-    home.pointerCursor.name = "plan9";
-    home.pointerCursor.package = plan9cur;
     gtk.cursorTheme.name = "plan9";
+    home.pointerCursor.name = "plan9";
     gtk.cursorTheme.package = plan9cur;
+    home.pointerCursor.package = plan9cur;
 
     xdg.userDirs = {
         enable = true;

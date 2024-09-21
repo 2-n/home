@@ -21,7 +21,7 @@ function ,n() {
         u)  wd=$PWD
             cd $HOME/nix
             nix flake update
-            doas nixos-rebuild switch --flake ~/nix/#
+            doas nixos-rebuild switch --flake $HOME/nix/#
             cd $wd && wd=
         ;;
         *)  echo "usage: ,n [c/r/u]"

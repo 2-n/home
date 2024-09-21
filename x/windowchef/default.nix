@@ -8,9 +8,9 @@
         "pkill sxhkd; sxhkd &" 
     ]; 
 
-    home.file.".config/ruler/rulerrc".source = ../../windowchef/rulerrc;
-    home.file.".config/sxhkd/sxhkdrc".source = ../../windowchef/sxhkdrc;
-    home.file.".config/windowchef/windowchefrc".source = ../../windowchef/windowchefrc;
+    home.file.".config/ruler/rulerrc".source = ../../dots/windowchef/rulerrc;
+    home.file.".config/sxhkd/sxhkdrc".source = ../../dots/windowchef/sxhkdrc;
+    home.file.".config/windowchef/windowchefrc".source = ../../dots/windowchef/windowchefrc;
     home.file.".config/windowchef/windowchefrc".executable = true;  
 
     home.packages = (with pkgs; [
