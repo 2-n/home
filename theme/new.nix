@@ -9,7 +9,7 @@
     base04 = "#84A4DD";
     base05 = "#DD84BA";
     base06 = "#84A4DD";
-    base07 = "#C0C0C0";
+    base07 = "#FFFFFF";
 
     base08 = "#404040";
     base09 = "#DD84BA";

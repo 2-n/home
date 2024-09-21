@@ -21,6 +21,7 @@
     home.packages = (with pkgs; [
         gavin-bc
         git
+        gh
         zip
         unzip
         btop

@@ -37,7 +37,7 @@ with theme;
                 };
                 normal = {
                     black      = base00;
-                    red		   = base01;
+                    red        = base01;
                     green      = base02;
                     yellow     = base03;
                     blue       = base04;
@@ -47,7 +47,7 @@ with theme;
                 };
                 bright = {
                     black      = base08;
-                    red		   = base09;
+                    red        = base09;
                     green      = base10;
                     yellow     = base11;
                     blue       = base12;

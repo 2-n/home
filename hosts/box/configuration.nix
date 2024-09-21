@@ -23,6 +23,10 @@
         keepEnv = true;
     }];
 
+    environment.systemPackages = (with pkgs; [
+        micro git 
+    ]);
+
     sound.enable = true;
     security.rtkit.enable = true;
     services.pipewire = {
