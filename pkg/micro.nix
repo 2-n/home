@@ -23,6 +23,7 @@
 
     home.file.".config/micro/bindings.json".text = ''
         {
+            "Ctrl-s": "command:retab,Save",
             "Ctrl-t": "HSplit,command-edit:open ",
             "F1": "command:setlocal filetype nix",
             "F2": "command:setlocal filetype shell",
