@@ -1,0 +1,21 @@
+class="firefox"
+    wtf "$RULER_ID" && waitron group_add_window 1
+
+class="PrismLauncher"
+    wtf "$RULER_ID" && waitron group_add_window 2
+
+class="osu!"
+    wtf "$RULER_ID" && waitron group_add_window 2
+  
+class="discord"
+    wtf "$RULER_ID" && waitron group_add_window 3
+
+class="steam"
+    wtf "$RULER_ID" && waitron group_add_window 4
+
+# hide these
+class="qBittorrent"
+    wtf "$RULER_ID" && waitron group_add_window 5
+
+class="corectrl"
+    wtf "$RULER_ID" && waitron group_add_window 5

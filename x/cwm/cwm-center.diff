@@ -1,0 +1,55 @@
+diff --git a/calmwm.h b/calmwm.h
+index 7697b75..449491e 100644
+--- a/calmwm.h
++++ b/calmwm.h
+@@ -76,6 +76,7 @@ size_t strlcpy(char *, const char *, size_t);
+ #define CWM_LEFT		0x0004
+ #define CWM_RIGHT		0x0008
+ #define CWM_BIGAMOUNT		0x0010
++#define CWM_CENTER		0x0020
+ #define CWM_UP_BIG		(CWM_UP | CWM_BIGAMOUNT)
+ #define CWM_DOWN_BIG		(CWM_DOWN | CWM_BIGAMOUNT)
+ #define CWM_LEFT_BIG		(CWM_LEFT | CWM_BIGAMOUNT)
+diff --git a/conf.c b/conf.c
+index fee6e9d..6ee21a4 100644
+--- a/conf.c
++++ b/conf.c
+@@ -106,6 +106,7 @@ static const struct {
+ 	{ FUNC_CC(window-snap-down, client_snap, (CWM_DOWN)) },
+ 	{ FUNC_CC(window-snap-right, client_snap, (CWM_RIGHT)) },
+ 	{ FUNC_CC(window-snap-left, client_snap, (CWM_LEFT)) },
++	{ FUNC_CC(window-snap-center, client_snap, (CWM_CENTER)) },
+ 	{ FUNC_CC(window-snap-up-right, client_snap, (CWM_UP_RIGHT)) },
+ 	{ FUNC_CC(window-snap-up-left, client_snap, (CWM_UP_LEFT)) },
+ 	{ FUNC_CC(window-snap-down-right, client_snap, (CWM_DOWN_RIGHT)) },
+diff --git a/cwmrc.5 b/cwmrc.5
+index 7d5f1f8..945a3a2 100644
+--- a/cwmrc.5
++++ b/cwmrc.5
+@@ -409,6 +409,8 @@ Snap window to bottom edge.
+ Snap window to right edge.
+ .It window-snap-left
+ Snap window to left edge.
++.It window-snap-center
++Snap window to center of screen.
+ .It window-snap-up-right
+ Snap window to top-right corner.
+ .It window-snap-up-left
+diff --git a/kbfunc.c b/kbfunc.c
+index b6f6355..fc11a4f 100644
+--- a/kbfunc.c
++++ b/kbfunc.c
+@@ -323,6 +323,13 @@ kbfunc_client_snap(void *ctx, struct cargs *cargs)
+ 			    (cc->bwidth * 2);
+ 			flags &= ~CWM_DOWN;
+ 		}
++		if (flags & CWM_CENTER) {
++			cc->geom.x = area.x + (area.w) / 2 - (cc->geom.w / 2) -
++				cc->bwidth;
++			cc->geom.y = area.y + (area.h) / 2 - (cc->geom.h / 2) -
++				cc->bwidth;
++			flags &= ~CWM_CENTER;
++		}
+ 	}
+ 	client_move(cc);
+ 	client_ptr_inbound(cc, 1);

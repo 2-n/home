@@ -1,0 +1,26 @@
+#!/bin/sh
+
+waitron wm_config border_width 12
+waitron wm_config internal_border_width 9
+waitron wm_config color_focused 0xDD84BA
+waitron wm_config color_unfocused 0x404040
+waitron wm_config internal_color_focused 0x404040
+waitron wm_config internal_color_unfocused 0x404040
+
+waitron wm_config gap_width all 4
+waitron wm_config gap_width bottom 20
+waitron wm_config grid_gap_width 0
+
+waitron wm_config cursor_position center
+
+waitron wm_config groups_nr 5
+waitron wm_config enable_sloppy_focus true
+waitron wm_config enable_resize_hints true
+waitron wm_config sticky_windows false
+waitron wm_config enable_borders true
+waitron wm_config enable_last_window_focusing false
+waitron wm_config apply_settings true
+waitron wm_config replay_click_on_focus false
+waitron wm_config pointer_actions move resize_side resize_corner
+waitron wm_config pointer_modifier alt
+waitron wm_config click_to_focus none

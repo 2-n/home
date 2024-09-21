@@ -1,0 +1,25 @@
+#!/usr/bin/env -S 9 rc
+# window manipulation tool using wmutils
+# use awk instead of bc for math?
+
+fn math {
+    x=`{echo $1/2+$3 | bc}
+    y=`{echo $2/2+$4 | bc}
+}
+
+switch ($1){
+case raise
+    chwso -r `{pfw}
+case lower
+    chwso -l `{pfw}
+case cycle
+    waitron window_cycle
+    math `{wattr whxy `{pfw}} 
+    wmp -a $x $y
+case revcycle
+    waitron window_rev_cycle
+    math `{wattr whxy `{pfw}}
+    wmp -a $x $y
+case *
+    echo 'usage: winmanip [raise/lower/cycle/revcycle]'
+}

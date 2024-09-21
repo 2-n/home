@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+fn='Ttyp0:size=12'
+nb='#000000'
+nf='#ffffff'
+sb='#ffffff'
+sf='#000000'
+
+dmenu_run -b -h 23 \
+-x 60 -y -3 -z 2440 \
+-nb "$nb" -nf "$nf" \
+-sb "$sb" -sf "$sf" \
+-fn "$fn"
+    	 
+

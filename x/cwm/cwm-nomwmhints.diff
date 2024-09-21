@@ -1,0 +1,13 @@
+diff --git a/client.c b/client.c
+index afbf874..95b9263 100644
+--- a/client.c
++++ b/client.c	
+@@ -91,7 +91,7 @@ client_init(Window win, struct screen_ctx *sc)
+ 	client_wm_protocols(cc);
+ 	client_get_sizehints(cc);
+ 	client_transient(cc);
+-	client_mwm_hints(cc);
++	//client_mwm_hints(cc);
+ 
+ 	if ((cc->flags & CLIENT_IGNORE))
+ 		cc->bwidth = 0;
