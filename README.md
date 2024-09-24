@@ -1,10 +1,10 @@
->  this repo contains my as nixos configuration a flake
+>  my nixos flake w/ home manager and made modular
 
-|    var|prog     |config                                                                      |
-|-------|---------|----------------------------------------------------------------------------|
-| $shell|mksh     |[dots/mkshrc](https://github.com/2-n/home/blob/main/dots/mkshrc)            |
-|  $term|alacritty|[pkg/alacritty.nix](https://github.com/2-n/home/blob/main/pkg/alacritty.nix)|
-|$editor|micro    |[pkg/micro.nix](https://github.com/2-n/home/blob/main/pkg/micro.nix)        |
-|    $wm|cwm      |[dots/cwmrc](https://github.com/2-n/home/blob/main/dots/cwmrc)              |
-| $start|dmenu    |[bin/drun](https://github.com/2-n/home/blob/main/bin/drun)                  |
-|   $bar|lemonbar |[bin/bar](https://github.com/2-n/home/blob/main/bin/bar)                    |
+|||
+|-|-|
+|$wm|[cwm](https://github.com/2-n/home/blob/main/cfg/cwmrc)|
+|$shell|[mksh](https://github.com/2-n/home/blob/main/cfg/mkshrc)|
+|$editor|[micro](https://github.com/2-n/home/blob/main/modules/pkg/cli/micro.nix)|
+|$terminal|[alacritty](https://github.com/2-n/home/blob/main/modules/app/alacritty.nix)|
+|$launcher|[dmenu](https://github.com/2-n/home/blob/main/bin/drun)|
+|$panel|[lemonbar](https://github.com/2-n/home/blob/main/bin/bar)|

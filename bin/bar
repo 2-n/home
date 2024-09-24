@@ -1,15 +1,13 @@
-#!/usr/bin/env sh
+#!/usr/bin/env mksh
 # my sucky panel.
 # probably uses more resources
 # than it should with my group checker
 
 bg="#000000"
-fg="#ffffff"
-tg="#404040"
+fg="#FFFFFF"
+tg="#262626"
 fn="Ttyp0:size=12"
 g="2552x20+4+0"
-
-toggrp="waitron group_toggle"
 
 fifo="/tmp/panel_fifo"
 [ -e "$fifo" ] && rm "$fifo"
@@ -46,28 +44,21 @@ clock() {
     printf "%s\n" "clock${time}"
 }
 
-# check for windowchef in sxrc
-# if it is not there skip groups
-if [[ -n $(cat $HOME/.config/sx/sxrc | grep windowchef) ]]; then
-    while :; do groups; sleep .1s; done > "$fifo" &
-fi
 
 while :; do activeWindow; sleep .1s; done > "$fifo" &
 while :; do clock; sleep 5s; done > "$fifo" &
+[[ -n $(cat $HOME/.xinitrc | grep windowchef) ]] && while :; do grops; sleep .1s; done > "$fifo" &
+# ^^^^^^ check for windowchef in xinitrc to determine whether or not to start group section ^^^^^^
 
 while read -r line ; do
     case $line in
-        groups*) 
-            groups="${line:6}" ;;
-        voided*) 
-            voided="${line:6}" ;;
-        activeWindow*) 
-            activeWindow="${line:12}" ;;
-        clock*) 
-            clock="${line:5}" ;;
+        groups*) groups="${line:6}" ;;
+        voided*) voided="${line:6}" ;;
+        activeWindow*) activeWindow="${line:12}" ;;
+        clock*) clock="${line:5}" ;;
     esac
     echo "%{B${fg}}%{F${bg}}%{O8}%{A:drun:}start%{A}%{O8}%{B-}%{F-}${groups}%{B-}" \
          "%{c}${activeWindow}" \
          "%{r}${voided}%{B${fg}}%{F${bg}}%{O8}${clock}%{O8}%{B-}%{F-}"
-done < "$fifo" | lemonbar -b -o 1 -g "$g" -B "$bg" -F "$fg" -f "$fn" | sh
+done < "$fifo" | lemonbar -b -o 1 -g "$g" -B "$bg" -F "$fg" -f "$fn" | mksh
 

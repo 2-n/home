@@ -1,0 +1,35 @@
+export EDITOR=micro
+export VISUAL=$EDITOR
+
+export PATH=$HOME/bin:$PATH
+
+export PS1=`echo "\e[31m%\e[0m "`
+export PF_INFO="ascii title os kernel uptime shell pkgs memory"
+
+alias e=$EDITOR
+alias calc='bc -P -S 3'
+alias cls='clear && ls'
+alias ls='ls --group-directories-first --color'
+alias lc='ls -A'
+alias ll='ls -lAh'
+alias mkdir='mkdir -p'
+alias mv='mv -iv'
+alias rm='rm -iv'
+
+function ,n() {
+    case $1 in
+        c)  doas nix-collect-garbage -d ;;    
+        r)  doas nixos-rebuild switch --flake $HOME/nix/# ;;
+        u)  wd=$PWD
+            cd $HOME/nix
+            nix flake update
+            doas nixos-rebuild switch --flake $HOME/nix/#
+            cd $wd && wd=
+        ;;
+        *)  echo "usage: ,n [c/r/u]"
+            echo "    c: collect garbage"
+            echo "    r: rebuild switch"
+            echo "    u: update flake and rebuild switch"
+        ;;
+    esac
+}

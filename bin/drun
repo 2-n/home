@@ -2,8 +2,8 @@
 
 fn='Ttyp0:size=12'
 nb='#000000'
-nf='#ffffff'
-sb='#ffffff'
+nf='#FFFFFF'
+sb='#FFFFFF'
 sf='#000000'
 
 # doing funny geometry because dmenu doesnt have an

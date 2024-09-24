@@ -22,22 +22,28 @@
     in 
     {
         nixosConfigurations = {
-            box = nixpkgs.lib.nixosSystem rec {
-                specialArgs = { inherit pkgs pkgs-unstable system; };
-                modules = [
-                    ./hosts/box/configuration.nix
-                    home-manager.nixosModules.home-manager
-                    {
-                        home-manager.useGlobalPkgs = true;
-                        home-manager.useUserPackages = true;
-                        home-manager.extraSpecialArgs = specialArgs;
-                        home-manager.users.eli = {
-                            imports = [ ./hosts/box/home.nix ];
-                            _module.args.theme = import ./theme;
-                        };
-                    }
-                ];
+            box = nixpkgs.lib.nixosSystem {
+                modules = 
+                    [ ./hosts/box inputs.home-manager.nixosModules.default ];
+                specialArgs = 
+                    { inherit inputs pkgs pkgs-unstable system; };
             };
         };
     };
 }
+
+#        nixosConfigurations = {
+#            box = nixpkgs.lib.nixosSystem rec {
+#                specialArgs = { inherit pkgs pkgs-unstable system; };
+#                modules = [
+#                    ./hosts/box
+#                    home-manager.nixosModules.home-manager
+#                    {
+#                        home-manager.extraSpecialArgs = specialArgs;
+#                        home-manager.users.eli = {
+#                            imports = [ ./hosts/box/home.nix ];
+#                        };
+#                    }
+#                ];
+#            };
+#        };
