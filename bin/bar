@@ -9,6 +9,8 @@ tg="#262626"
 fn="Ttyp0:size=12"
 g="2552x20+4+0"
 
+toggrp="waitron group_toggle"
+
 fifo="/tmp/panel_fifo"
 [ -e "$fifo" ] && rm "$fifo"
 mkfifo "$fifo"
@@ -26,9 +28,9 @@ groups() {
         esac
     done
     tags="${g1}%{A:${toggrp} 1:}%{O6}1%{O6}%{A}"
-    tags="${tags}${g2}%{A:${toggrp} 2:}%{O6}2%{O6}%{A}"
-    tags="${tags}${g3}%{A:${toggrp} 3:}%{O6}3%{O6}%{A}"
-    tags="${tags}${g4}%{A:${toggrp} 4:}%{O6}4%{O6}%{A}"
+    tags+="${g2}%{A:${toggrp} 2:}%{O6}2%{O6}%{A}"
+    tags+="${g3}%{A:${toggrp} 3:}%{O6}3%{O6}%{A}"
+    tags+="${g4}%{A:${toggrp} 4:}%{O6}4%{O6}%{A}"
     void="${g0}%{A:${toggrp} 5:}%{O6}~%{O6}%{A}"
     printf "%s\n" "groups${tags}"
     printf "%s\n" "voided${void}"
@@ -47,7 +49,7 @@ clock() {
 
 while :; do activeWindow; sleep .1s; done > "$fifo" &
 while :; do clock; sleep 5s; done > "$fifo" &
-[[ -n $(cat $HOME/.xinitrc | grep windowchef) ]] && while :; do grops; sleep .1s; done > "$fifo" &
+[[ -n $(cat $HOME/.xinitrc | grep windowchef) ]] && while :; do groups; sleep .1s; done > "$fifo" &
 # ^^^^^^ check for windowchef in xinitrc to determine whether or not to start group section ^^^^^^
 
 while read -r line ; do

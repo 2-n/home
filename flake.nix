@@ -1,5 +1,5 @@
 {
-    description = "nixos config w/ home manager as a module";
+    description = "modular nix config";
 
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
@@ -8,7 +8,7 @@
         home-manager.inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, ... }: 
+    outputs = { nixpkgs, nixpkgs-unstable, home-manager, self, ... }@inputs: 
     let
         system = "x86_64-linux";
         pkgs = import nixpkgs {
@@ -23,27 +23,9 @@
     {
         nixosConfigurations = {
             box = nixpkgs.lib.nixosSystem {
-                modules = 
-                    [ ./hosts/box inputs.home-manager.nixosModules.default ];
-                specialArgs = 
-                    { inherit inputs pkgs pkgs-unstable system; };
-            };
+                modules = [ ./hosts/box ];
+                specialArgs = { inherit inputs pkgs pkgs-unstable system; };
+            }; 
         };
     };
 }
-
-#        nixosConfigurations = {
-#            box = nixpkgs.lib.nixosSystem rec {
-#                specialArgs = { inherit pkgs pkgs-unstable system; };
-#                modules = [
-#                    ./hosts/box
-#                    home-manager.nixosModules.home-manager
-#                    {
-#                        home-manager.extraSpecialArgs = specialArgs;
-#                        home-manager.users.eli = {
-#                            imports = [ ./hosts/box/home.nix ];
-#                        };
-#                    }
-#                ];
-#            };
-#        };

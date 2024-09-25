@@ -9,6 +9,13 @@ in
         ./windowchef
     ];
 
+    options = {
+        wm = lib.mkOption {
+            type = lib.types.str;
+            description = "set the active installed window manager";
+        };
+    };
+
     config = lib.mkIf (config.gui.enable) {
         home-manager.users.eli = {
             home.pointerCursor.name = "plan9";

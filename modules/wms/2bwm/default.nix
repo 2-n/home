@@ -1,27 +1,18 @@
 { config, lib, pkgs, ... }:
 
 {
-    options = {
-        twobwm = {
-            enable = lib.mkEnableOption {
-                description = "enable 2bwm";
-                default = false;
-            };
-        };
-    };
-
-    config = lib.mkIf (config.gui.enable && config.twobwm.enable) {
+    config = lib.mkIf (config.gui.enable && config.wm == "2bwm") {
         home-manager.users.eli = {
             xresources.properties = {
                 "twobwm.border_width"       = 12;
-                "twobwm.outer_border"       = 3;
+                "twobwm.outer_border"       = 6;
                 "twobwm.focus_color"        = config.theme.base01;
                 "twobwm.unfocus_color"      = config.theme.base08;
                 "twobwm.fixed_color"        = config.theme.base03;
                 "twobwm.unkill_color"       = config.theme.base04;
                 "twobwm.fixed_unkill_color" = config.theme.base06;
                 "twobwm.outer_border_color" = config.theme.base08;
-                "twobwm.inverted_colors"    = true;
+                "twobwm.inverted_colors"    = false;
             };
             
             home.packages = with pkgs; [

@@ -5,7 +5,7 @@
         ./audio.nix
         ./boot.nix
         ./doas.nix
-        ./fonts.nix
+        ./font.nix
         ./gui.nix
         ./locale.nix
         ./net.nix

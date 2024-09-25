@@ -1,16 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-    options = {
-        audio = {
-            enable = lib.mkEnableOption {
-                description = "enable audio";
-                default = false;
-            };
-        };
-    };
-    
-    config = lib.mkIf (config.audio.enable) {
+    config = lib.mkIf (config.gui.enable) {
         sound.enable = true;
         security.rtkit.enable = true;
         services.pipewire = {

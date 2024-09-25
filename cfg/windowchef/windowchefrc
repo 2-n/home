@@ -1,11 +1,11 @@
 #!/bin/sh
 
 waitron wm_config border_width 12
-waitron wm_config internal_border_width 9
-waitron wm_config color_focused 0xDD84BA
-waitron wm_config color_unfocused 0x404040
-waitron wm_config internal_color_focused 0x404040
-waitron wm_config internal_color_unfocused 0x404040
+waitron wm_config internal_border_width 6
+waitron wm_config color_focused 0x262626
+waitron wm_config color_unfocused 0x000000
+waitron wm_config internal_color_focused 0xDD84BA
+waitron wm_config internal_color_unfocused 0x262626
 
 waitron wm_config gap_width all 4
 waitron wm_config gap_width bottom 20

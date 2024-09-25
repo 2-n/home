@@ -1,28 +1,11 @@
 { config, lib, pkgs, ... }:
 
 {
-    options = {
-        windowchef = {
-            enable = lib.mkEnableOption {
-                description = "enable windowchef";
-                default = false;
-            };
-        };
-    };
-
-    config = lib.mkIf (config.gui.enable && config.windowchef.enable) {
+    config = lib.mkIf (config.gui.enable && config.wm == "windowchef") {
         home-manager.users.eli = { config, pkgs, ... }: {
-            home.file.".config/ruler/rulerrc" = {
-                source = config.lib.file.mkOutOfStoreSymlink /home/eli/nix/cfg/windowchef/rulerrc;
-            };
-            home.file.".config/sxhkd/sxhkdrc" = {
-                source = config.lib.file.mkOutOfStoreSymlink /home/eli/nix/cfg/windowchef/sxhkdrc;
-            };
-            home.file.".config/windowchef/windowchefrc" = {
-                source = config.lib.file.mkOutOfStoreSymlink /home/eli/nix/cfg/windowchef/windowchefrc;
-                executable = true;
-            };
-            
+            home.file.".config/ruler/rulerrc".source = config.lib.file.mkOutOfStoreSymlink /home/eli/nix/cfg/windowchef/rulerrc;
+            home.file.".config/sxhkd/sxhkdrc".source = config.lib.file.mkOutOfStoreSymlink /home/eli/nix/cfg/windowchef/sxhkdrc;
+            home.file.".config/windowchef/windowchefrc".source = config.lib.file.mkOutOfStoreSymlink /home/eli/nix/cfg/windowchef/windowchefrc;
             home.packages = with pkgs; [
                 (windowchef.overrideAttrs (oldAttrs: rec {
                     src = fetchFromGitHub {

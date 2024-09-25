@@ -2,8 +2,8 @@
 
 {
     imports = [
-        ./app
-        ./cli
-        ./game
+        ./apps
+        ./games
+        ./shell
     ];
 }

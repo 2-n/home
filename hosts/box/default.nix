@@ -1,9 +1,12 @@
 { inputs, config, lib, pkgs, ... }:
 
 { 
-    imports = [ ../../modules inputs.home-manager.nixosModules.default ];
-    
-    net.enable = true;
+    imports = [ 
+        ../../modules 
+        inputs.home-manager.nixosModules.default
+    ];
+
+    networking.enable = true;
     networking.hostName = "box";
 
     nixpkgs.hostPlatform = "x86_64-linux";
@@ -33,19 +36,19 @@
         device = "/dev/disk/by-label/boot";
         fsType = "vfat";
     };
-        
+
     fileSystems."/mnt/hdd" = {
         device = "/dev/disk/by-label/cute";
         fsType = "ntfs-3g";
         options = [ "rw" "uid=1000"];
     };
     
-    gui.enable = true;
-    audio.enable = true;
-    
     theme = (import ../../theme/dark);
 
-    cwm.enable = true;
+    # avail wms:
+    # 2bwm, cwm, windowchef
+    wm = "cwm";
+    gui.enable = true;
     
     xutils.enable = true;
     lemonbar.enable = true;

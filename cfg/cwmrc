@@ -7,9 +7,9 @@ sticky     no
 
 ignore bar
 
-borderwidth 4
+borderwidth 6
 color inactiveborder "#262626"
-color activeborder   "#DD84BA"
+color activeborder   "#FC8EBD"
 color groupborder    "#262626"
 color ungroupborder  "#262626"
 color urgencyborder  "#262626"
