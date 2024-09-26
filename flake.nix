@@ -20,12 +20,15 @@
             config.allowUnfree = true;
         };
     in 
-    {
+    rec {
         nixosConfigurations = {
             box = nixpkgs.lib.nixosSystem {
                 modules = [ ./hosts/box ];
                 specialArgs = { inherit inputs pkgs pkgs-unstable system; };
             }; 
+        };
+        homeConfigurations = {
+            box = nixosConfigurations.box.config.home-manager.users.eli.home;
         };
     };
 }

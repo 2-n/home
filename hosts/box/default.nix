@@ -3,7 +3,7 @@
 { 
     imports = [ 
         ../../modules 
-        inputs.home-manager.nixosModules.default
+        inputs.home-manager.nixosModules.home-manager
     ];
 
     networking.enable = true;
@@ -52,7 +52,7 @@
     
     xutils.enable = true;
     lemonbar.enable = true;
-    ninemenu.enable = true;
+    _9menu.enable = true;
     dzen.enable = true;
     dmenu.enable = true;
 
