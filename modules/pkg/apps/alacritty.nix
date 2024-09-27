@@ -16,9 +16,21 @@
                 enable = true;
                 settings = {
                     font = {
-                        size = 12.0;
+                        size = 16.0;
                         normal = { 
-                            family = "DejaVu Sans Mono";
+                            family = "spleen";
+                            style = "Regular";
+                        };
+                        bold = { 
+                            family = "spleen";
+                            style = "Regular";
+                        };
+                        italic = { 
+                            family = "spleen";
+                            style = "Regular";
+                        };
+                        bold_italic = { 
+                            family = "spleen";
                             style = "Regular";
                         };
                     };

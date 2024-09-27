@@ -10,6 +10,7 @@
         ./locale.nix
         ./net.nix
         ./user.nix
+        ./zen.nix
     ];
 
     config = {

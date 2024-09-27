@@ -1,3 +1,15 @@
+alt + d
+    drun
+
+alt + Return
+    alacritty
+
+Print
+    shot
+
+alt + Print
+    shot -s
+
 alt + q
     waitron window_close
 
@@ -6,18 +18,6 @@ alt + Escape
 
 alt + ctrl + shift + Escape
     waitron wm_quit 0
-
-alt + {h,j,k,l}
-    waitron window_move {-100 0, 0 100, 0 -100, 100 0}
-
-alt + ctrl + {h,j,k,l}
-    waitron window_move {-25 0, 0 25, 0 -25, 25 0}
-
-alt + shift + {h,j,k,l}
-    waitron window_resize {-100 0, 0 100, 0 -100, 100 0}
-
-alt + ctrl + shift + {h,j,k,l}
-    waitron window_resize {-25 0, 0 25, 0 -25, 25 0}
 
 alt + {_,shift +} r
     winmanip {raise,lower}
@@ -34,20 +34,8 @@ alt + {_,shift +} v
 alt + {g,y,u,b,n}
     waitron window_snap {middle,topleft,topright,bottomleft,bottomright}
 
+alt + {_,shift +} {h,j,k,l}
+    waitron {window_move,window_resize} {-100 0, 0 100, 0 -100, 100 0}
+
 alt + {_,ctrl +,shift +} {1-4}
     waitron {group_activate_specific,group_toggle,group_add_window} {1-4}
-
-alt + {_,shift +} 0
-    waitron {group_toggle,group_add_window} 5
-
-alt + d
-    drun
-
-alt + Return
-    alacritty
-
-Print
-    shot
-
-alt + Print
-    shot -s

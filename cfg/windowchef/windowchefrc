@@ -1,8 +1,17 @@
-#!/bin/sh
+#!/usr/bin/env mksh
+
+# kill these for config changes upon
+# restart and making sure there arent 
+# multiple running for whatever reason
+pkill ruler
+pkill sxhkd
+
+ruler $HOME/.config/windowchef/rulerrc &
+sxhkd -c $HOME/.config/windowchef/sxhkdrc &
 
 waitron wm_config border_width 12
-waitron wm_config internal_border_width 6
-waitron wm_config color_focused 0x262626
+waitron wm_config internal_border_width 3
+waitron wm_config color_focused 0x000000
 waitron wm_config color_unfocused 0x000000
 waitron wm_config internal_color_focused 0xDD84BA
 waitron wm_config internal_color_unfocused 0x262626

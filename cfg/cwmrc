@@ -7,7 +7,7 @@ sticky     no
 
 ignore bar
 
-borderwidth 6
+borderwidth 3
 color inactiveborder "#262626"
 color activeborder   "#FC8EBD"
 color groupborder    "#262626"
@@ -56,18 +56,10 @@ bind-key M-k         window-move-up-big
 bind-key M-j         window-move-down-big
 bind-key M-h         window-move-left-big
 bind-key M-l         window-move-right-big
-bind-key MC-k        window-move-up
-bind-key MC-j        window-move-down
-bind-key MC-h        window-move-left
-bind-key MC-l        window-move-right
 bind-key MS-k        window-resize-up-big
 bind-key MS-j        window-resize-down-big
 bind-key MS-h        window-resize-left-big
 bind-key MS-l        window-resize-right-big
-bind-key MCS-k       window-resize-up
-bind-key MCS-j       window-resize-down
-bind-key MCS-h       window-resize-left
-bind-key MCS-l       window-resize-right
 
 bind-key M-1         group-only-1
 bind-key M-2         group-only-2

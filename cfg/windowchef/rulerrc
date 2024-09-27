@@ -13,9 +13,5 @@ class="discord"
 class="steam"
     wtf "$RULER_ID" && waitron group_add_window 4
 
-# hide these
 class="qBittorrent"
-    wtf "$RULER_ID" && waitron group_add_window 5
-
-class="corectrl"
     wtf "$RULER_ID" && waitron group_add_window 5

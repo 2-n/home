@@ -1,7 +1,4 @@
 #!/usr/bin/env mksh
-# my sucky panel.
-# probably uses more resources
-# than it should with my group checker
 
 bg="#000000"
 fg="#FFFFFF"
@@ -9,31 +6,25 @@ tg="#262626"
 fn="Ttyp0:size=12"
 g="2552x20+4+0"
 
-toggrp="waitron group_toggle"
-
 fifo="/tmp/panel_fifo"
 [ -e "$fifo" ] && rm "$fifo"
 mkfifo "$fifo"
 
 groups() {
-    groups="$(xprop -root WINDOWCHEF_ACTIVE_GROUPS | cut -d\  -f3- | sed 's/,//g')"
-    declare {g1,g2,g3,g4,g0}="%{B-}"
-    for g in $groups; do
-        case $g in
-            1*) g1="%{B${tg}}" ;;
-            2*) g2="%{B${tg}}" ;;
-            3*) g3="%{B${tg}}" ;;
-            4*) g4="%{B${tg}}" ;;
-            5*) g0="%{B${tg}}" ;;
-        esac
+    buf=""
+    active="$(xprop -root WINDOWCHEF_ACTIVE_GROUPS | cut -d\  -f3- | sed 's/,//g')"
+    
+    for grp in 1 2 3 4 5; do
+        groupcmd="waitron group_toggle $grp"
+    
+        if grep $grp <<< $active; then
+            buf="${buf}%{B${tg}}%{A:${groupcmd}:}%{O6}$grp%{O6}%{A}"
+        else
+            buf="${buf}%{B${bg}}%{A:${groupcmd}:}%{O6}$grp%{O6}%{A}"
+        fi
     done
-    tags="${g1}%{A:${toggrp} 1:}%{O6}1%{O6}%{A}"
-    tags+="${g2}%{A:${toggrp} 2:}%{O6}2%{O6}%{A}"
-    tags+="${g3}%{A:${toggrp} 3:}%{O6}3%{O6}%{A}"
-    tags+="${g4}%{A:${toggrp} 4:}%{O6}4%{O6}%{A}"
-    void="${g0}%{A:${toggrp} 5:}%{O6}~%{O6}%{A}"
-    printf "%s\n" "groups${tags}"
-    printf "%s\n" "voided${void}"
+    
+    printf "%s\n" "groups${buf}"
 }
 
 activeWindow() {
@@ -46,21 +37,20 @@ clock() {
     printf "%s\n" "clock${time}"
 }
 
+[[ -n $(cat $HOME/.xinitrc | grep windowchef) ]] && \
+while :; do groups; sleep .1; done > "$fifo" &
+while :; do activeWindow; sleep .1; done > "$fifo" &
+while :; do clock; sleep 5; done > "$fifo" &
 
-while :; do activeWindow; sleep .1s; done > "$fifo" &
-while :; do clock; sleep 5s; done > "$fifo" &
-[[ -n $(cat $HOME/.xinitrc | grep windowchef) ]] && while :; do groups; sleep .1s; done > "$fifo" &
-# ^^^^^^ check for windowchef in xinitrc to determine whether or not to start group section ^^^^^^
 
 while read -r line ; do
     case $line in
         groups*) groups="${line:6}" ;;
-        voided*) voided="${line:6}" ;;
         activeWindow*) activeWindow="${line:12}" ;;
         clock*) clock="${line:5}" ;;
     esac
     echo "%{B${fg}}%{F${bg}}%{O8}%{A:drun:}start%{A}%{O8}%{B-}%{F-}${groups}%{B-}" \
          "%{c}${activeWindow}" \
-         "%{r}${voided}%{B${fg}}%{F${bg}}%{O8}${clock}%{O8}%{B-}%{F-}"
+         "%{r}%{B${fg}}%{F${bg}}%{O8}${clock}%{O8}%{B-}%{F-}"
 done < "$fifo" | lemonbar -b -o 1 -g "$g" -B "$bg" -F "$fg" -f "$fn" | mksh
 
