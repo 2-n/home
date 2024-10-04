@@ -1,16 +1,13 @@
 #!/usr/bin/env sh
 
-fn='Ttyp0:size=12'
-nb='#000000'
-nf='#FFFFFF'
-sb='#FFFFFF'
-sf='#000000'
+fn='Terminus:size=12'
+nb='#777777'
+nf='#ffffff'
+sb='#ffffff'
+sf='#777777'
 
-# doing funny geometry because dmenu doesnt have an
-# offset opt like lemonbar does to center text better 
-
-dmenu_run -b -h 23  \
--x 60 -y -3 -z 2440 \
+dmenu_run           \
+-fn "$fn" -b -h 20  \
 -nb "$nb" -nf "$nf" \
--sb "$sb" -sf "$sf" \
--fn "$fn"
+-sb "$sb" -sf "$sf" 
+

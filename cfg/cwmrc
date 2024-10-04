@@ -1,11 +1,16 @@
-#    n s  w e
-gap  4 20 4 4
+ignore bar
+
+#    n  s w e
+gap  0 20 0 0
 moveamount 10
 snapdist   20
-vtile      65
 sticky     no
 
-ignore bar
+fontname "Ttyp0:size=12"
+color font     "#FFFFFF"
+color selfont  "#000000"
+color menubg   "#000000"
+color menufg   "#FFFFFF"
 
 borderwidth 3
 color inactiveborder "#262626"
@@ -14,81 +19,71 @@ color groupborder    "#262626"
 color ungroupborder  "#262626"
 color urgencyborder  "#262626"
 
-fontname             "Ttyp0:size=12"
-color font           "#FFFFFF"
-color selfont        "#000000"
-color menubg         "#000000"
-color menufg         "#FFFFFF"
-
+unbind-key all
 unbind-mouse all
 
-bind-mouse 1         menu-window
-bind-mouse 2         menu-group
-bind-mouse 3         menu-cmd
+bind-key M-q        window-close
+bind-key M-Escape   restart
+bind-key MCS-Escape quit
 
-bind-mouse M-1       window-move
-bind-mouse M-2       window-hide
-bind-mouse M-3       window-resize
+bind-key M-r    window-raise
+bind-key MS-r   window-lower
+bind-key M-Tab  window-cycle
+bind-key MS-Tab window-rcycle
 
-unbind-key all
+bind-key M-f    window-maximize
+bind-key M-v    window-vmaximize
+bind-key MS-v   window-hmaximize
 
-bind-key M-q         window-close
-bind-key M-Escape    restart
-bind-key MCS-Escape  quit
+bind-key M-g    window-snap-center
+bind-key M-y    window-snap-up-left
+bind-key M-u    window-snap-up-right
+bind-key M-b    window-snap-down-left
+bind-key M-n    window-snap-down-right
 
-bind-key M-r         window-raise
-bind-key MS-r        window-lower
-bind-key M-Tab       window-cycle
-bind-key MS-Tab      window-rcycle
+bind-key M-h    window-move-left-big
+bind-key M-j    window-move-down-big
+bind-key M-k    window-move-up-big
+bind-key M-l    window-move-right-big
+bind-key MS-h   window-resize-left-big
+bind-key MS-j   window-resize-down-big
+bind-key MS-k   window-resize-up-big
+bind-key MS-l   window-resize-right-big
 
-bind-key M-f         window-maximize
-bind-key M-v         window-vmaximize
-bind-key MS-v        window-hmaximize
-bind-key M-space     window-vtile
+bind-key M-1    group-only-1
+bind-key M-2    group-only-2
+bind-key M-3    group-only-3
+bind-key M-4    group-only-4
+bind-key MC-1   group-toggle-1
+bind-key MC-2   group-toggle-2
+bind-key MC-3   group-toggle-3
+bind-key MC-4   group-toggle-4
+bind-key MS-1   window-movetogroup-1
+bind-key MS-2   window-movetogroup-2
+bind-key MS-3   window-movetogroup-3
+bind-key MS-4   window-movetogroup-4
 
-bind-key M-g         window-snap-center
-bind-key M-y         window-snap-up-left
-bind-key M-u         window-snap-up-right
-bind-key M-b         window-snap-down-left
-bind-key M-n         window-snap-down-right
-
-bind-key M-k         window-move-up-big
-bind-key M-j         window-move-down-big
-bind-key M-h         window-move-left-big
-bind-key M-l         window-move-right-big
-bind-key MS-k        window-resize-up-big
-bind-key MS-j        window-resize-down-big
-bind-key MS-h        window-resize-left-big
-bind-key MS-l        window-resize-right-big
-
-bind-key M-1         group-only-1
-bind-key M-2         group-only-2
-bind-key M-3         group-only-3
-bind-key M-4         group-only-4
-bind-key MC-1        group-toggle-1
-bind-key MC-2        group-toggle-2
-bind-key MC-3        group-toggle-3
-bind-key MC-4        group-toggle-4
-bind-key MS-1        window-movetogroup-1
-bind-key MS-2        window-movetogroup-2
-bind-key MS-3        window-movetogroup-3
-bind-key MS-4        window-movetogroup-4
-
-bind-key M-d         drun
-bind-key M-Return    alacritty
-
-bind-key Print       shot
-bind-key M-Print     "shot -s"
+bind-key M-d      drun
+bind-key M-Return alacritty
+bind-key Print    shot
+bind-key M-Print  "shot -s"
 
 bind-key XF86AudioLowerVolume "cmus-remote --volume -5%"
 bind-key XF86AudioRaiseVolume "cmus-remote --volume +5%"
 
-autogroup 1             "firefox"
-autogroup 2             "PrismLauncher"
-autogroup 2             "osu!"
-autogroup 3             "discord"
-autogroup 4             "steam"
-autogroup 9             "qBittorrent"
+bind-mouse 1   menu-window
+bind-mouse 2   menu-group
+bind-mouse 3   menu-cmd
+bind-mouse M-1 window-move
+bind-mouse M-2 window-hide
+bind-mouse M-3 window-resize
+
+autogroup 1 "firefox"
+autogroup 2 "PrismLauncher"
+autogroup 2 "osu!"
+autogroup 3 "discord"
+autogroup 4 "steam"
+autogroup 9 "qBittorrent"
 
 command "  run        " drun
 command "   trm       " alacritty

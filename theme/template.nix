@@ -1,4 +1,4 @@
-{
+rec {
     # black
     base00 = "#000000";
     base08 = "#000000";
@@ -23,4 +23,9 @@
     # white
     base07 = "#FFFFFF";
     base15 = "#FFFFFF";
+    # term colors
+    termbg = base00;
+    termfg = base15;
+    # cursor color
+    cursor = base01;
 }

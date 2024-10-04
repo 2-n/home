@@ -1,10 +1,10 @@
->  my nix system
+>  my nix flake
 
 |||
 |-|-|
 |$wm|[cwm](./cfg/cwmrc)|
 |$shell|[mksh](./cfg/mkshrc)|
-|$editor|[micro](./modules/pkg/shell/micro.nix)|
-|$terminal|[alacritty](./modules/pkg/app/alacritty.nix)|
+|$editor|[micro](./modules/home/pkg/micro.nix)|
+|$terminal|[alacritty](./modules/home/pkg/alacritty.nix)|
 |$launcher|[dmenu](./bin/drun)|
 |$panel|[lemonbar](./bin/bar)|
