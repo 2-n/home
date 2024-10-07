@@ -1,18 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ lib
+, config
+, pkgs
+, ...
+}:
    
 {
-    options = {
-        micro = {
-            enable = lib.mkEnableOption {
-                description = "enable micro";
-                default = false;
-            };
-        };
-    };
-
-    config = lib.mkIf (config.micro.enable) {
+    config = lib.mkIf (config.programs.micro.enable) {
         programs.micro = {
-            enable = true;
             settings = {
                 autosu = true;
                 sucmd = "doas";

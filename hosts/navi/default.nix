@@ -1,8 +1,14 @@
-{ inputs, config, lib, pkgs, pkgs-unstable, ... }:
+{ lib
+, config
+, pkgs
+, ... 
+}:
 
 { 
-    imports = 
-        [ ./hardware.nix inputs.home-manager.nixosModules.home-manager ];
+    imports = [ 
+        ./hardware.nix
+        ../../modules/nixos
+    ];
     
     boot = {
         loader = {
@@ -15,8 +21,8 @@
 
     networking = {
         hostName = "navi";
-        networkmanager.enable = true;
         useDHCP = lib.mkDefault true;
+        networkmanager.enable = true;
     };
 
     time.timeZone = "America/Chicago";
@@ -26,13 +32,6 @@
         isNormalUser = true;
         extraGroups = [ "wheel" ];
         shell = pkgs.mksh;
-    };
-
-    home-manager = {
-        useGlobalPkgs = true;
-        useUserPackages = true;
-        users.eli = import ./home.nix;
-        extraSpecialArgs = { inherit inputs pkgs pkgs-unstable; };
     };
 
     security = {
@@ -47,14 +46,14 @@
         rtkit.enable = true;
     };
 
-    sound.enable = true; # <--- amixer for volume ctrl
+    sound.enable = true;
     services.pipewire = {
         enable = true;
         alsa.enable = true;
         alsa.support32Bit = true;
         pulse.enable = true;
         extraConfig.pipewire = {
-            "99-no-bell.conf" = { # <- murder the bell
+            "99-no-bell.conf" = {
                 "context.properties" = {
                     "module.x11.bell" = false;
                 };
@@ -62,7 +61,6 @@
         };
     };
 
-    # basic video + input config
     services = {
         xserver = {
             enable = true;
@@ -77,19 +75,14 @@
         '';
     };
 
-#    xdg.portal = {
-#        enable = true;
-#        xdgOpenUsePortal = true;
-#        extraPortals = with pkgs; [ 
-#            xdg-desktop-portal-gtk xdg-desktop-portal-wlr 
-#        ];
-#    };
-
     environment.etc."issue".text = '''';
 
+    services.lact.enable = true;
+    programs.steam.enable = true;
+
     environment.systemPackages = with pkgs; [
+        micro git wget curl nix-prefetch-scripts
         (writeScriptBin "sudo" ''exec doas "$@"'')
-        micro git wget curl lact nix-prefetch-scripts 
     ];
 
     fonts.packages = with pkgs; [
@@ -97,24 +90,6 @@
         unifont dejavu_fonts
         uw-ttyp0 inconsolata
     ];
-
-    systemd.services.lact = {
-        enable = true;
-        description = "amdgpu control daemon";
-        after = [ "multi-user.target" ];
-        wantedBy = [ "multi-user.target" ];
-        serviceConfig = {
-            ExecStart =  "${pkgs.lact}/bin/lact daemon";
-        };
-    };
-
-    programs.steam = {
-        enable = true;
-        dedicatedServer.openFirewall = true;
-    };
-    
-    programs.gamemode.enable = true;
-    programs.gamescope.enable = true;
 
     nix.settings.auto-optimise-store = true;
     nix.settings.experimental-features = [ "nix-command" "flakes" ];

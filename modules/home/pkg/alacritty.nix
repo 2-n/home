@@ -1,18 +1,12 @@
-{ config, lib, pkgs,  ... }:
+{ lib
+, config
+, pkgs
+,  ... 
+}:
 
 {
-    options = {
-        alacritty = {
-            enable = lib.mkEnableOption {
-                description = "enable alacritty";
-                default = false;
-            };
-        };
-    };
-
-    config = lib.mkIf (config.alacritty.enable) {
+    config = lib.mkIf (config.programs.alacritty.enable) {
         programs.alacritty = {
-            enable = true;
             settings = {
                 font = {
                     size = config.theme.font.size + 0.0;

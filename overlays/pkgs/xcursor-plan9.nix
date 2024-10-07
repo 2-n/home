@@ -1,4 +1,8 @@
-{ lib, stdenv, fetchFromGitHub, libXcursor }:
+{ lib
+, stdenv
+, fetchFromGitHub
+, libXcursor 
+}:
 
 stdenv.mkDerivation rec {
     pname = "xcursor-plan9";

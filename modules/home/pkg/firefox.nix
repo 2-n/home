@@ -1,18 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ lib
+, config
+, pkgs
+, ... 
+}:
 
 {
-    options = {
-        firefox = {
-            enable = lib.mkEnableOption {
-                description = "enable firefox";
-                default = false;
-            };
-        };
-    };
-
-    config = lib.mkIf (config.firefox.enable) {
+    config = lib.mkIf (config.programs.firefox.enable) {
         programs.firefox = {
-            enable = true;
             policies = {
                 AutofillCreditCardEnabled = false;
                 DisableFirefoxStudies = true;

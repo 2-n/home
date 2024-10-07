@@ -1,4 +1,4 @@
->  my nix flake
+> my system
 
 |||
 |-|-|

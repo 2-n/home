@@ -1,7 +1,25 @@
-{ stdenv, fetchFromGitHub, pkgs, ... }:
-
-with pkgs;
-
+{ lib
+, stdenv
+, fetchFromGitHub
+, bison
+, flex
+, libxcb
+, xcbutilwm
+, xcb-util-cursor
+, wmutils-libwm
+}:
+let
+    libwm =
+        (wmutils-libwm.overrideAttrs (oldAttrs: rec {
+            src = fetchFromGitHub {
+                owner = "wmutils";
+                repo = "libwm";
+                rev = "dfa861903e4f1a045c6aaf4869dd6517941db689";
+                sha256 = "14rnz5n1d89gy0dcrd6wnryjxgmcyszs2y1kjahy8fzn67xq1mji";
+            };
+            buildInputs = oldAttrs.buildInputs ++ [ xcb-util-cursor ];
+        }));
+in
 stdenv.mkDerivation rec {
     pname = "wc-ruler";
     version = "0.1.2";
@@ -15,16 +33,7 @@ stdenv.mkDerivation rec {
 
     nativeBuildInputs = [ bison flex ];
     
-    buildInputs = [ xorg.libxcb xorg.xcbutilwm xcb-util-cursor
-    (wmutils-libwm.overrideAttrs (oldAttrs: rec {
-        src = fetchFromGitHub {
-            owner = "wmutils";
-            repo = "libwm";
-            rev = "dfa861903e4f1a045c6aaf4869dd6517941db689";
-            sha256 = "14rnz5n1d89gy0dcrd6wnryjxgmcyszs2y1kjahy8fzn67xq1mji";
-        };
-        buildInputs = oldAttrs.buildInputs ++ [ xcb-util-cursor ];
-    })) ];
+    buildInputs = [ libxcb xcbutilwm xcb-util-cursor libwm ];
 
     makeFlags = [ "PREFIX=$(out)" ];
 
