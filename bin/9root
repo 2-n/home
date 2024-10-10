@@ -1,0 +1,22 @@
+#!/usr/bin/env mksh
+
+nm="9root"
+bg="#000000"
+fg="#ffffff"
+gx="0x0"
+fn="-*-terminus-medium-*-*-*-14-*-*-*-*-*-*-*"
+
+if [[ $1 == "s" ]]; then
+    gx="0x0+20-24"
+fi
+
+9menu -popup -label "$nm" -geometry "$gx" \
+-bg "$bg" -fg "$fg" -font "$fn" \
+"run:drun" \
+"shell:alacritty" \
+" browser :firefox" \
+" discord :discord" \
+"steam:steam" \
+"cmus:alacritty -e cmus" \
+"pass:keepassxc" \
+"exit"

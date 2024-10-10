@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+fn='SFMono Nerd Font 14'
+nb='#2c2827'
+nf='#8f938f'
+sb='#8f938f'
+sf='#2c2827'
+pb='#34302f'
+pf='#aeb2f8'
+
+wmenu-run \
+-f "$fn" -p "%:"  \
+-N "$nb" -n "$nf" \
+-S "$sb" -s "$sf" \
+-M "$pb" -m "$pf" 

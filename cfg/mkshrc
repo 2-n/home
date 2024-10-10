@@ -3,13 +3,13 @@ export VISUAL=$EDITOR
 
 export PATH=$HOME/bin:$PATH
 
-export PS1=`echo "\e[31m%\e[0m "`
-export PF_INFO="ascii title os kernel uptime shell pkgs memory"
+export PS1=`echo "\e[33m%:\e[0m "`
 
 alias e=$EDITOR
+alias f=yazi
 alias calc='bc -P -S 3'
 alias cls='clear && ls'
-alias ls='ls --group-directories-first --color'
+alias ls='LC_COLLATE=C ls --group-directories-first --color'
 alias lc='ls -A'
 alias ll='ls -lAh'
 alias mkdir='mkdir -p'

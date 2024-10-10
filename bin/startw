@@ -1,0 +1,7 @@
+#!/usr/bin/env mksh
+
+export NIXOS_OZONE_WL=1
+export MOZ_ENABLE_WAYLAND=1
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+exec labwc

@@ -1,0 +1,30 @@
+#!/usr/bin/env mksh
+
+# shitty fetch thing
+
+host=$(hostname)
+ver=$(nixos-version | awk '{print tolower($2)}' | tr -d '()')
+shell=$(basename $SHELL)
+
+palette=""
+
+for i in $(seq 1 6); do
+    palette="${palette}$(tput setab ${i})  "
+done
+
+lg=$(tput setaf 7; tput setab 3)
+rs=$(tput sgr0)
+
+lc=$(tput setaf 6)
+nm=$(tput setaf 1)
+hs=$(tput setaf 5)
+
+cat << EOF
+${lg}  \\\\  \\\\ //  ${rs}   ${nm}${USER}${rs}@${hs}${host}${rs}
+${lg} ==\\\\__\\\\/ //${rs}    ${lc}os${rs} nixos
+${lg}   //   \\\\// ${rs}   ${lc}ver${rs} ${ver}
+${lg}==//     //==${rs}    ${lc}sh${rs} ${shell}
+${lg} //\\\\___//   ${rs}   ${lc}trm${rs} ${TERM}
+${lg}// /\\\\  \\\\== ${rs}    ${lc}wm${rs} labwc
+${lg}  // \\\\  \\\\  ${rs}  ${palette}${rs}
+EOF

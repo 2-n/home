@@ -38,6 +38,7 @@ static const char *colors[] = {
 
 // commands
 static const char *windowcmd[]    = { "9icon", NULL };
+static const char *rootcmd[]      = { "9root", NULL };
 static const char *dmenucmd[]     = { "drun", NULL };
 static const char *termcmd[]      = { "alacritty", NULL };
 
@@ -138,6 +139,7 @@ static key keys[] = {
 
     {  MOD ,              XK_w,          start,             {.com = windowcmd}},
     {  MOD ,              XK_d,          start,             {.com = dmenucmd}},
+    {  MOD |SHIFT,        XK_d,          start,             {.com = rootcmd}},
     {  MOD ,              XK_Return,     start,             {.com = termcmd}},
 
        DESKTOPCHANGE(     XK_1,                             0)
@@ -155,10 +157,11 @@ static key keys[] = {
 // mouse bindings
 static Button buttons[] = {
     {  MOD ,      XCB_BUTTON_INDEX_1,     mousemotion,         {.i=TWOBWM_MOVE}, false},
+    {  0   ,      XCB_BUTTON_INDEX_1,     start,               {.com = windowcmd}, true},
     {  MOD ,      XCB_BUTTON_INDEX_2,     hide,                {}, false},
     {  MOD |SHIFT,XCB_BUTTON_INDEX_2,     fix,                 {}, false},
     {  MOD ,      XCB_BUTTON_INDEX_3,     mousemotion,         {.i=TWOBWM_RESIZE}, false},
-    {  0   ,      XCB_BUTTON_INDEX_3,     start,               {.com = windowcmd}, true},
+    {  0   ,      XCB_BUTTON_INDEX_3,     start,               {.com = rootcmd}, true},
     {  MOD ,      XCB_BUTTON_INDEX_4,     resizestep_aspect,   {.i=TWOBWM_RESIZE_KEEP_ASPECT_GROW}, false},
     {  MOD ,      XCB_BUTTON_INDEX_5,     resizestep_aspect,   {.i=TWOBWM_RESIZE_KEEP_ASPECT_SHRINK}, false},
 };

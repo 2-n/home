@@ -1,12 +1,12 @@
 ignore bar
 
-#    n  s w e
-gap  0 20 0 0
+#    n s w e
+gap  0 0 0 0
 moveamount 10
 snapdist   20
 sticky     no
 
-fontname "Ttyp0:size=12"
+fontname "DejaVu Sans Mono:size=12"
 color font     "#FFFFFF"
 color selfont  "#000000"
 color menubg   "#000000"
@@ -22,46 +22,50 @@ color urgencyborder  "#262626"
 unbind-key all
 unbind-mouse all
 
-bind-key M-q        window-close
 bind-key M-Escape   restart
 bind-key MCS-Escape quit
 
+bind-key M-q    window-close
 bind-key M-r    window-raise
 bind-key MS-r   window-lower
 bind-key M-Tab  window-cycle
 bind-key MS-Tab window-rcycle
 
-bind-key M-f    window-maximize
-bind-key M-v    window-vmaximize
-bind-key MS-v   window-hmaximize
+bind-key M-f  window-maximize
+bind-key M-v  window-vmaximize
+bind-key MS-v window-hmaximize
 
-bind-key M-g    window-snap-center
-bind-key M-y    window-snap-up-left
-bind-key M-u    window-snap-up-right
-bind-key M-b    window-snap-down-left
-bind-key M-n    window-snap-down-right
+bind-key M-g window-snap-center
+bind-key M-y window-snap-up-left
+bind-key M-u window-snap-up-right
+bind-key M-b window-snap-down-left
+bind-key M-n window-snap-down-right
 
-bind-key M-h    window-move-left-big
-bind-key M-j    window-move-down-big
-bind-key M-k    window-move-up-big
-bind-key M-l    window-move-right-big
-bind-key MS-h   window-resize-left-big
-bind-key MS-j   window-resize-down-big
-bind-key MS-k   window-resize-up-big
-bind-key MS-l   window-resize-right-big
+bind-key M-h  window-move-left-big
+bind-key M-j  window-move-down-big
+bind-key M-k  window-move-up-big
+bind-key M-l  window-move-right-big
+bind-key MC-h window-snap-left
+bind-key MC-j window-snap-down
+bind-key MC-k window-snap-up
+bind-key MC-l window-snap-right
+bind-key MS-h window-resize-left-big
+bind-key MS-j window-resize-down-big
+bind-key MS-k window-resize-up-big
+bind-key MS-l window-resize-right-big
 
-bind-key M-1    group-only-1
-bind-key M-2    group-only-2
-bind-key M-3    group-only-3
-bind-key M-4    group-only-4
-bind-key MC-1   group-toggle-1
-bind-key MC-2   group-toggle-2
-bind-key MC-3   group-toggle-3
-bind-key MC-4   group-toggle-4
-bind-key MS-1   window-movetogroup-1
-bind-key MS-2   window-movetogroup-2
-bind-key MS-3   window-movetogroup-3
-bind-key MS-4   window-movetogroup-4
+bind-key M-1  group-only-1
+bind-key M-2  group-only-2
+bind-key M-3  group-only-3
+bind-key M-4  group-only-4
+bind-key MC-1 group-toggle-1
+bind-key MC-2 group-toggle-2
+bind-key MC-3 group-toggle-3
+bind-key MC-4 group-toggle-4
+bind-key MS-1 window-movetogroup-1
+bind-key MS-2 window-movetogroup-2
+bind-key MS-3 window-movetogroup-3
+bind-key MS-4 window-movetogroup-4
 
 bind-key M-d      drun
 bind-key M-Return alacritty
@@ -85,10 +89,10 @@ autogroup 3 "discord"
 autogroup 4 "steam"
 autogroup 9 "qBittorrent"
 
-command "  run        " drun
-command "   trm       " alacritty
-command "    ffx      " firefox
-command "     dsc     " discord
-command "      stm    " steam
-command "       mus   "	"alacritty -e cmus"
-command "        pfm  " pcmanfm
+command run      drun
+command terminal alacritty
+command firefox  firefox
+command discord  discord
+command steam    steam
+command keepass  keepassxc
+command music    "alacritty -e cmus"

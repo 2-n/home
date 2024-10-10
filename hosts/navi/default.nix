@@ -16,7 +16,7 @@
             efi.canTouchEfiVariables = true;
         };
         tmp.cleanOnBoot = true;
-        kernelPackages = pkgs.linuxPackages_zen;
+        kernelPackages = pkgs.linuxPackages_latest;
     };
 
     networking = {
@@ -87,6 +87,7 @@
 
     fonts.packages = with pkgs; [
         terminus_font
+        apple-fonts-nerd
         unifont dejavu_fonts
         uw-ttyp0 inconsolata
     ];

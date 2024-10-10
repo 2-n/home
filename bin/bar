@@ -49,7 +49,7 @@ while read -r line ; do
         activeWindow*) activeWindow="${line:12}" ;;
         clock*) clock="${line:5}" ;;
     esac
-    echo "%{B${bg}}%{F${fg}}%{O8}%{A:drun:}start%{A}%{O8}%{B-}%{F-}${groups}%{B-}" \
+    echo "%{B${bg}}%{F${fg}}%{O8}%{A:9root s &:}start%{A}%{O8}%{B-}%{F-}${groups}%{B-}" \
          "%{c}${activeWindow}" \
          "%{r}%{B${bg}}%{F${fg}}%{O8}${clock}%{O8}%{B-}%{F-}"
 done < "$fifo" | lemonbar -b -o 1 -g "$g" -B "$bg" -F "$fg" -f "$fn" | mksh

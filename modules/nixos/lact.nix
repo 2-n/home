@@ -1,6 +1,6 @@
 { lib
 , config
-, pkgs
+, pkgs-unstable
 , ...
 }:
 
@@ -15,14 +15,14 @@
     };
 
     config = lib.mkIf (config.services.lact.enable) {
-        environment.systemPackages = with pkgs; [ lact ];
+        environment.systemPackages = with pkgs-unstable; [ lact ];
         systemd.services.lact = {
             enable = true;
             description = "amdgpu control daemon";
             after = [ "multi-user.target" ];
             wantedBy = [ "multi-user.target" ];
             serviceConfig = {
-                ExecStart =  "${pkgs.lact}/bin/lact daemon";
+                ExecStart =  "${pkgs-unstable.lact}/bin/lact daemon";
             };
         };
     };

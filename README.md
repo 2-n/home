@@ -2,9 +2,8 @@
 
 |||
 |-|-|
-|$wm|[cwm](./cfg/cwmrc)|
+|$wm|[labwc]|
 |$shell|[mksh](./cfg/mkshrc)|
 |$editor|[micro](./modules/home/pkg/micro.nix)|
-|$terminal|[alacritty](./modules/home/pkg/alacritty.nix)|
-|$launcher|[dmenu](./bin/drun)|
-|$panel|[lemonbar](./bin/bar)|
+|$terminal|[foot](./modules/home/pkg/foot.nix)|
+|$launcher|[dmenu](./bin/wrun)|

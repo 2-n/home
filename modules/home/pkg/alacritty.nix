@@ -1,6 +1,5 @@
 { lib
 , config
-, pkgs
 ,  ... 
 }:
 
@@ -43,31 +42,31 @@
                 };
                 colors = {
                     primary = {
-                        background = config.theme.colors.termbg;
-                        foreground = config.theme.colors.termfg;
+                        background = "#${config.theme.colors.termbg}";
+                        foreground = "#${config.theme.colors.termfg}";
                     };
                     cursor = {
-                        cursor     = config.theme.colors.cursor;
+                        cursor     = "#${config.theme.colors.cursor}";
                     };
                     normal = {
-                        black      = config.theme.colors.base00;
-                        red        = config.theme.colors.base01;
-                        green      = config.theme.colors.base02;
-                        yellow     = config.theme.colors.base03;
-                        blue       = config.theme.colors.base04;
-                        magenta    = config.theme.colors.base05;
-                        cyan       = config.theme.colors.base06;
-                        white      = config.theme.colors.base07;
+                        black      = "#${config.theme.colors.base00}";
+                        red        = "#${config.theme.colors.base01}";
+                        green      = "#${config.theme.colors.base02}";
+                        yellow     = "#${config.theme.colors.base03}";
+                        blue       = "#${config.theme.colors.base04}";
+                        magenta    = "#${config.theme.colors.base05}";
+                        cyan       = "#${config.theme.colors.base06}";
+                        white      = "#${config.theme.colors.base07}";
                     };
                     bright = {
-                        black      = config.theme.colors.base08;
-                        red        = config.theme.colors.base09;
-                        green      = config.theme.colors.base10;
-                        yellow     = config.theme.colors.base11;
-                        blue       = config.theme.colors.base12;
-                        magenta    = config.theme.colors.base13;
-                        cyan       = config.theme.colors.base14;
-                        white      = config.theme.colors.base15;
+                        black      = "#${config.theme.colors.base08}";
+                        red        = "#${config.theme.colors.base09}";
+                        green      = "#${config.theme.colors.base10}";
+                        yellow     = "#${config.theme.colors.base11}";
+                        blue       = "#${config.theme.colors.base12}";
+                        magenta    = "#${config.theme.colors.base13}";
+                        cyan       = "#${config.theme.colors.base14}";
+                        white      = "#${config.theme.colors.base15}";
                     };
                 };
             };
