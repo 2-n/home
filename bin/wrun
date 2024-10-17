@@ -8,7 +8,7 @@ sf='#2c2827'
 pb='#34302f'
 pf='#aeb2f8'
 
-wmenu-run \
+wmenu-run -b \
 -f "$fn" -p "%:"  \
 -N "$nb" -n "$nf" \
 -S "$sb" -s "$sf" \

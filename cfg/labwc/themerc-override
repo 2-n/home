@@ -1,0 +1,48 @@
+border.width: 3
+padding.width: 0
+padding.height: 0
+
+titlebar.height: 32
+
+window.active.border.color: #d977a3
+window.inactive.border.color: #34302f
+
+window.active.title.bg.color: #34302f
+window.inactive.title.bg.color: #34302f
+
+window.active.label.text.color: #8f938f
+window.inactive.label.text.color: #8f938f
+
+window.active.button.unpressed.image.color: #8f938f
+window.inactive.button.unpressed.image.color: #8f938f
+
+snapping.overlay.region.bg.enabled: yes
+snapping.overlay.region.bg.color: #2c2827c0
+snapping.overlay.region.border.enabled: yes
+snapping.overlay.region.border.width: 6
+snapping.overlay.region.border.color: #aeb2f880
+
+snapping.overlay.edge.bg.enabled: yes
+snapping.overlay.edge.bg.color: #2c2827c0
+snapping.overlay.edge.border.enabled: yes
+snapping.overlay.edge.border.width: 6
+snapping.overlay.edge.border.color: #aeb2f880
+
+osd.bg.color: #2c2827
+osd.border.color: #34302f
+osd.border.width: 3
+osd.label.text.color: #8f938f
+
+osd.window-switcher.width: 25%
+osd.window-switcher.padding: 3
+osd.window-switcher.padding.x: 0
+osd.window-switcher.padding.y: 0
+
+menu.items.bg.color: #2c2827
+menu.items.text.color: #8f938f
+menu.items.active.bg.color: #34302f
+menu.items.active.text.color: #aeb2f8
+menu.separator.color: #8f938f
+menu.separator.width: 0
+menu.items.padding.x: 12
+menu.items.padding.y: 0

@@ -11,8 +11,10 @@
     home.username = "eli";
     home.homeDirectory = "/home/eli";
 
-    home.file.".mkshrc".source = 
-        config.lib.file.mkOutOfStoreSymlink /home/eli/nix/cfg/mkshrc;
+    home.file.".mkshrc" = {
+        source =
+            config.lib.file.mkOutOfStoreSymlink /home/eli/nix/cfg/mkshrc;
+    };
     
     home.file."bin" = {
         source = 
@@ -25,7 +27,7 @@
     theme = {
         colors = (import ../../theme/pastelish-dark);
         font.name = "SFMono Nerd Font";
-        font.size = 16;
+        font.size = 15;
     };
     
     programs = {
@@ -38,79 +40,56 @@
     };
 
     home.packages = with pkgs; [
-        # cli tools
-        # vis
-        gavin-bc
-        git
-        gh
-        zip
-        unzip
-        btop
-        pfetch
-        cmus
-        yazi
+        git gh btop
+        yazi  p7zip
+        cmus pfetch
 
         plan9port
-
-        # apps
-        imv
-        mpv    
         keepassxc
-        discord
+        
         qbittorrent
-        picard
-        gimp
-        pcmanfm
-        xarchiver
-        lxappearance 
+        picard gimp
+        discord
+        imv mpv
 
-        # gaming 
-        # lutris
-        prismlauncher
-        openrct2
         protonup-ng
+        prismlauncher
     ] ++ (with pkgs-unstable; [
         osu-lazer-bin
     ]) ++ (if config.withX11 then [
-        xclip 
-        maim
+        xclip maim
         hsetroot
         xdotool 
-        xorg.xwininfo
-        _9menu
+        _9menu dmenu
         lemonbar-xft
-        dzen2
-        dmenu
     ] else
     if config.withWayland then [
         xwayland
-        wl-clipboard-rs
         wlr-randr
-        swaybg
-        grim
-        slurp
-        wlrctl
-        wmenu
-        waybar
-    ] else []);
+        wl-clipboard-rs
+        grim   slurp
+        swaybg wmenu
+        bemenu  # hikari doesnt have   
+    ] else []); # xdg_activation_v1 protocol switch to tofi
 
-    xdg.portal = lib.mkIf (config.withWayland) {
-        enable = true;
-        xdgOpenUsePortal = true;
-        extraPortals = with pkgs; [
-            xdg-desktop-portal-wlr
-            xdg-desktop-portal-gtk
-        ];
-    };
-
-    xdg.userDirs = {
-        enable = true;
-        desktop = "$HOME/";
-        documents = "$HOME/doc";
-        download = "$HOME/dwn";
-        music = "/mnt/hdd/mus";
-        pictures = "$HOME/pix";
-        videos = "$HOME/vid";
+    xdg = {
+        userDirs = {
+            enable = true;
+            desktop = "$HOME/";
+            documents = "$HOME/doc";
+            download = "$HOME/dwn";
+            music = "/mnt/hdd/mus";
+            pictures = "$HOME/pix";
+            videos = "$HOME/vid";
+        };
+        portal = lib.mkIf (config.withWayland) {
+            enable = true;
+            xdgOpenUsePortal = true;
+            extraPortals = with pkgs; [
+                xdg-desktop-portal-wlr
+                xdg-desktop-portal-gtk
+            ];
+        };
     };
 
     home.stateVersion = "24.05";

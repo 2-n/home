@@ -1,6 +1,6 @@
 #!/usr/bin/env mksh
 
 case $1 in
-    s) grim -g "$(slurp)" - ;;
-    *) grim - ;;
+    s) grim -c -g "$(slurp)" - ;;
+    *) grim -c - ;;
 esac | wl-clip -selection clipboard -t image/png

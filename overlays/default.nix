@@ -1,5 +1,6 @@
 final: prev: {
     apple-fonts-nerd = prev.callPackage ./pkgs/apple-fonts-nerd.nix {};
+    hikari = prev.callPackage ./pkgs/hikari/default.nix {};
     wc-ruler = prev.callPackage ./pkgs/wc-ruler.nix {};
     xcursor-plan9 = prev.callPackage ./pkgs/xcursor-plan9.nix {};
 

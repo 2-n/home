@@ -15,7 +15,8 @@
                     font-size-adjustment = 0.5;
                     resize-by-cells = "no";
                     pad = "${toString config.theme.font.size}x${toString config.theme.font.size}";
-                    initial-window-size-chars = "75x30";
+                    initial-window-size-pixels = "900x700";
+                    #initial-window-size-chars = "75x30";
                 };
                 cursor = {
                     style = "Underline";

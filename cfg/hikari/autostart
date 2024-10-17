@@ -1,0 +1,4 @@
+#!/usr/bin/env mksh
+
+foot -s &
+qbittorrent &

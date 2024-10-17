@@ -4,4 +4,8 @@ export NIXOS_OZONE_WL=1
 export MOZ_ENABLE_WAYLAND=1
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+export XCURSOR_THEME=plan9
+
 exec labwc
+#exec hikari -a $HOME/.config/hikari/autostart 2>\
+#    /tmp/hikari-session_$(date +%m%d%g%H%M%S).log

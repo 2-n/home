@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openbox_menu>    
+<menu id="root-menu" label="start">
+    <item label="run">
+        <action name="Execute" command="wrun" />
+    </item>
+    <item label="terminal">
+        <action name="Execute" command="footclient" />
+    </item>
+    <item label="browser">
+        <action name="Execute" command="firefox" />
+    </item>
+    <item label="discord">
+        <action name="Execute" command="discord" />
+    </item>
+    <item label="steam">
+        <action name="Execute" command="steam" />
+    </item>
+    <item label="keepass">
+        <action name="Execute" command="keepassxc" />
+    </item>
+    <item label="music">
+        <action name="Execute" command="footclient -e cmus" />
+    </item>
+    <separator />
+    <item label="reconf">
+        <action name="Reconfigure" />
+    </item>
+    <item label="exit">
+        <action name="Exit" />
+    </item>
+</menu>
+</openbox_menu>

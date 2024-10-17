@@ -19,7 +19,9 @@
         };
         kernelModules = [ "kvm-amd" ];
         blacklistedKernelModules = [ "ucsi_ccg" ];
-        kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ];
+        kernelParams = [ 
+            "amdgpu.ppfeaturemask=0xffffffff" 
+        ];
     };
     
     fileSystems."/" = {

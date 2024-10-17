@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+
+<labwc_config>
+
+    <theme>
+        <font name="SFMono Nerd Font" size="14" />
+        <cornerRadius>0</cornerRadius>
+    </theme>
+
+    <windowRules>
+      <!-- make all windows have decorations and remove titlebars -->
+        <windowRule identifier="*" serverDecoration="yes">
+            <action name="ToggleDecorations" />
+        </windowRule>
+      <!-- regular window rules -->
+        <windowRule identifier="firefox" matchOnce="true">
+            <action name="SendToDesktop" to="1" follow="no" />
+            <action name="ToggleMaximize" />
+        </windowRule>
+        <windowRule identifier="discord" matchOnce="true">
+            <action name="SendToDesktop" to="3" follow="no" />
+            <action name="ToggleMaximize" />
+        </windowRule>
+        <windowRule identifier="steam" matchOnce="true">
+            <action name="SendToDesktop" to="4" follow="no" />
+            <action name="ToggleMaximize" />
+        </windowRule>
+        <windowRule identifier="org.qbittorrent.qBittorrent" matchOnce="true">
+            <action name="SendToDesktop" to="4" follow="no" />
+            <action name="ToggleMaximize" />
+            <action name="Iconify" />
+        </windowRule>
+    </windowRules>
+
+    <focus>
+        <followMouse>yes</followMouse>
+        <followMouseRequiresMovement>yes</followMouseRequiresMovement>
+        <raiseOnFocus>no</raiseOnFocus>
+    </focus>
+
+    <resistance>
+        <screenEdgeStrength>50</screenEdgeStrength>
+        <windowEdgeStrength>50</windowEdgeStrength>
+        <unSnapThreshold>50</unSnapThreshold>
+    </resistance>
+
+    <placement>
+        <policy>cursor</policy>
+    </placement>
+
+    <snapping>
+        <overlay enabled="yes">
+            <delay inner="250" outer="250" />
+        </overlay>
+    </snapping>
+
+    <regions>
+        <region name="top-left"     x="0%"  y="0%"  height="50%"  width="50%"  />
+        <region name="top-right"    x="50%" y="0%"  height="50%"  width="50%"  />
+        <region name="left"         x="0%"  y="0%"  height="100%" width="50%"  />
+        <region name="center"       x="10%" y="10%" height="80%"  width="80%"  />
+        <region name="right"        x="50%" y="0%"  height="100%" width="50%"  />
+        <region name="bottom-left"  x="0%"  y="50%" height="50%"  width="50%"  />
+        <region name="bottom-right" x="50%" y="50%" height="50%"  width="50%"  />
+    </regions>
+
+    <desktops number="4" popupTime="0" />
+
+    <keyboard>
+        <keybind key="A-Escape">
+            <action name="Reconfigure" />
+        </keybind>
+        <keybind key="A-C-S-Escape">
+            <action name="Exit" />
+        </keybind>
+        <keybind key="A-Return">
+            <action name="Execute" command="footclient" />
+        </keybind>
+        <keybind key="A-d">
+            <action name="Execute" command="wrun" />
+        </keybind>
+        <keybind key="A-S-d">
+            <action name="ShowMenu" menu="root-menu" />
+        </keybind>
+        <keybind key="Print">
+            <action name="Execute" command="wshot" />
+        </keybind>
+        <keybind key="A-Print">
+            <action name="Execute" command="wshot s" />
+        </keybind>
+        <keybind key="A-q">
+            <action name="Close" />
+        </keybind>
+        <keybind key="A-r">
+            <action name="Raise" />
+        </keybind>
+        <keybind key="A-S-r">
+            <action name="Lower" />
+        </keybind>
+        <keybind key="A-Tab">
+            <action name="NextWindow" />
+        </keybind> 
+        <keybind key="A-S-Tab">
+            <action name="PreviousWindow" />
+        </keybind>
+        <keybind key="A-f">
+            <action name="ToggleMaximize" />
+        </keybind>
+        <keybind key="A-S-f">
+            <action name="ToggleFullscreen" />
+        </keybind>
+        <keybind key="A-v">
+            <action name="ToggleMaximize" direction="vertical" />
+        </keybind>
+        <keybind key="A-S-v">
+            <action name="ToggleMaximize" direction="horizontal" />
+        </keybind>
+        <keybind key="A-g">
+            <action name="SnapToRegion" region="center" />
+        </keybind>
+        <keybind key="A-y">
+            <action name="MoveToEdge" direction="up" snapWindows="no" />
+            <action name="MoveToEdge" direction="left" snapWindows="no" />
+        </keybind>
+        <keybind key="A-u">
+            <action name="MoveToEdge" direction="up" snapWindows="no" />
+            <action name="MoveToEdge" direction="right" snapWindows="no" />
+        </keybind>
+        <keybind key="A-b">
+            <action name="MoveToEdge" direction="down" snapWindows="no" />
+            <action name="MoveToEdge" direction="left" snapWindows="no" />
+        </keybind>
+        <keybind key="A-n">
+            <action name="MoveToEdge" direction="down" snapWindows="no" />
+            <action name="MoveToEdge" direction="right" snapWindows="no" />
+        </keybind> 
+        <keybind key="A-C-y">
+            <action name="SnapToRegion" region="top-left" />
+        </keybind>
+        <keybind key="A-C-u">
+            <action name="SnapToRegion" region="top-right" />
+        </keybind>
+        <keybind key="A-C-b">
+            <action name="SnapToRegion" region="bottom-left" />
+        </keybind>
+        <keybind key="A-C-n">
+            <action name="SnapToRegion" region="bottom-right" />
+        </keybind> 
+        <keybind key="A-h">
+            <action name="MoveRelative" x="-100" />
+        </keybind> 
+        <keybind key="A-j">
+            <action name="MoveRelative" y="100" />
+        </keybind> 
+        <keybind key="A-k">
+            <action name="MoveRelative" y="-100" />
+        </keybind>
+        <keybind key="A-l">
+            <action name="MoveRelative" x="100" />
+        </keybind>
+        <keybind key="A-C-h">
+            <action name="SnapToRegion" region="left" />
+        </keybind>
+        <keybind key="A-C-l">
+            <action name="SnapToRegion" region="right" />
+        </keybind>
+        <keybind key="A-S-h">
+            <action name="ResizeRelative" right="-100" />
+        </keybind> 
+        <keybind key="A-S-j">
+            <action name="ResizeRelative" bottom="100" />
+        </keybind>
+        <keybind key="A-S-k">
+            <action name="ResizeRelative" bottom="-100" />
+        </keybind>
+        <keybind key="A-S-l">
+            <action name="ResizeRelative" right="100" />
+        </keybind>
+        <keybind key="A-1">
+            <action name="GoToDesktop" to="1" />
+        </keybind>
+        <keybind key="A-2">
+            <action name="GoToDesktop" to="2" />
+        </keybind>
+        <keybind key="A-3">
+            <action name="GoToDesktop" to="3" />
+        </keybind>
+        <keybind key="A-4">
+            <action name="GoToDesktop" to="4" />
+        </keybind>
+        <keybind key="A-S-1">
+            <action name="SendToDesktop" to="1" follow="no" />
+        </keybind>
+        <keybind key="A-S-2">
+            <action name="SendToDesktop" to="2" follow="no" />
+        </keybind>
+        <keybind key="A-S-3">
+            <action name="SendToDesktop" to="3" follow="no" />
+        </keybind>
+        <keybind key="A-S-4">
+            <action name="SendToDesktop" to="4" follow="no" />
+        </keybind>
+    </keyboard>
+
+    <libinput>
+        <device category="default">
+            <accelProfile>flat</accelProfile>
+            <pointerSpeed>0.5</pointerSpeed>
+        </device>
+    </libinput>
+
+    <mouse>
+        <context name="Frame">
+            <mousebind button="A-Left" action="Drag">
+                <action name="Raise" />
+                <action name="Move" />
+            </mousebind>
+            <mousebind button="A-Middle" action="Press">
+                <action name="Iconify" />
+            </mousebind>
+            <mousebind button="A-S-Middle" action="Press">
+                <action name="Raise" />
+                <action name="ToggleOmnipresent" />
+            </mousebind>
+            <mousebind button="A-Right" action="Drag">
+                <action name="Raise" />
+                <action name="Resize" />
+            </mousebind>
+        </context>
+        
+        <context name="Root">
+            <mousebind button="Right" action="Press">
+                <action name="ShowMenu" menu="root-menu" />
+            </mousebind>
+        </context>
+    </mouse>
+    
+</labwc_config>

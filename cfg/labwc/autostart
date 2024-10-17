@@ -1,0 +1,6 @@
+wlr-randr --output DP-1 --mode 2560x1440@143.912003Hz &
+swaybg -i $HOME/pix/bg.png -m fill &
+#swaybg -c 777777 &
+
+foot -s &
+qbittorrent & 

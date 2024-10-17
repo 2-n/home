@@ -7,8 +7,7 @@ export PS1=`echo "\e[33m%:\e[0m "`
 
 alias e=$EDITOR
 alias f=yazi
-alias calc='bc -P -S 3'
-alias cls='clear && ls'
+alias calc='9 bc -l'
 alias ls='LC_COLLATE=C ls --group-directories-first --color'
 alias lc='ls -A'
 alias ll='ls -lAh'
@@ -24,7 +23,7 @@ function ,n() {
             cd $HOME/nix
             nix flake update
             doas nixos-rebuild switch --flake $HOME/nix/#
-            cd $wd && wd=
+            cd "$wd" && wd=
         ;;
         *)  echo "usage: ,n [c/r/u]"
             echo "    c: collect garbage"

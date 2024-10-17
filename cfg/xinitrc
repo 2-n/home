@@ -1,0 +1,13 @@
+#!/usr/bin/env mksh
+
+xrandr -s 2560x1440 -r 144
+[[ -e $HOME/.Xresources ]] && xrdb -merge $HOME/.Xresources
+xsetroot -solid "#777777" -cursor_name left_ptr
+
+#sxhkd &
+#ruler &
+#bar &
+
+qbittorrent &
+
+cwm

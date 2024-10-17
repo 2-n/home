@@ -1,0 +1,13 @@
+diff --git a/src/keyboard.c b/src/keyboard.c
+index c99f26c..3a1f8d7 100644
+--- a/src/keyboard.c
++++ b/src/keyboard.c
+@@ -17,7 +17,7 @@ update_mod_state(struct hikari_keyboard *keyboard)
+   uint32_t modifier_keys = wlr_keyboard_get_modifiers(keyboard->keyboard);
+ 
+   bool was_pressed = hikari_server.keyboard_state.mod_pressed;
+-  bool is_pressed = modifier_keys & WLR_MODIFIER_LOGO;
++  bool is_pressed = modifier_keys & WLR_MODIFIER_ALT;
+ 
+   hikari_server.keyboard_state.modifiers = modifier_keys;
+   hikari_server.keyboard_state.mod_released = was_pressed && !is_pressed;

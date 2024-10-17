@@ -5,6 +5,10 @@
 , nerd-font-patcher
 }:
 
+# split into separate files with option
+# to install with nerd fonts to prevent
+# 1+ hour build time to patch 100+ files
+
 stdenv.mkDerivation rec {
     pname = "apple-fonts-nerd";
     version = "1";
