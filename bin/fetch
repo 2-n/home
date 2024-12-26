@@ -25,6 +25,6 @@ ${lg} ==\\\\__\\\\/ //${rs}    ${lc}os${rs} nixos
 ${lg}   //   \\\\// ${rs}   ${lc}ver${rs} ${ver}
 ${lg}==//     //==${rs}    ${lc}sh${rs} ${shell}
 ${lg} //\\\\___//   ${rs}   ${lc}trm${rs} ${TERM}
-${lg}// /\\\\  \\\\== ${rs}    ${lc}wm${rs} labwc
+${lg}// /\\\\  \\\\== ${rs}    ${lc}wm${rs} hikari
 ${lg}  // \\\\  \\\\  ${rs}  ${palette}${rs}
 EOF

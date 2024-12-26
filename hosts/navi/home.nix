@@ -40,21 +40,24 @@
     };
 
     home.packages = with pkgs; [
-        git gh btop
-        yazi  p7zip
-        cmus pfetch
+        git gh  btop
+        yazi   p7zip
+        cmus  pfetch
+        screen jdk17
 
         plan9port
         keepassxc
         
-        qbittorrent
         picard gimp
         discord
+        vesktop
         imv mpv
+        libsForQt5.qt5ct
 
-        protonup-ng
+        protontricks
         prismlauncher
     ] ++ (with pkgs-unstable; [
+        qbittorrent
         osu-lazer-bin
     ]) ++ (if config.withX11 then [
         xclip maim
@@ -69,8 +72,9 @@
         wl-clipboard-rs
         grim   slurp
         swaybg wmenu
-        bemenu  # hikari doesnt have   
-    ] else []); # xdg_activation_v1 protocol switch to tofi
+        tofi
+        bemenu  # hikari doesnt have xdg_activation_v1 protocol,
+    ] else []); # bemenu works but switch to tofi for labwc and hikari
 
     xdg = {
         userDirs = {
@@ -89,6 +93,10 @@
                 xdg-desktop-portal-wlr
                 xdg-desktop-portal-gtk
             ];
+        };
+        desktopEntries."gimp" = {
+            name = "GNU Image Manipulation Program";
+            noDisplay = true;
         };
     };
 

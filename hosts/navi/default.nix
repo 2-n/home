@@ -23,6 +23,11 @@
         hostName = "navi";
         useDHCP = lib.mkDefault true;
         networkmanager.enable = true;
+        firewall = {
+            enable = true;
+            allowedTCPPorts = [ 25565 ];
+            allowedUDPPorts = [ 25565 ];
+        };
     };
 
     time.timeZone = "America/Chicago";
@@ -46,7 +51,6 @@
         rtkit.enable = true;
     };
 
-    sound.enable = true;
     services.pipewire = {
         enable = true;
         alsa.enable = true;
@@ -72,6 +76,7 @@
         libinput.mouse.accelProfile = "flat";
         udev.extraRules = ''
             KERNEL=="hidraw*", SUBSYSTEM=="hidraw", OWNER="eli"
+            ATTRS{idVendor}=="16d0", ATTRS{idProduct}=="12f7", RUN+="/sbin/modprobe xpad" RUN+="/bin/sh -c 'echo 16d0 12f7 > /sys/bus/usb/drivers/xpad/new_id'"
         '';
     };
 
@@ -79,7 +84,7 @@
 
     services.lact.enable = true;
     programs.steam.enable = true;
-
+    
     environment.systemPackages = with pkgs; [
         micro git wget curl nix-prefetch-scripts
         (writeScriptBin "sudo" ''exec doas "$@"'')

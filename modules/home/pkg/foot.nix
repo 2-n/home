@@ -18,6 +18,9 @@
                     initial-window-size-pixels = "900x700";
                     #initial-window-size-chars = "75x30";
                 };
+                scrollback = {
+                    indicator-position = "none";
+                };
                 cursor = {
                     style = "Underline";
                     color = "${config.theme.colors.termfg} ${config.theme.colors.cursor}";

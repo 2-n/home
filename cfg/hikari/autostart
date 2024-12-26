@@ -1,4 +1,5 @@
 #!/usr/bin/env mksh
 
+wlr-randr --output DP-1 --mode 2560x1440@143.912003Hz &
 foot -s &
 qbittorrent &

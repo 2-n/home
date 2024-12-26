@@ -1,6 +1,8 @@
 export EDITOR=micro
 export VISUAL=$EDITOR
 
+export QT_QPA_PLATFORMTHEME=qt5ct
+
 export PATH=$HOME/bin:$PATH
 
 export PS1=`echo "\e[33m%:\e[0m "`

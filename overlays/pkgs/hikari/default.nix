@@ -1,7 +1,7 @@
 { lib, pkgs, stdenv, fetchzip
 , pkg-config, bmake
 , cairo, glib, libevdev, libinput, libxkbcommon, linux-pam, pango, pixman
-, libucl, wayland, wayland-protocols, wlroots, mesa, pandoc, xorg
+, libucl, wayland, wayland-scanner, wayland-protocols, wlroots_0_17, mesa, pandoc, xorg
 , features ? {
     gammacontrol = true;
     layershell   = true;
@@ -12,14 +12,14 @@
 
 # fork of hikari to update to recent wlroots
 # and hopefully to add more protocol support
-
+  
 stdenv.mkDerivation rec {
     pname = "hikari";
-    version = "2.3.6";
+    version = "2.3.7";
 
     src = fetchzip {
         url = "https://hub.darcs.net/hiroo/hikari/dist/hikari.zip";
-        hash = "sha256-UahJrqYgETWcpg66hbXdHUsoTFvv9vP7SFmUGAFcto8=";
+        hash = "sha256-SwBU0WWG3uPOqjT+5KZqLiHnExSVvyPk3fHt3Z+TfV8=";
     };
 
     patches = [
@@ -41,8 +41,9 @@ stdenv.mkDerivation rec {
         libucl
         mesa # for libEGL
         wayland
+        wayland-scanner
         wayland-protocols
-        wlroots
+        wlroots_0_17
         xorg.xcbutilwm # for xcb/xcb_ewmh.h as its not provided for wlroots xwayland?
     ];
 

@@ -13,6 +13,7 @@
         # wayland
         ./hikari.nix
         ./labwc.nix
+        ./wayfire.nix
     ];
 
     options = {

@@ -1,3 +1,4 @@
+
 final: prev: {
     apple-fonts-nerd = prev.callPackage ./pkgs/apple-fonts-nerd.nix {};
     hikari = prev.callPackage ./pkgs/hikari/default.nix {};
@@ -13,6 +14,12 @@ final: prev: {
             ./patches/dmenu-mega-patch.diff
         ];
     });
+
+#    foot = prev.foot.overrideAttrs (old: rec {
+#        patches = [ 
+#            ./patches/foot-fix-cursor-crash.diff
+#        ];
+#    });
 
     _2bwm = prev._2bwm.overrideAttrs (old: rec {
         src = prev.fetchFromGitHub {

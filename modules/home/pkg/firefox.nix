@@ -53,15 +53,15 @@
                         };
                         "Home Manager" = {
                             definedAliases = [ "@hm" ];
-                            urls = [{ template = "https://home-manager-options.extranix.com/?query={searchTerms}&release=release-24.05"; }];
+                            urls = [{ template = "https://home-manager-options.extranix.com/?query={searchTerms}&release=release-24.11"; }];
                         };
                         "NixOS Options" = {
                             definedAliases = [ "@no" ];
-                            urls = [{ template = "https://search.nixos.org/options?channel=24.05&query={searchTerms}"; }];
+                            urls = [{ template = "https://search.nixos.org/options?channel=24.11&query={searchTerms}"; }];
                         };
                         "NixOS Packages" = {
                             definedAliases = [ "@np" ];
-                            urls = [{ template = "https://search.nixos.org/packages?channel=24.05&query={searchTerms}"; }];
+                            urls = [{ template = "https://search.nixos.org/packages?channel=24.11&query={searchTerms}"; }];
                         };
                         "NixOS Wiki" = {
                             definedAliases = [ "@nw" ];
