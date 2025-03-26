@@ -14,7 +14,7 @@
             gperfPkg = builtins.toString pkgs.pkgsi686Linux.gperftools;
         in ''
             export GPERF32_PATH="${gperfPkg}"
-        ''; # used to fix CS:S gamemoderun LD_PRELOAD=$GPERF32_PATH/lib/libtcmalloc.so %command%
+        ''; # fix css LD_PRELOAD=$GPERF32_PATH/lib/libtcmalloc.so %command%
         
         programs.gamemode.enable = true;
         programs.gamescope.enable = true;

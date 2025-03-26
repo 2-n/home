@@ -22,7 +22,7 @@
         recursive = true;
     };
 
-    windowManager = "labwc";
+    windowManager = "cwm";
 
     theme = {
         colors = (import ../../theme/pastelish-dark);
@@ -35,27 +35,33 @@
         firefox.enable = true;
         alacritty.enable = 
             lib.mkIf (config.withX11) true;
+        rofi.enable = 
+            lib.mkIf (config.withX11) true;
         foot.enable = 
             lib.mkIf (config.withWayland) true;
     };
 
     home.packages = with pkgs; [
-        git gh  btop
-        yazi   p7zip
-        cmus  pfetch
-        screen jdk17
+        git gh  
+        yazi p7zip
+        pfetch screen
+        btop pstree
 
         plan9port
-        keepassxc
-        
-        picard gimp
+
+        deadbeef picard 
+        imv mpv gimp
         discord
-        vesktop
-        imv mpv
+        
+        keepassxc
+        yubioath-flutter
         libsForQt5.qt5ct
 
-        protontricks
-        prismlauncher
+        protonup-ng
+        prismlauncher   #    v    provide java for servers    v    #
+        (writeScriptBin "java8" ''exec ${pkgs.jdk8}/bin/java "$@"'')
+        (writeScriptBin "java17" ''exec ${pkgs.jdk17}/bin/java "$@"'')
+        (writeScriptBin "java21" ''exec ${pkgs.jdk21}/bin/java "$@"'')
     ] ++ (with pkgs-unstable; [
         qbittorrent
         osu-lazer-bin
@@ -70,7 +76,7 @@
         xwayland
         wlr-randr
         wl-clipboard-rs
-        grim   slurp
+        grim slurp
         swaybg wmenu
         tofi
         bemenu  # hikari doesnt have xdg_activation_v1 protocol,

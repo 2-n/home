@@ -15,12 +15,6 @@ final: prev: {
         ];
     });
 
-#    foot = prev.foot.overrideAttrs (old: rec {
-#        patches = [ 
-#            ./patches/foot-fix-cursor-crash.diff
-#        ];
-#    });
-
     _2bwm = prev._2bwm.overrideAttrs (old: rec {
         src = prev.fetchFromGitHub {
             owner = "venam";

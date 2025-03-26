@@ -2,7 +2,8 @@
 
 xrandr -s 2560x1440 -r 144
 [[ -e $HOME/.Xresources ]] && xrdb -merge $HOME/.Xresources
-xsetroot -solid "#777777" -cursor_name left_ptr
+# xsetroot -solid "#777777" -cursor_name left_ptr
+hsetroot -cover $HOME/pix/bg.png
 
 #sxhkd &
 #ruler &

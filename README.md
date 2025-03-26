@@ -2,10 +2,8 @@
 
 |||
 |-|-|
-|$wm|[labwc](./cfg/labwc)|
+|$wm|[cwm](./cfg/cwmrc)|
 |$shell|[mksh](./cfg/mkshrc)|
 |$editor|[micro](./modules/home/pkg/micro.nix)|
-|$terminal|[foot](./modules/home/pkg/foot.nix)|
-|$launcher|[wmenu](./bin/wrun)|
-
-![screenshot](./ss.png)
+|$terminal|[alacritty](./modules/home/pkg/alacritty.nix)|
+|$launcher|[rofi](./modules/home/pkg/rofi.nix)|

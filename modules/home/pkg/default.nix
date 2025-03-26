@@ -6,5 +6,6 @@
         ./firefox.nix
         ./foot.nix
         ./micro.nix
+        ./rofi.nix
     ];
 }

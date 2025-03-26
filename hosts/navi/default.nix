@@ -11,23 +11,18 @@
     ];
     
     boot = {
-        loader = {
-            systemd-boot.enable = true;
-            efi.canTouchEfiVariables = true;
-        };
+        kernelPackages = pkgs.linuxPackages_cachyos;
+        loader.systemd-boot.enable = true;
+        loader.efi.canTouchEfiVariables = true;
         tmp.cleanOnBoot = true;
-        kernelPackages = pkgs.linuxPackages_latest;
     };
 
     networking = {
         hostName = "navi";
         useDHCP = lib.mkDefault true;
         networkmanager.enable = true;
-        firewall = {
-            enable = true;
-            allowedTCPPorts = [ 25565 ];
-            allowedUDPPorts = [ 25565 ];
-        };
+        firewall.allowedTCPPorts = [ 25565 ];
+        firewall.allowedUDPPorts = [ 25565 ];
     };
 
     time.timeZone = "America/Chicago";
@@ -39,18 +34,18 @@
         shell = pkgs.mksh;
     };
 
-    security = {
-        sudo.enable = false;
-        doas = {
-            enable = true;
-            extraRules = [{
-                groups = [ "wheel" ];
-                keepEnv = true;
-            }];
-        };
-        rtkit.enable = true;
+    # doas
+    security.sudo.enable = false;
+    security.doas = {
+        enable = true;
+        extraRules = [{
+            groups = [ "wheel" ];
+            keepEnv = true;
+        }];
     };
 
+    # audio
+    security.rtkit.enable = true;
     services.pipewire = {
         enable = true;
         alsa.enable = true;
@@ -65,20 +60,22 @@
         };
     };
 
-    services = {
-        xserver = {
-            enable = true;
-            autorun = false;
-            displayManager.startx.enable = true;
-            videoDrivers = [ "amdgpu" ];
-            deviceSection = ''Option "TearFree" "true"'';
-        };
-        libinput.mouse.accelProfile = "flat";
-        udev.extraRules = ''
-            KERNEL=="hidraw*", SUBSYSTEM=="hidraw", OWNER="eli"
-            ATTRS{idVendor}=="16d0", ATTRS{idProduct}=="12f7", RUN+="/sbin/modprobe xpad" RUN+="/bin/sh -c 'echo 16d0 12f7 > /sys/bus/usb/drivers/xpad/new_id'"
-        '';
+    # x
+    services.xserver = {
+        enable = true;
+        autorun = false;
+        displayManager.startx.enable = true;
+        videoDrivers = [ "amdgpu" ];
+        deviceSection = ''Option "TearFree" "true"'';
     };
+
+    # inputs
+    hardware.keyboard.qmk.enable = true;
+    services.libinput.mouse.accelProfile = "flat";
+    services.udev.extraRules = ''
+        KERNEL=="hidraw*", SUBSYSTEM=="hidraw", OWNER="eli"
+        ATTRS{idVendor}=="16d0", ATTRS{idProduct}=="12f7", RUN+="/sbin/modprobe xpad" RUN+="/bin/sh -c 'echo 16d0 12f7 > /sys/bus/usb/drivers/xpad/new_id'"
+    '';
 
     environment.etc."issue".text = '''';
 

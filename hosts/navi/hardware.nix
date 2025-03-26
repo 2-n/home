@@ -6,22 +6,11 @@
 
 {
     boot = {
-        initrd = {
-            kernelModules = [ "amdgpu" ];
-            availableKernelModules = [
-                "nvme"
-                "xhci_pci"
-                "ahci"
-                "usb_storage"
-                "usbhid"
-                "sd_mod"
-            ];
-        };
+        kernelParams = [ "amdgpu.ppfeaturemask=0xffffffff" ];
         kernelModules = [ "kvm-amd" ];
         blacklistedKernelModules = [ "ucsi_ccg" ];
-        kernelParams = [ 
-            "amdgpu.ppfeaturemask=0xffffffff" 
-        ];
+        initrd.kernelModules = [ "amdgpu" ];
+        initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
     };
     
     fileSystems."/" = {
@@ -41,15 +30,13 @@
         options = [ "rw" "uid=1000"];
     };
 
-    hardware = {
-        graphics = {
-            enable = true;
-            enable32Bit = true;
-        };
-        keyboard.qmk.enable = true;
-        cpu.amd.updateMicrocode = true;
-        enableRedistributableFirmware = true;
+    hardware.graphics = {
+        enable = true;
+        enable32Bit = true;
     };
+        
+    hardware.cpu.amd.updateMicrocode = true;
+    hardware.enableRedistributableFirmware = true;
     powerManagement.cpuFreqGovernor = "performance";
     
     nixpkgs.hostPlatform = "x86_64-linux";

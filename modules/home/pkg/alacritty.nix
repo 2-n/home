@@ -28,14 +28,10 @@
                 };
                 window = {
                     resize_increments = true;
-                    padding = {
-                        x = 0;
-                        y = 0;  
-                    };
-                    dimensions = { 
-                        columns = 85;
-                        lines = 40;
-                    };
+                    dimensions.columns = 85;
+                    dimensions.lines = 40;
+                    padding.x = config.theme.font.size;
+                    padding.y = config.theme.font.size;  
                 };
                 cursor = {
                     style = "Underline";
