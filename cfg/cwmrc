@@ -40,7 +40,7 @@ bind-key M-Return alacritty
 bind-key Print    shot
 bind-key M-Print  "shot -s"
 
-bind-key MC-Escape  restart
+bind-key MS-Escape  restart
 bind-key MCS-Escape quit
 
 bind-key M-q    window-hide
@@ -60,8 +60,8 @@ bind-key MS-v window-hmaximize
 bind-key M-g window-snap-center
 bind-key M-y window-snap-up-left
 bind-key M-u window-snap-up-right
-bind-key M-n window-snap-down-left
-bind-key M-m window-snap-down-right
+bind-key M-b window-snap-down-left
+bind-key M-n window-snap-down-right
 
 bind-key MC-h window-snap-left
 bind-key MC-j window-snap-down

@@ -21,8 +21,6 @@
         hostName = "navi";
         useDHCP = lib.mkDefault true;
         networkmanager.enable = true;
-        firewall.allowedTCPPorts = [ 25565 ];
-        firewall.allowedUDPPorts = [ 25565 ];
     };
 
     time.timeZone = "America/Chicago";
@@ -30,7 +28,7 @@
 
     users.users.eli = {
         isNormalUser = true;
-        extraGroups = [ "wheel" ];
+        extraGroups = [ "wheel" "minecraft" ];
         shell = pkgs.mksh;
     };
 
@@ -81,6 +79,7 @@
 
     services.lact.enable = true;
     programs.steam.enable = true;
+    services.minecraft-servers.enable = true;
     
     environment.systemPackages = with pkgs; [
         micro git wget curl nix-prefetch-scripts

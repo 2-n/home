@@ -5,10 +5,11 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 
 export PATH=$HOME/bin:$PATH
 
-export PS1=`echo "\e[33m$\e[0m "`
+export PS1=`echo "\e[33m—\e[0m "`
 
 alias e=$EDITOR
 alias f=yazi
+alias mcsrv='tmux -S /run/minecraft/fabric.sock attach'
 alias calc='9 bc -l'
 alias ls='LC_COLLATE=C ls --group-directories-first --color'
 alias lc='ls -A'

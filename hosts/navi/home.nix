@@ -44,7 +44,7 @@
     home.packages = with pkgs; [
         git gh  
         yazi p7zip
-        pfetch screen
+        pfetch tmux
         btop pstree
 
         plan9port
