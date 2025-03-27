@@ -42,7 +42,7 @@
     };
 
     home.packages = with pkgs; [
-        git gh  
+        git gh fzf
         yazi p7zip
         pfetch tmux
         btop pstree
