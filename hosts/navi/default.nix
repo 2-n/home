@@ -50,7 +50,7 @@
         alsa.support32Bit = true;
         pulse.enable = true;
         extraConfig.pipewire = {
-            "99-no-bell.conf" = {
+            "99-no-bell" = {
                 "context.properties" = {
                     "module.x11.bell" = false;
                 };
@@ -75,8 +75,6 @@
         ATTRS{idVendor}=="16d0", ATTRS{idProduct}=="12f7", RUN+="/sbin/modprobe xpad" RUN+="/bin/sh -c 'echo 16d0 12f7 > /sys/bus/usb/drivers/xpad/new_id'"
     '';
 
-    environment.etc."issue".text = '''';
-
     services.lact.enable = true;
     programs.steam.enable = true;
     services.minecraft-servers.enable = true;
@@ -88,6 +86,7 @@
 
     fonts.packages = with pkgs; [
         terminus_font
+        terminus_font_ttf
         apple-fonts-nerd
         unifont dejavu_fonts
         uw-ttyp0 inconsolata

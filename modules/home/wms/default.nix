@@ -9,11 +9,11 @@
         # x11
         ./2bwm
         ./cwm.nix
+        ./fvwm.nix
         ./windowchef.nix
         # wayland
         ./hikari.nix
         ./labwc.nix
-        ./wayfire.nix
     ];
 
     options = {
@@ -34,10 +34,10 @@
     };
 
     config = {
-        home.pointerCursor.name = "plan9";
-        home.pointerCursor.package = pkgs.xcursor-plan9;
-        gtk.cursorTheme.name = "plan9";
-        gtk.cursorTheme.package = pkgs.xcursor-plan9;
+        #home.pointerCursor.name = "plan9";
+        #home.pointerCursor.package = pkgs.xcursor-plan9;
+        #gtk.cursorTheme.name = "plan9";
+        #gtk.cursorTheme.package = pkgs.xcursor-plan9;
 
         home.file."pix/bg.png".source = ../../../cfg/bg.png;
 

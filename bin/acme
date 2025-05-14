@@ -1,0 +1,8 @@
+#!/usr/bin/env -S 9 rc
+
+# variable -f
+# mono -F
+
+SHELL=rc
+
+acme -m /mnt/font -f /mnt/font/SFMonoNFAAEOPS-Regular/15a/font

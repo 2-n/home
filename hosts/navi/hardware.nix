@@ -30,6 +30,11 @@
         options = [ "rw" "uid=1000"];
     };
 
+    swapDevices = [{
+        device = "/swap";
+        size = 16 * 1024; # 0.5x ram
+    }];
+
     hardware.graphics = {
         enable = true;
         enable32Bit = true;

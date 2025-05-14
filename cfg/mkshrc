@@ -5,7 +5,8 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 
 export PATH=$HOME/bin:$PATH
 
-export PS1=`echo "\e[33m—\e[0m "`
+#\e[33m
+export PS1=`echo "\e[31m$(hostname)%\e[0m "`
 
 alias e=$EDITOR
 alias f=yazi

@@ -1,13 +1,14 @@
 #!/usr/bin/env sh
 
 fn='Terminus:size=12'
-nb='#777777'
-nf='#ffffff'
-sb='#ffffff'
-sf='#777777'
+nb='black'
+nf='white'
+sb='#16161d'
+sf='white'
 
-dmenu_run           \
--fn "$fn" -b -h 20  \
+dmenu_run -z 2560   \
+-fn "$fn" -b -h 30  \
 -nb "$nb" -nf "$nf" \
--sb "$sb" -sf "$sf" 
+-sb "$sb" -sf "$sf" \
+
 

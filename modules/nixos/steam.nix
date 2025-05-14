@@ -17,7 +17,8 @@
         ''; # fix css LD_PRELOAD=$GPERF32_PATH/lib/libtcmalloc.so %command%
         
         programs.gamemode.enable = true;
-        programs.gamescope.enable = true;
+        programs.steam.gamescopeSession.enable = true;
         programs.steam.dedicatedServer.openFirewall = true;
     };
 }
+

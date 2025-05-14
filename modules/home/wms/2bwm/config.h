@@ -12,34 +12,35 @@ static const char *ignore_names[] = { "xclock" };
 /* movements:
    0)move slow   1)move fast
    2)mouse slow  3)mouse fast */
-static const uint16_t movements[] = {50,100,50,100};
+static const uint16_t movements[] = {100,100,100,100};
 static const bool     resize_by_line                = true;
 static const float    resize_keep_aspect_ratio      = 1.03;
 
 /* offsets:
    0)offsetx    1)offsety
    2)maxwidth   3)maxheight */
-static const uint8_t offsets[] = {0,20,0,20};
+static const uint8_t offsets[] = {12,12,24,24};
 
 /* borders:
    0)outer    1)full
    2)magnet   3)resize */
-static const uint8_t borders[] = {9,12,12,12};
+static const uint8_t borders[] = {4,9,9,9};
 static const bool inverted_colors = false;
 static const char *colors[] = {
-    "#FC8EBD", // active
-    "#262626", // inactive
-    "#262626", // fixed
-    "#000000", // unkillable
-    "#000000", // fixed unkillable
-    "#000000", // outer
-    "#000000"  // empty
+    "#d977a3", // active
+    "#2c2827", // inactive
+    "#2c2827", // fixed
+    "#34302f", // unkillable
+    "#34302f", // fixed unkillable
+    "#34302f", // outer
+    "#34302f"  // empty
 }; 
 
 // commands
 static const char *windowcmd[]    = { "9icon", NULL };
 static const char *rootcmd[]      = { "9root", NULL };
 static const char *dmenucmd[]     = { "drun", NULL };
+static const char *roficmd[]      = { "rofi", "-show", "combi", NULL };
 static const char *termcmd[]      = { "alacritty", NULL };
 
 // custom functions
@@ -104,8 +105,9 @@ static void maxwithborders(const Arg *arg)
 {  MOD ,             K,              changeworkspace, {.i=N}}, \
 {  MOD |SHIFT,       K,              sendtoworkspace, {.i=N}},
 static key keys[] = {
-    {  MOD ,              XK_q,          deletewin,         {}},
-    {  MOD ,              XK_Escape,     twobwm_restart,    {.i=0}},
+    {  MOD ,              XK_q,          hide,              {}},
+    {  MOD |SHIFT,        XK_q,          deletewin,         {}},
+    {  MOD |SHIFT,        XK_Escape,     twobwm_restart,    {.i=0}},
     {  MOD |CONTROL|SHIFT,XK_Escape,     twobwm_exit,       {.i=0}},
 
     {  MOD ,              XK_r,          raiseorlower,      {}},
@@ -137,9 +139,9 @@ static key keys[] = {
     // {  MOD ,              XK_a,          unkillable,        {}},
     // {  MOD,               XK_t,          always_on_top,     {}},
 
-    {  MOD ,              XK_w,          start,             {.com = windowcmd}},
-    {  MOD ,              XK_d,          start,             {.com = dmenucmd}},
-    {  MOD |SHIFT,        XK_d,          start,             {.com = rootcmd}},
+    // {  MOD ,              XK_w,          start,             {.com = windowcmd}},
+    {  MOD ,              XK_d,          start,             {.com = roficmd}},
+    // {  MOD |SHIFT,        XK_d,          start,             {.com = rootcmd}},
     {  MOD ,              XK_Return,     start,             {.com = termcmd}},
 
        DESKTOPCHANGE(     XK_1,                             0)
@@ -157,11 +159,11 @@ static key keys[] = {
 // mouse bindings
 static Button buttons[] = {
     {  MOD ,      XCB_BUTTON_INDEX_1,     mousemotion,         {.i=TWOBWM_MOVE}, false},
-    {  0   ,      XCB_BUTTON_INDEX_1,     start,               {.com = windowcmd}, true},
+    // {  0   ,      XCB_BUTTON_INDEX_1,     start,               {.com = windowcmd}, true},
     {  MOD ,      XCB_BUTTON_INDEX_2,     hide,                {}, false},
     {  MOD |SHIFT,XCB_BUTTON_INDEX_2,     fix,                 {}, false},
     {  MOD ,      XCB_BUTTON_INDEX_3,     mousemotion,         {.i=TWOBWM_RESIZE}, false},
-    {  0   ,      XCB_BUTTON_INDEX_3,     start,               {.com = rootcmd}, true},
-    {  MOD ,      XCB_BUTTON_INDEX_4,     resizestep_aspect,   {.i=TWOBWM_RESIZE_KEEP_ASPECT_GROW}, false},
-    {  MOD ,      XCB_BUTTON_INDEX_5,     resizestep_aspect,   {.i=TWOBWM_RESIZE_KEEP_ASPECT_SHRINK}, false},
+    // {  0   ,      XCB_BUTTON_INDEX_3,     start,               {.com = rootcmd}, true},
+    // {  MOD ,      XCB_BUTTON_INDEX_4,     resizestep_aspect,   {.i=TWOBWM_RESIZE_KEEP_ASPECT_GROW}, false},
+    // {  MOD ,      XCB_BUTTON_INDEX_5,     resizestep_aspect,   {.i=TWOBWM_RESIZE_KEEP_ASPECT_SHRINK}, false},
 };

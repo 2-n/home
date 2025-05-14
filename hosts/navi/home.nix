@@ -22,10 +22,10 @@
         recursive = true;
     };
 
-    windowManager = "cwm";
+    windowManager = "fvwm";
 
     theme = {
-        colors = (import ../../theme/pastelish-dark);
+        colors = (import ../../theme/dark);
         font.name = "SFMono Nerd Font";
         font.size = 15;
     };
@@ -51,17 +51,15 @@
 
         deadbeef picard 
         imv mpv gimp
-        discord
+        vesktop
         
         keepassxc
         yubioath-flutter
         libsForQt5.qt5ct
 
         protonup-ng
-        prismlauncher   #    v    provide java for servers    v    #
-        (writeScriptBin "java8" ''exec ${pkgs.jdk8}/bin/java "$@"'')
-        (writeScriptBin "java17" ''exec ${pkgs.jdk17}/bin/java "$@"'')
-        (writeScriptBin "java21" ''exec ${pkgs.jdk21}/bin/java "$@"'')
+        prismlauncher
+        blockbench
     ] ++ (with pkgs-unstable; [
         qbittorrent
         osu-lazer-bin

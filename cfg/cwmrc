@@ -10,7 +10,7 @@ color selfont  "#2c2827"
 color menubg   "#2c2827"
 color menufg   "#8f938f"
 
-borderwidth 4
+borderwidth 6
 color inactiveborder "#34302f"
 color activeborder   "#d977a3"
 color groupborder    "#34302f"
@@ -21,8 +21,9 @@ ignore bar
 
 autogroup 1 "firefox"
 autogroup 3 "discord"
+autogroup 3 "vesktop"
 autogroup 4 "steam"
-autogroup 9 "qBittorrent"
+autogroup 5 "qBittorrent"
 
 # bindings
 

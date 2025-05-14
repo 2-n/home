@@ -2,6 +2,7 @@
 , stdenv
 , fetchurl
 , p7zip 
+, fontforge
 , nerd-font-patcher
 }:
 
@@ -33,7 +34,7 @@ stdenv.mkDerivation rec {
         sha256 = "sha256-HC7ttFJswPMm+Lfql49aQzdWR2osjFYHJTdgjtuI+PQ=";
     };
 
-    nativeBuildInputs = [ p7zip nerd-font-patcher ];
+    nativeBuildInputs = [ p7zip fontforge nerd-font-patcher ];
 
     sourceRoot = ".";
 
@@ -62,18 +63,18 @@ stdenv.mkDerivation rec {
         mv Library/Fonts/* $out/fontfiles
         cd ..
         
-        7z x ${ny}
-        cd NYFonts
-        7z x 'NY Fonts.pkg'
-        7z x 'Payload~'
-        mv Library/Fonts/* $out/fontfiles
-        cd ..
+        #7z x ${ny}
+        #cd NYFonts
+        #7z x 'NY Fonts.pkg'
+        #7z x 'Payload~'
+        #mv Library/Fonts/* $out/fontfiles
+        #cd ..
 
         mkdir -p $out/patched
         
         for fontfile in $out/fontfiles/*
         do
-        nerd-font-patcher $fontfile --complete --careful --outputdir $out/patched
+        nerd-font-patcher $fontfile --fontawesome --fontawesomeext --powersymbols --powerline --powerlineextra --octicons --careful --outputdir $out/patched
         done
         
         mkdir -p $out/usr/share/fonts/OTF $out/usr/share/fonts/TTF

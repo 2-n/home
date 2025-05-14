@@ -13,7 +13,7 @@
                 disable-history = true;
                 combi-modes = "window,run";
                 combi-hide-mode-prefix = true;
-                display-combi = "";
+                display-combi = "navi";
             };
         };
     };

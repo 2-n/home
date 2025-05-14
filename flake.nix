@@ -24,9 +24,9 @@
             inherit system;
             config.allowUnfree = true;
             overlays = [
-                (import ./overlays)
                 chaotic.overlays.cache-friendly
                 nix-minecraft.overlay
+                (import ./overlays)
             ];
         };
         pkgs-unstable = import nixpkgs-unstable {
