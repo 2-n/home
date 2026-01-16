@@ -21,7 +21,7 @@
     };
 
     theme = {
-        colors = (import ../../theme/pastelish-dark);
+        colors = (import ../../theme/light);
         font.name = "SFMono";
         font.size = 12;
     };

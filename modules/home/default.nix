@@ -6,7 +6,6 @@
 {
     imports = [
         ./bash.nix
-        ./emacs.nix
         ./alacritty.nix
         ./firefox.nix
         ./micro.nix
