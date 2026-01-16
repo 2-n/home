@@ -1,0 +1,11 @@
+icon_size 16
+kludges force_icons_size
+geometry 10x1
+max_geometry 10x1
+no_shrink false
+grow_gravity W
+icon_gravity SE
+decorations none
+parent_bg true
+
+

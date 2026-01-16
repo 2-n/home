@@ -6,7 +6,7 @@
 
 {
     options = {
-        services.lact = {
+        services.lactd = {
             enable = lib.mkEnableOption {
                 description = "enable the lact service";
                 default = false;
@@ -14,11 +14,10 @@
         };
     };
 
-    config = lib.mkIf (config.services.lact.enable) {
+    config = lib.mkIf (config.services.lactd.enable) {
         environment.systemPackages = with pkgs-unstable; [ lact ];
-        systemd.services.lact = {
+        systemd.services.lactd = {
             enable = true;
-            description = "amdgpu control daemon";
             after = [ "multi-user.target" ];
             wantedBy = [ "multi-user.target" ];
             serviceConfig = {

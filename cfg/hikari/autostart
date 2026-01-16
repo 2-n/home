@@ -1,5 +1,5 @@
-#!/usr/bin/env mksh
+#!/usr/bin/env bash
 
 wlr-randr --output DP-1 --mode 2560x1440@143.912003Hz &
-foot -s &
+# nicotine &
 qbittorrent &

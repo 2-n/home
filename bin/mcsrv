@@ -1,5 +1,0 @@
-#!/usr/bin/env mksh
-
-tmux -S /run/minecraft/$(ls /run/minecraft | fzf) attach
-
-

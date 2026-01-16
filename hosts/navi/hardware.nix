@@ -27,7 +27,7 @@
     fileSystems."/mnt/hdd" = {
         device = "/dev/disk/by-label/cute";
         fsType = "ntfs-3g";
-        options = [ "rw" "uid=1000"];
+        options = [ "rw" ];
     };
 
     swapDevices = [{
@@ -39,8 +39,9 @@
         enable = true;
         enable32Bit = true;
     };
-        
+
     hardware.cpu.amd.updateMicrocode = true;
+    hardware.amdgpu.overdrive.enable = true;
     hardware.enableRedistributableFirmware = true;
     powerManagement.cpuFreqGovernor = "performance";
     

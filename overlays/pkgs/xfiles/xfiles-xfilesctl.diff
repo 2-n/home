@@ -1,0 +1,40 @@
+diff --git a/examples/xfilesctl b/examples/xfilesctl
+index c748dbc..dfde274 100755
+--- a/examples/xfilesctl
++++ b/examples/xfilesctl
+@@ -14,7 +14,7 @@
+ # - $OPENER (defaults to xdg-open) for opening files.
+ # - $EDITOR (defaults to vi) for editing text files.
+ # - xmessage, for displaying dialogs.
+-# - xterm, for opening the text editor.
++# - alacritty, for opening the text editor.
+ # - xmenu, for popping up a mouse-based menu.
+ # - dmenu, for popping up a keyboard-based menu.
+ # - xclip, for setting the clipboard.
+@@ -60,7 +60,7 @@ newwin() {
+ 
+ # open terminal window running given command
+ term() {
+-	xterm &
++	alacritty &
+ }
+ 
+ # open given files (on background, so xfiles not wait)
+@@ -70,7 +70,7 @@ open() {
+ 
+ # open text editor on given file
+ edit() {
+-	xterm -into "$WINDOWID" -bw 0 -e "$EDITOR" -- "$@"
++	alacritty --embed "$WINDOWID" -e "$EDITOR" -- "$@"
+ }
+ 
+ # open dialog asking for confirmation ("$1" is the prompt, rest are filenames)
+@@ -112,7 +112,7 @@ copy() {
+ 		for file
+ 		do
+ 			setuniquepath "$PWD/${file##*/}"
+-			cp -v "$file" "$uniquepath"
++			cp -rv "$file" "$uniquepath"
+ 		done
+ 	}
+ }

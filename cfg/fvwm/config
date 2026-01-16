@@ -1,0 +1,94 @@
+# infostore
+InfoStoreAdd runcmd     drun
+InfoStoreAdd termcmd    alacritty
+InfoStoreAdd ffxcmd     firefox
+InfoStoreAdd stmcmd     steam
+InfoStoreAdd discmd     vesktop
+InfoStoreAdd filecmd    thunar
+InfoStoreAdd muscmd     feishin
+InfoStoreAdd passcmd    keepassxc
+InfoStoreAdd scrotcmd   shot
+
+# start window styles
+Style * !Icon, !StippledTitle, !StickyStippledTitle, \
+        Title, SloppyFocus, FPGrabFocus, MinOverlapPlacement
+
+# placement and transients
+#Style * !FPGrabFocus, !UsePPosition, \
+#        DecorateTransient, StackTransientParent, \
+#        !FPGrabFocusTransient, FPReleaseFocusTransient, FPSortWindowlistByFocus
+
+# window rules
+Style Alacritty     Sticky
+Style Thunar        Sticky
+
+Style firefox       StartsOnDesk 0, Maximize
+
+Style feishin       StartsOnDesk 1, Maximize
+Style *nicotine*    StartsOnDesk 1, Maximize
+Style qBittorrent   StartsOnDesk 1, SkipMapping, Maximize
+
+Style discord       StartsOnDesk 2, Maximize
+Style vesktop       StartsOnDesk 2, Maximize
+
+Style steam*        StartsOnDesk 3
+
+Style .gamescope*   StartsOnDesk 4, StaysOnTop
+Style PrismLauncher StartsOnDesk 4
+Style Minecraft*    StartsOnDesk 4
+
+# hide geometry window and enable opaque move
+GeometryWindow Hide
+OpaqueMoveSize unlimited
+Style * ResizeOpaque, SnapAttraction 15 SameType ScreenAll, SnapGrid
+
+# configure desktop
+DesktopSize 1x1
+EwmhNumberOfDesktops 5
+EdgeResistance -1
+EwmhBaseStruts screen $[monitor.primary] 5 5 5 32
+
+# main config
+DefaultFont "xft:SFProText:size=12"
+Style * BorderWidth 4, HandleWidth 4
+BorderStyle -- Flat
+
+# title bar config
+TitleStyle LeftJustified Height 24 -- Flat
+ButtonStyle 1 Pixmap menu.xpm -- Flat
+ButtonStyle 6 Pixmap min.xpm -- Flat
+ButtonStyle 4 Pixmap max.xpm -- Flat
+ButtonStyle 2 Pixmap close.xpm -- Flat
+ButtonStyle All AllInactive Pixmap nul.xpm -- Flat
+
+# main inactive / active colorsets
+Colorset 0 fg black, bg black # inactive window title colorset
+Colorset 1 fg white, bg black, hi #404040, sh #404040 # standard colorset
+Colorset 2 fg white, bg #1d1d1d # hovered colorset
+Colorset 3 bg #404040 # inactive border colorset
+Colorset 4 bg #737373 # active border colorset
+
+
+Style * Colorset 0, HilightColorset 1, \
+        BorderColorset 3, HilightBorderColorset 4
+
+MenuStyle * MenuColorset 1, ActiveColorset 2, \
+            BorderWidth 4, Hilight3DOff, HilightBack, \
+            ItemFormat "%|   %l   %|", VerticalItemSpacing 7 7, SeparatorsLong
+
+# read configs after everything else to fix somethings
+Read binds
+Read panel
+Read menus
+
+DestroyFunc InitFunction
+AddToFunc   InitFunction
++ I Exec exec nm-applet
+#+ I Exec exec nicotine
++ I Exec exec qbittorrent
++ I Exec exec $[infostore.stmcmd] -system-composer
++ I Exec exec $[infostore.discmd]
+
+DestroyFunc StartFunction
+AddToFunc   StartFunction
++ I Module FvwmButtons FvwmPanel

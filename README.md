@@ -1,9 +1,9 @@
 > my system
 
-|||
-|-|-|
-|$wm|[cwm](./cfg/cwmrc)|
-|$shell|[mksh](./cfg/mkshrc)|
-|$editor|[micro](./modules/home/pkg/micro.nix)|
-|$terminal|[alacritty](./modules/home/pkg/alacritty.nix)|
-|$launcher|[rofi](./modules/home/pkg/rofi.nix)|
+|           |                                               |
+|-----------|-----------------------------------------------|
+| $wm       | [fvwm](./cfg/fvwm)                            |
+| $shell    | [bash](./modules/home/bash.nix)               |
+| $editor   | [emacs](./modules/home/emacs.nix)             |
+| $terminal | [alacritty](./modules/home/pkg/alacritty.nix) |
+| $launcher | [dmenu](./bin/drun)                           |

@@ -11,74 +11,71 @@
     home.username = "eli";
     home.homeDirectory = "/home/eli";
 
-    home.file.".mkshrc" = {
-        source =
-            config.lib.file.mkOutOfStoreSymlink /home/eli/nix/cfg/mkshrc;
+    home.file = {
+        "bin"   = { source = config.lib.file.mkOutOfStoreSymlink /home/eli/nix/bin;
+                    recursive = true; };
+        ".fvwm" = { source = config.lib.file.mkOutOfStoreSymlink /home/eli/nix/cfg/fvwm;
+                    recursive = true; };
+        ".xinitrc".source  = config.lib.file.mkOutOfStoreSymlink /home/eli/nix/cfg/xinitrc;
+        #".bg.png".source   = ../../cfg/bg.png;
     };
-    
-    home.file."bin" = {
-        source = 
-            config.lib.file.mkOutOfStoreSymlink /home/eli/nix/bin;
-        recursive = true;
-    };
-
-    windowManager = "fvwm";
 
     theme = {
-        colors = (import ../../theme/dark);
-        font.name = "SFMono Nerd Font";
-        font.size = 15;
+        colors = (import ../../theme/pastelish-dark);
+        font.name = "SFMono";
+        font.size = 12;
+    };
+
+    gtk.cursorTheme = {
+        package = pkgs.vanilla-dmz;
+        name = "DMZ-Black";
+        size = 16;
+    };
+
+    home.pointerCursor = {
+        enable = true;
+        package = pkgs.vanilla-dmz;
+        name = "DMZ-Black";
+        size = 16;
     };
     
     programs = {
-        micro.enable = true;
+        bash.enable = true;
+        alacritty.enable = true;
         firefox.enable = true;
-        alacritty.enable = 
-            lib.mkIf (config.withX11) true;
-        rofi.enable = 
-            lib.mkIf (config.withX11) true;
-        foot.enable = 
-            lib.mkIf (config.withWayland) true;
+        micro.enable = true;
+        rofi.enable = true;
     };
+
+    services.easyeffects.enable = true;
 
     home.packages = with pkgs; [
         git gh fzf
         yazi p7zip
         pfetch tmux
-        btop pstree
+        btop pstree tree
 
         plan9port
+        flatpak
 
-        deadbeef picard 
+        dmenu xclip scrot
+        hsetroot xdotool        
+
+        arc-theme
+        lxappearance
+
+        stalonetray networkmanagerapplet
+
+        vesktop discord
         imv mpv gimp
-        vesktop
-        
+        feishin spek picard  
+        qbittorrent nicotine-plus
         keepassxc
-        yubioath-flutter
-        libsForQt5.qt5ct
-
+        
         protonup-ng
-        prismlauncher
-        blockbench
-    ] ++ (with pkgs-unstable; [
-        qbittorrent
-        osu-lazer-bin
-    ]) ++ (if config.withX11 then [
-        xclip maim
-        hsetroot
-        xdotool 
-        _9menu dmenu
-        lemonbar-xft
-    ] else
-    if config.withWayland then [
-        xwayland
-        wlr-randr
-        wl-clipboard-rs
-        grim slurp
-        swaybg wmenu
-        tofi
-        bemenu  # hikari doesnt have xdg_activation_v1 protocol,
-    ] else []); # bemenu works but switch to tofi for labwc and hikari
+        pkgs-unstable.osu-lazer-bin
+        prismlauncher blockbench
+    ];
 
     xdg = {
         userDirs = {
@@ -89,18 +86,18 @@
             music = "/mnt/hdd/mus";
             pictures = "$HOME/pix";
             videos = "$HOME/vid";
+            publicShare = null;
+            templates = null;
         };
-        portal = lib.mkIf (config.withWayland) {
-            enable = true;
-            xdgOpenUsePortal = true;
-            extraPortals = with pkgs; [
-                xdg-desktop-portal-wlr
-                xdg-desktop-portal-gtk
-            ];
-        };
-        desktopEntries."gimp" = {
-            name = "GNU Image Manipulation Program";
-            noDisplay = true;
+        desktopEntries = {
+            "gimp" = {
+                name = "GNU Image Manipulation Program";
+                noDisplay = true;
+            };
+            "yazi" = {
+                name = "Yazi";
+                noDisplay = true;
+            };
         };
     };
 

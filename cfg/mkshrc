@@ -5,33 +5,38 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 
 export PATH=$HOME/bin:$PATH
 
-#\e[33m
-export PS1=`echo "\e[31m$(hostname)%\e[0m "`
+export PS1=`echo "\e[36m———\e[0m "`
 
 alias e=$EDITOR
-alias f=yazi
-alias calc='9 bc -l'
+alias c='9 bc -l'
+alias calc='c'
+
 alias ls='LC_COLLATE=C ls --group-directories-first --color'
 alias lc='ls -A'
 alias ll='ls -lAh'
-alias mkdir='mkdir -p'
+
 alias mv='mv -iv'
 alias rm='rm -iv'
+
+alias mkdir='mkdir -p'
 
 function ,n() {
     case $1 in
         c)  doas nix-collect-garbage -d ;;    
-        r)  doas nixos-rebuild switch --flake $HOME/nix/# ;;
+        r)  rm $HOME/.icons/default/index.theme
+            doas nixos-rebuild switch --flake $HOME/nix/# ;;
         u)  wd=$PWD
             cd $HOME/nix
             nix flake update
+            rm $HOME/.icons/default/index.theme
             doas nixos-rebuild switch --flake $HOME/nix/#
             cd "$wd" && wd=
         ;;
-        *)  echo "usage: ,n [c/r/u]"
-            echo "    c: collect garbage"
-            echo "    r: rebuild switch"
-            echo "    u: update flake and rebuild switch"
+        *)  echo "      ,nix helper script 8)"
+            echo "      usage: ,n [c/r/u]"
+            echo "          c: collect garbage"
+            echo "          r: rebuild switch"
+            echo "          u: update flake and rebuild switch"
         ;;
     esac
 }

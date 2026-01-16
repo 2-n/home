@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+for file in *; do
+    if [ -f "$file" ]; then
+        hex_signature=$(xxd -p -l 4 "$file" | head -n 1)
+
+        case "$hex_signature" in
+            "49443304") # .mp3
+                mv "$file" "${file%.*}.mp3"
+                ;;
+            "664c6143") # .flac
+                mv "$file" "${file%.*}.flac"
+                ;;
+            # Add more cases for other file types
+        esac
+    fi
+done

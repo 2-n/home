@@ -5,8 +5,12 @@
 
 {
     imports = [
-        ./pkg
-        ./wms
+        ./bash.nix
+        ./emacs.nix
+        ./alacritty.nix
+        ./firefox.nix
+        ./micro.nix
+        ./rofi.nix
     ];
 
     options = {

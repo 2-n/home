@@ -2,19 +2,18 @@
     description = "my system";
 
     inputs = {
-        nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+        nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
         nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-        home-manager.url = "github:nix-community/home-manager/release-24.11";
+        home-manager.url = "github:nix-community/home-manager/release-25.11";
         home-manager.inputs.nixpkgs.follows = "nixpkgs";
-        chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
         nix-minecraft.url = "github:Infinidoge/nix-minecraft";
+        betterfox-nix.url = "github:HeitorAugustoLN/betterfox-nix";
     };
 
-    outputs = inputs@{ 
+    outputs = inputs@{
         nixpkgs, 
         nixpkgs-unstable, 
         home-manager, 
-        chaotic,
         nix-minecraft,
         ... 
     }: 
@@ -24,7 +23,6 @@
             inherit system;
             config.allowUnfree = true;
             overlays = [
-                chaotic.overlays.cache-friendly
                 nix-minecraft.overlay
                 (import ./overlays)
             ];
@@ -38,13 +36,10 @@
         nixosConfigurations = {
             navi = nixpkgs.lib.nixosSystem rec {
                 specialArgs = { 
-                    inherit inputs system chaotic pkgs-unstable; 
+                    inherit inputs system pkgs-unstable; 
                 };
                 modules = [
                     ./hosts/navi
-                    chaotic.nixosModules.nyx-cache
-                    chaotic.nixosModules.nyx-overlay
-                    chaotic.nixosModules.nyx-registry
                     nix-minecraft.nixosModules.minecraft-servers
                     home-manager.nixosModules.home-manager {
                         nixpkgs.pkgs = pkgs;
@@ -52,6 +47,7 @@
                         home-manager.useUserPackages = true;
                         home-manager.extraSpecialArgs = specialArgs;
                         home-manager.users.eli = import ./hosts/navi/home.nix;
+                        home-manager.backupFileExtension = "backup";
                     }
                 ];
             };

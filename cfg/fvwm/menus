@@ -1,0 +1,40 @@
+DestroyMenu rootmenu
+AddToMenu   rootmenu
++ "run"           Exec exec $[infostore.runcmd]
++ "terminal"      Exec exec $[infostore.termcmd]
++ "" Nop
++ "firefox"       Exec exec $[infostore.ffxcmd]
++ "steam"         Exec exec $[infostore.stmcmd] -system-composer
++ "discord"       Exec exec $[infostore.discmd]
++ "nicotine"      Exec exec nicotine
++ "qbittorrent"   Exec exec qbittorrent
++ "" Nop
++ "&keepassxc"    Exec exec $[infostore.passcmd]
++ "&file browser" Exec exec $[infostore.filecmd]
++ "&music player" Exec exec $[infostore.muscmd]
++ "" Nop
++ "options"       Popup rootops
+
+DestroyMenu rootops
+AddToMenu   rootops
++ "restart fvwm"    Restart
++ "quit fvwm"       Module FvwmScript FvwmScript-ConfirmQuit
++ "" Nop
++ "reboot system"   Module FvwmScript FvwmScript-ConfirmReboot
++ "shutdown system" Module FvwmScript FvwmScript-ConfirmShutdown
+
+DestroyMenu windowops
+AddToMenu   windowops
++ "(un)iconify"       Iconify
++ "(un)sticky"        Stick
++ "(un)maximize"      Maximize
++ "" Nop
++ "raise"             Raise
++ "lower"             Lower
++ "" Nop
++ "-> desk 1" MoveToDesk 0 0
++ "-> desk 2" MoveToDesk 0 1
++ "-> desk 3" MoveToDesk 0 2
++ "-> desk 4" MoveToDesk 0 3
++ "" Nop
++ "close"             Close

@@ -1,7 +1,7 @@
 rec {
     # black
-    base00 = "000000";
-    base08 = "000000";
+    base00 = "ffffff";
+    base08 = "ffffff";
     # red
     base01 = "d977a3";
     base09 = "d977a3";
@@ -21,8 +21,8 @@ rec {
     base06 = "757ad8";
     base14 = "757ad8";
     # white
-    base07 = "ffffff";
-    base15 = "ffffff";
+    base07 = "000000";
+    base15 = "000000";
     # term colors
     termbg = base00;
     termfg = base15;

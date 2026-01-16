@@ -1,0 +1,87 @@
+DestroyFunc MouseDrag
+AddToFunc   MouseDrag
++ I Raise
++ M $0
++ D $1
+
+DestroyFunc ResizeWarp
+AddToFunc   ResizeWarp
++ I Resize $0 $1
++ I WarpToWindow 100 100
+
+# mouse bindings
+Mouse 1      R N  Menu rootmenu 
+Mouse 3      R N  Menu windowops
+
+Mouse 1     FS A  MouseDrag Resize
+Mouse 2     FS A  MouseDrag Resize
+Mouse 3     FS A  MouseDrag Move
+
+Mouse 1   FSTW 4  MouseDrag Move
+Mouse 2   FSTW 4  Iconify
+Mouse 2   FSTW 4S Menu windowops
+Mouse 3   FSTW 4  MouseDrag "Resize Direction SE"
+
+# title bar bindings
+Mouse 1      1 A  Menu windowops
+Mouse 1      2 A  Close
+Mouse 1      4 A  Maximize
+Mouse 2      4 A  Maximize 0 100
+Mouse 1      6 A  Lower
+Mouse 2      6 A  Iconify
+
+# key bindings
+Key   w      A 4S Menu windowops
+Key   d      A 4  Exec exec $[infostore.runcmd]
+Key   d      A 4S Menu rootmenu 
+Key   Return A 4  Exec exec $[infostore.termcmd]
+  
+Key   Print  A N  Exec exec $[infostore.scrotcmd]
+Key   Print  A 4  Exec exec $[infostore.scrotcmd] s
+
+# basic window management
+Key   q      A 4  Iconify
+Key   q      A 4S Close
+
+Key   r      A 4  Raise
+Key   r      A 4S Lower
+Key   Tab    A 4  Next (CurrentDesk, !Focused, !Iconic, AcceptsFocus) WarpToWindow 50 50
+
+Key   f      A 4  Maximize
+Key   f      A 4S Maximize Fullscreen
+Key   v      A 4  Maximize 0 100
+Key   v      A 4S Maximize 100 0
+
+# desks
+Key 1        A 4  GotoDesk 0 0
+Key 2        A 4  GotoDesk 0 1
+Key 3        A 4  GotoDesk 0 2
+Key 4        A 4  GotoDesk 0 3
+Key 5        A 4  GotoDesk 0 4
+
+Key 1        A 4S MoveToDesk 0 0
+Key 2        A 4S MoveToDesk 0 1
+Key 3        A 4S MoveToDesk 0 2
+Key 4        A 4S MoveToDesk 0 3
+Key 5        A 4S MoveToDesk 0 4
+    
+#  k  | y u
+# h l |  g
+#  j  | b n
+# manipulate windows
+Key g        A 4  Move 50-50w 50-50w Warp
+Key y        A 4  Move 0 0 Warp
+Key u        A 4  Move 100-100w 0 Warp
+Key b        A 4  Move 0 100-100w Warp
+Key n        A 4  Move 100-100w 100-100w Warp
+
+Key h        A 4  Move w-100p keep Warp
+Key j        A 4  Move keep w+100p Warp
+Key k        A 4  Move keep w-100p Warp
+Key l        A 4  Move w+100p keep Warp
+
+Key h        A 4S ResizeWarp w-100p keep
+Key j        A 4S ResizeWarp keep w+100p
+Key k        A 4S ResizeWarp keep w-100p
+Key l        A 4S ResizeWarp w+100p keep
+

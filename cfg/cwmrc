@@ -1,37 +1,40 @@
 #     n s w e
-gap   0 0 0 0
+gap   10 10 10 10
 moveamount 10
 snapdist   20
 sticky     yes
 
-fontname       "SFMono Nerd Font:size=15"
+fontname       "SFMono:size=15"
 color font     "#8f938f"
 color selfont  "#2c2827"
 color menubg   "#2c2827"
 color menufg   "#8f938f"
 
-borderwidth 6
-color inactiveborder "#34302f"
+borderwidth 5
+color inactiveborder "#aa3d6d"
 color activeborder   "#d977a3"
-color groupborder    "#34302f"
-color ungroupborder  "#34302f"
-color urgencyborder  "#34302f"
+color groupborder    "#aa3d6d"
+color ungroupborder  "#aa3d6d"
+color urgencyborder  "#aa3d6d"
 
 ignore bar
 
 autogroup 1 "firefox"
-autogroup 3 "discord"
-autogroup 3 "vesktop"
+autogroup 2 "discord"
+autogroup 2 "vesktop"
+autogroup 2 "feishin"
 autogroup 4 "steam"
 autogroup 5 "qBittorrent"
+autogroup 5 "org.nicotine_plus.Nicotine"
 
 # bindings
 
 unbind-mouse all
 
-bind-mouse M-1 window-move
-bind-mouse M-2 window-hide
-bind-mouse M-3 window-resize
+bind-mouse M-1  window-move
+bind-mouse M-2  window-hide
+bind-mouse MS-2 window-stick
+bind-mouse M-3  window-resize
 
 unbind-key all
 
@@ -39,7 +42,7 @@ bind-key M-d      "rofi -show combi"
 bind-key M-Return alacritty
 
 bind-key Print    shot
-bind-key M-Print  "shot -s"
+bind-key M-Print  "shot s"
 
 bind-key MS-Escape  restart
 bind-key MCS-Escape quit

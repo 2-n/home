@@ -6,6 +6,11 @@
 
 {
     config = lib.mkIf (config.services.minecraft-servers.enable) {
+        environment.systemPackages = with pkgs; [
+            (writeScriptBin "mcsrvcon" 
+            ''${pkgs.tmux}/bin/tmux -S /run/minecraft/$(ls /run/minecraft | ${pkgs.fzf}/bin/fzf) attach'') 
+        ]; # quick script to use server console, fzf for list of servers if multiple
+
         services.minecraft-servers = {
             eula = true;
             openFirewall = true;

@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# archive names of albums i possess in order
+# to get back everything i once had via various means
+# this is temporary until i can replace my spinning disk
+
+tordir=/mnt/hdd/tor
+musdir=/mnt/hdd/mus
+
+# archive names of folders/album names in torrent folder
+#tree -dL 2 $tordir
+
+# archive names of folders/album artists + albums from each numbered folder 1-9
+#for dirs in $musdir; do
+#    tree -dL 2 $dirs
+#done
