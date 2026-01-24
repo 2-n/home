@@ -1,0 +1,112 @@
+EwmhBaseStruts screen $[monitor.primary] 0 192 0 0
+
+DestroyFunc IconManClick
+AddToFunc IconManClick
++ I ThisWindow (Raised, Focused, !Iconic, CurrentPage) Iconify
++ I TestRc (Match) Break
++ I ThisWindow Raise
++ I ThisWindow (Iconic) Iconify
++ I ThisWindow (AcceptsFocus) FlipFocus
+
+Style FvwmPanel !Title, !Borders, !Handles, Sticky, \
+                WindowListSkip, NeverFocus
+
+Style FvwmIconMan !Title, !Borders, !Handles, Sticky, \
+                  WindowListSkip, NeverFocus
+
+Style FvwmCatclock !Title, !Borders, !Handles, Sticky, \
+                   WindowListSkip, NeverFocus
+
+Colorset 11 bg #ffffff
+Colorset 22 fg #ffffff, bg #891446
+
+DestroyModuleConfig FvwmPanel: *
+*FvwmPanel: Geometry 192x173-0+0 # 32 start 32 tray/clock 108 pager
+*FvwmPanel: Colorset 1
+*FvwmPanel: Frame 0
+*FvwmPanel: Font "xft:SFProText:size=12"
+*FvwmPanel: Columns 192
+*FvwmPanel: Rows 173
+
+*FvwmPanel: (192x32, ActiveColorset 2, Title "/  /  /  /", \
+             Action(Mouse 1) Menu rootmenu Root o100-176p 16p, \
+             Action(Mouse 3) Exec exec $[infostore.runcmd])
+
+*FvwmPanel: (192x1, Colorset 11)
+
+*FvwmPanel: (96x32, Colorset 2, Padding 8 4, Left, Swallow(NoClose, UseOld) \
+             stalonetray 'Exec exec stalonetray -c $HOME/.fvwm/stalonetrayrc')
+*FvwmPanel: (96x32, Colorset 2, id "FvwmClock", Padding 8 4, Title (Right) "clock")
+
+*FvwmPanel: (192x1, Colorset 11)
+*FvwmPanel: (1x106, Colorset 11)
+*FvwmPanel: (190x106, Swallow FvwmPager 'Module FvwmPager *')
+*FvwmPanel: (1x106, Colorset 11)
+*FvwmPanel: (192x1, Colorset 11)
+
+PipeRead 'echo "SendToModule FvwmButtons ChangeButton \
+FvwmClock Title \"`date +%I:%M`\""'
+
+Schedule Periodic 10000 PipeRead 'echo "SendToModule \
+FvwmButtons ChangeButton FvwmClock Title \"`date +%I:%M`\""'
+
+DestroyModuleConfig FvwmPager: *
+*FvwmPager: Font None
+*FvwmPager: NoDeskHilight
+*FvwmPager: WindowFont "xft:Ttyp0:size=8"
+*FvwmPager: Colorset * 22
+*FvwmPager: WindowColorsets 3 4
+*FvwmPager: Window3DBorders
+*FvwmPager: UseSkipList
+
+DestroyModuleConfig FvwmIconMan: *
+*FvwmIconMan: IconName TaskBarIcons
+*FvwmIconMan: Resolution global
+*FvwmIconMan: UseWinList true
+*FvwmIconMan: FollowFocus true
+
+*FvwmIconMan: Font "xft:SFProText:size=12"
+*FvwmIconMan: ButtonGeometry 192x32
+*FvwmIconMan: ManagerGeometry 1x0-0+173
+
+*FvwmIconMan: DrawIcons never
+*FvwmIconMan: ReliefThickness 0
+*FvwmIconMan: Format "%t"
+
+*FvwmIconMan: ShowOnlyIcons false
+*FvwmIconMan: Tips never
+
+*FvwmIconMan: Colorset 0
+*FvwmIconMan: PlainColorset 1
+*FvwmIconMan: IconColorset 1
+*FvwmIconMan: FocusColorset 2
+*FvwmIconMan: SelectColorset 2
+*FvwmIconMan: IconAndSelectColorset 2
+*FvwmIconMan: FocusAndSelectColorset 2
+
+*FvwmIconMan: Sort weighted
+*FvwmIconMan: SortWeight 10 class=firefox
+*FvwmIconMan: SortWeight 15 class=feishin
+*FvwmIconMan: SortWeight 20 class=discord title=*Discord
+*FvwmIconMan: SortWeight 20 class=vesktop title=Discord*
+*FvwmIconMan: SortWeight 25 class=discord
+*FvwmIconMan: SortWeight 25 class=vesktop
+*FvwmIconMan: SortWeight 30 class=steam title=Steam
+*FvwmIconMan: SortWeight 35 class=steam
+*FvwmIconMan: SortWeight 40 class=org.nicotine_plus.Nicotine
+*FvwmIconMan: SortWeight 45 class=qBittorrent
+*FvwmIconMan: SortWeight 55 class=Alacritty
+*FvwmIconMan: SortWeight 65 class=Thunar
+*FvwmIconMan: SortWeight 100 # everything else trailing
+
+*FvwmIconMan: Action Mouse 0 N sendcommand Nop
+*FvwmIconMan: Action Mouse 1 A sendcommand IconManClick
+
+DestroyModuleConfig FvwmCatclock: *
+*FvwmCatclock: Geometry 192x300-0-0
+*FvwmCatclock: Colorset 22
+*FvwmCatclock: Frame 0
+*FvwmCatclock: Columns 1
+*FvwmCatclock: Rows 1
+
+*FvwmCatclock: (1x1, Swallow(NoClose, UseOld) Catclock 'Exec exec xclock -background "#891446"')

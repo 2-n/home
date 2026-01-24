@@ -27,9 +27,9 @@
                     };
                 };
                 window = {
-                    resize_increments = false;
+                    resize_increments = true;
                     dimensions.columns = 85;
-                    dimensions.lines = 30;
+                    dimensions.lines = 35;
                     padding.x = config.theme.font.size;
                     padding.y = config.theme.font.size;  
                 };

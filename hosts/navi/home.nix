@@ -16,7 +16,7 @@
                     recursive = true; };
         ".fvwm" = { source = config.lib.file.mkOutOfStoreSymlink /home/eli/nix/cfg/fvwm;
                     recursive = true; };
-        ".xinitrc".source  = config.lib.file.mkOutOfStoreSymlink /home/eli/nix/cfg/xinitrc;
+        ".config/sx/sxrc".source = config.lib.file.mkOutOfStoreSymlink /home/eli/nix/cfg/sxrc;
         #".bg.png".source   = ../../cfg/bg.png;
     };
 
@@ -55,16 +55,17 @@
         pfetch tmux
         btop pstree tree
 
-        plan9port
-        flatpak
-
+        plan9port 
+        ad catclock
+        
         dmenu xclip scrot
         hsetroot xdotool        
 
         arc-theme
         lxappearance
 
-        stalonetray networkmanagerapplet
+        stalonetray 
+        networkmanagerapplet
 
         vesktop discord
         imv mpv gimp

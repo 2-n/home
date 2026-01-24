@@ -1,10 +1,10 @@
 icon_size 16
 kludges force_icons_size
-geometry 10x1
-max_geometry 10x1
+geometry 5x1
+max_geometry 5x1
 no_shrink false
-grow_gravity W
-icon_gravity SE
+grow_gravity E
+icon_gravity SW
 decorations none
 parent_bg true
 

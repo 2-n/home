@@ -107,7 +107,7 @@
                     "extensions.activeThemeID" = "firefox-compact-light@mozilla.org";
                     "general.autoScroll" = true;
                 };
-                SearchEngines.Default = "SearXNG";
+                SearchEngines.Default = "DuckDuckGo";
                 SearchEngines.Add = [
                     {
                         Name = "Arch Wiki";
@@ -145,17 +145,17 @@
                         URLTemplate = "https://www.protondb.com/search?q={searchTerms}";
                         IconURL = "https://www.protondb.com/favicon.ico";
                     }
-                    {
-                        Name = "SearXNG";
-                        Alias = "@sx";
-                        URLTemplate = "https://searx.party/search?q={searchTerms}";
-                        IconURL = "https://searx.space/favicon.png";
-                    }
+                    #{
+                    #    Name = "SearXNG";
+                    #    Alias = "@sx";
+                    #    URLTemplate = "https://searx.party/search?q={searchTerms}";
+                    #    IconURL = "https://searx.space/favicon.png";
+                    #}
                 ];
                 SearchEngines.Remove = [
                     "Amazon.com"
                     "Bing"
-                    "DuckDuckGo"
+                    #"DuckDuckGo"
                     "eBay"
                     "Google"
                     "Perplexity"

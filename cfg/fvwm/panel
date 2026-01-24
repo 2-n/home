@@ -1,3 +1,5 @@
+EwmhBaseStruts screen $[monitor.primary] 0 0 0 32
+
 DestroyFunc IconManClick
 AddToFunc IconManClick
 + I ThisWindow (Raised, Focused, !Iconic, CurrentPage) Iconify
@@ -9,21 +11,21 @@ AddToFunc IconManClick
 Style FvwmPanel !Title, !Borders, !Handles, Sticky, \
                 WindowListSkip, NeverFocus
 
+Colorset 11 fg black, bg #bebebf, hi white, sh #605f5f
+
 DestroyModuleConfig FvwmPanel: *
-*FvwmPanel: Geometry 2550x32+5-0
+*FvwmPanel: Geometry 2560x32+0-0
 *FvwmPanel: Colorset 1
 *FvwmPanel: Frame 0
 *FvwmPanel: Font "xft:SFProText:size=12"
+*FvwmPanel: Columns 2560
 *FvwmPanel: Rows 1
-*FvwmPanel: Columns 2550
 
 *FvwmPanel: (64x1, ActiveColorset 2, Icon start.png, \
-             Action(Mouse 1) Menu rootmenu Root 5p o100-32p, \
-             Action(Mouse 3) Exec exec $[infostore.runcmd]) 
+             Action(Mouse 1) Menu rootmenu Root 0p o100-32p, \
+             Action(Mouse 3) Exec exec $[infostore.runcmd])
 
-
-*FvwmPanel: (2262x1, Padding 4 4, \
-             Action(Mouse 3) Menu windowops, \
+*FvwmPanel: (2272x1, Padding 4 4, \
              Swallow TaskBarIcons 'Module FvwmIconMan TaskBarIcons')
 
 *FvwmPanel: (160x1, Swallow(NoClose, UseOld) stalonetray 'Exec exec stalonetray -c $HOME/.fvwm/stalonetrayrc')
@@ -52,16 +54,16 @@ DestroyModuleConfig TaskBarIcons: *
 *TaskBarIcons: FocusAndSelectButton down
 *TaskBarIcons: IconAndSelectButton down
 
-Colorset 33 fg black, bg #bebebf, hi white, sh #605f5f
-
 *TaskBarIcons: Background #000000
 *TaskBarIcons: PlainColorset 33
-*TaskBarIcons: FocusColorset 33
-*TaskBarIcons: FocusAndSelectColorset 33
-*TaskBarIcons: SelectColorset 33
 *TaskBarIcons: IconColorset 33
+*TaskBarIcons: FocusColorset 33
+*TaskBarIcons: SelectColorset 33
 *TaskBarIcons: IconAndSelectColorset 33
-#*TaskBarIcons: ShowOnlyIcons true
+*TaskBarIcons: FocusAndSelectColorset 33
+
+*TaskBarIcons: ShowOnlyIcons false
+*TaskBarIcons: Tips never
 
 *TaskBarIcons: Sort weighted
 *TaskBarIcons: SortWeight 10 class=firefox
@@ -74,15 +76,9 @@ Colorset 33 fg black, bg #bebebf, hi white, sh #605f5f
 *TaskBarIcons: SortWeight 35 class=steam
 *TaskBarIcons: SortWeight 40 class=org.nicotine_plus.Nicotine
 *TaskBarIcons: SortWeight 45 class=qBittorrent
-*TaskBarIcons: SortWeight 55 class=Emacs
-*TaskBarIcons: SortWeight 65 class=Alacritty
-*TaskBarIcons: SortWeight 75 class=Thunar
+*TaskBarIcons: SortWeight 55 class=Alacritty
+*TaskBarIcons: SortWeight 65 class=Thunar
 *TaskBarIcons: SortWeight 100 # everything else trailing
-
-*TaskBarIcons: Tips never
-#*TaskBarIcons: TipsDelays 0
-#*TaskBarIcons: TipsFont "xft:SFProText:size=12"
-#*TaskBarIcons: TipsColorset 5
 
 *TaskBarIcons: Action Mouse 0 N sendcommand Nop
 *TaskBarIcons: Action Mouse 1 A sendcommand IconManClick

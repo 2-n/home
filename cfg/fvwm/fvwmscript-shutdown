@@ -1,13 +1,13 @@
-WindowTitle {ConfirmQuit}
+WindowTitle {shutdown}
 WindowSize  300 80
-Font "xft:SFProText Nerd Font:size=10"
+Font "xft:SFProText Nerd Font:size=12"
 Init
  Begin
  End
 
 Widget 1
 Property
- Title {do you really want to quit fvwm?}
+ Title {do you really want to shutdown?}
  Size  200 30
  Position 25 0
  Type ItemDraw
@@ -31,7 +31,7 @@ Main
  Case message of
   SingleClic :
   Begin
-   Do {Quit}
+   Do {Exec exec shutdown}
   End
 End
 

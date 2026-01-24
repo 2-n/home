@@ -1,5 +1,6 @@
 { lib
 , config
+, pkgs
 , ...
 }:
    
@@ -12,6 +13,7 @@
             bashrcExtra = ". $HOME/.profile";
             sessionVariables = {
                 PATH = "$HOME/bin:$PATH";
+                #PLAN9 = "${pkgs.plan9port}";
                 EDITOR = "micro";
                 VISUAL = "$EDITOR";
             };

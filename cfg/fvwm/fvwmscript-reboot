@@ -1,6 +1,6 @@
-WindowTitle {ConfirmQuit}
+WindowTitle {reboot}
 WindowSize  300 80
-Font "xft:SFProText Nerd Font:size=10"
+Font "xft:SFProText Nerd Font:size=12"
 Init
  Begin
  End

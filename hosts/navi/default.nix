@@ -81,18 +81,14 @@
         extraConfig.pipewire = {
             "99-no-bell"."context.properties"."module.x11.bell" = false;
         };
-    };
-
-    # useless service
-    services.speechd.enable = false;
+    };  
     
     services.xserver = {
         enable = true;
         autorun = false;
         enableCtrlAltBackspace = true;
-        displayManager.startx.enable = true;
+        displayManager.sx.enable = true;
         windowManager.fvwm3.enable = true;
-        #windowManager.openbox.enable = true;
         videoDrivers = [ "amdgpu" ];
         deviceSection = ''Option "TearFree" "true"'';
     };

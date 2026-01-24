@@ -1,8 +1,29 @@
-#!/usr/bin/env -S 9 rc
+#!/usr/bin/env bash
 
 # variable -f
 # mono -F
+# for some reason it must be set with -f right now
+# and switching fonts isnt working with the 'Font' command
+# $HOME/.9font/SFProRounded-Regular/14a/font
+# $HOME/.9font/SFMono-Regular/14a/font
 
 SHELL=rc
+ACME_DUMP=
 
-acme -m /mnt/font -f /mnt/font/SFMonoNFAAEOPS-Regular/15a/font
+if [ "$(pgrep fontsrv)" ]; then
+    echo "fontsrv running"
+else
+    echo "starting fontsrv"
+    9 fontsrv -m $HOME/.9font &
+    sleep 0.05 # fontsrv takes a moment and wont let acme open
+fi
+
+if [ -f "$HOME/acme.dump" ]; then
+    echo "loading dump"
+    ACME_DUMP="-l $HOME/acme.dump"
+else
+    echo "no dump"
+fi
+
+9 acme -a -f $HOME/.9font/SFMono-Regular/14a/font $ACME_DUMP $* &
+

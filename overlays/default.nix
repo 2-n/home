@@ -1,4 +1,3 @@
-
 final: prev: {
     apple-fonts = prev.callPackage ./pkgs/apple-fonts.nix {};
     hikari = prev.callPackage ./pkgs/hikari/default.nix {};
@@ -6,7 +5,6 @@ final: prev: {
     xcursor-plan9 = prev.callPackage ./pkgs/xcursor-plan9.nix {};
     xfiles = prev.callPackage ./pkgs/xfiles/default.nix {};
     stmps = prev.callPackage ./pkgs/stmps.nix {};
-
 
     dmenu = prev.dmenu.overrideAttrs (old: rec {
         src = prev.fetchurl {

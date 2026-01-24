@@ -1,98 +1,116 @@
 #     n s w e
-gap   10 10 10 10
+gap   8 8 8 8
 moveamount 10
 snapdist   20
 sticky     yes
 
-fontname       "SFMono:size=15"
-color font     "#8f938f"
-color selfont  "#2c2827"
-color menubg   "#2c2827"
-color menufg   "#8f938f"
+fontname       "SFProText:size=12"
+color font     "#ffffff"
+color selfont  "#ffffff"
+color menubg   "#000000"
+color menufg   "#1d1d1d"
 
-borderwidth 5
-color inactiveborder "#aa3d6d"
-color activeborder   "#d977a3"
-color groupborder    "#aa3d6d"
-color ungroupborder  "#aa3d6d"
-color urgencyborder  "#aa3d6d"
+borderwidth 4
+color inactiveborder "#404040"
+color activeborder   "#737373"
+color groupborder    "#d977a3"
+color ungroupborder  "#d977a3"
+color urgencyborder  "#d977a3"
 
 ignore bar
 
 autogroup 1 "firefox"
-autogroup 2 "discord"
-autogroup 2 "vesktop"
 autogroup 2 "feishin"
+autogroup 3 "discord"
+autogroup 3 "vesktop"
 autogroup 4 "steam"
 autogroup 5 "qBittorrent"
 autogroup 5 "org.nicotine_plus.Nicotine"
+
+# apps
+
+command run      "drun"
+command terminal "alacritty"
+command browser  "firefox"
+command steam    "steam -system-composer"
+command discord  "vesktop"
+command keepass  "keepassxc"
+command files    "thunar"
+command music    "feishin"
 
 # bindings
 
 unbind-mouse all
 
-bind-mouse M-1  window-move
-bind-mouse M-2  window-hide
-bind-mouse MS-2 window-stick
-bind-mouse M-3  window-resize
+bind-mouse 1 menu-cmd
+bind-mouse 3 menu-window
+
+bind-mouse 4-1  window-move
+bind-mouse 4-2  window-hide
+bind-mouse 4S-2 window-stick
+bind-mouse 4-3  window-resize
 
 unbind-key all
 
-bind-key M-d      "rofi -show combi"
-bind-key M-Return alacritty
+#bind-key 4-d      "rofi -show combi"
+bind-key 4-d      drun
+bind-key 4-Return alacritty
 
 bind-key Print    shot
-bind-key M-Print  "shot s"
+bind-key 4-Print  "shot s"
 
-bind-key MS-Escape  restart
-bind-key MCS-Escape quit
+bind-key 4S-Escape  restart
+bind-key 4CS-Escape quit
 
-bind-key M-q    window-hide
-bind-key MS-q   window-close
+bind-key 4-q    window-hide
+bind-key 4S-q   window-close
 
-bind-key M-r    window-raise
-bind-key MS-r   window-lower
+bind-key 4-r    window-raise
+bind-key 4S-r   window-lower
 
-bind-key M-Tab  window-cycle
-bind-key MS-Tab window-rcycle
+bind-key 4-Tab  window-cycle
+bind-key 4S-Tab window-rcycle
 
-bind-key M-f  window-maximize
-bind-key MS-f window-fullscreen
-bind-key M-v  window-vmaximize
-bind-key MS-v window-hmaximize
+bind-key 4-f  window-maximize
+bind-key 4S-f window-fullscreen
+bind-key 4-v  window-vmaximize
+bind-key 4S-v window-hmaximize
 
-bind-key M-g window-snap-center
-bind-key M-y window-snap-up-left
-bind-key M-u window-snap-up-right
-bind-key M-b window-snap-down-left
-bind-key M-n window-snap-down-right
+bind-key 4-g window-snap-center
+bind-key 4-y window-snap-up-left
+bind-key 4-u window-snap-up-right
+bind-key 4-b window-snap-down-left
+bind-key 4-n window-snap-down-right
 
-bind-key MC-h window-snap-left
-bind-key MC-j window-snap-down
-bind-key MC-k window-snap-up
-bind-key MC-l window-snap-right
+bind-key 4-h  window-move-left-big
+bind-key 4-j  window-move-down-big
+bind-key 4-k  window-move-up-big
+bind-key 4-l  window-move-right-big
 
-bind-key M-h  window-move-left-big
-bind-key M-j  window-move-down-big
-bind-key M-k  window-move-up-big
-bind-key M-l  window-move-right-big
+bind-key 4C-h window-snap-left
+bind-key 4C-j window-snap-down
+bind-key 4C-k window-snap-up
+bind-key 4C-l window-snap-right
 
-bind-key MS-h window-resize-left-big
-bind-key MS-j window-resize-down-big
-bind-key MS-k window-resize-up-big
-bind-key MS-l window-resize-right-big
+bind-key 4S-h window-resize-left-big
+bind-key 4S-j window-resize-down-big
+bind-key 4S-k window-resize-up-big
+bind-key 4S-l window-resize-right-big
 
-bind-key M-1  group-only-1
-bind-key M-2  group-only-2
-bind-key M-3  group-only-3
-bind-key M-4  group-only-4
+bind-key 4-1  group-only-1
+bind-key 4-2  group-only-2
+bind-key 4-3  group-only-3
+bind-key 4-4  group-only-4
+bind-key 4-5  group-only-5
 
-bind-key MC-1 group-toggle-1
-bind-key MC-2 group-toggle-2
-bind-key MC-3 group-toggle-3
-bind-key MC-4 group-toggle-4
+bind-key 4C-1 group-toggle-1
+bind-key 4C-2 group-toggle-2
+bind-key 4C-3 group-toggle-3
+bind-key 4C-4 group-toggle-4
+bind-key 4C-5 group-toggle-5
 
-bind-key MS-1 window-movetogroup-1
-bind-key MS-2 window-movetogroup-2
-bind-key MS-3 window-movetogroup-3
-bind-key MS-4 window-movetogroup-4
+bind-key 4S-1 window-movetogroup-1
+bind-key 4S-2 window-movetogroup-2
+bind-key 4S-3 window-movetogroup-3
+bind-key 4S-4 window-movetogroup-4
+bind-key 4S-5 window-movetogroup-5
