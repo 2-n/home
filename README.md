@@ -8,4 +8,4 @@
 | $terminal | [alacritty](./modules/home/pkg/alacritty.nix) |
 | $launcher | [dmenu](./bin/drun)                           |
 
-!(desktop screenshot)[./ss.png]
+![screenshot](./ss.png)
