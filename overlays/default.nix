@@ -32,6 +32,12 @@ final: prev: {
         ];
     });
 
+    plan9port = prev.plan9port.overrideAttrs (old: rec {
+        patches = [
+            ./patches/plan9port-acme-cuabinds.diff
+        ];
+    });
+
     windowchef = prev.windowchef.overrideAttrs (old: rec {
         src = prev.fetchFromGitHub {
             owner = "tudurom";

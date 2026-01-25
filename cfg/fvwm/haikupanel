@@ -15,28 +15,29 @@ Style FvwmIconMan !Title, !Borders, !Handles, Sticky, \
                   WindowListSkip, NeverFocus
 
 Style FvwmCatclock !Title, !Borders, !Handles, Sticky, \
-                   WindowListSkip, NeverFocus
+                   WindowListSkip, NeverFocus, StaysOnBottom
 
-Colorset 11 bg #ffffff
-Colorset 22 fg #ffffff, bg #891446
+Colorset 11 bg white
+Colorset 22 fg white, bg #891446
 
 DestroyModuleConfig FvwmPanel: *
-*FvwmPanel: Geometry 192x173-0+0 # 32 start 32 tray/clock 108 pager
 *FvwmPanel: Colorset 1
-*FvwmPanel: Frame 0
 *FvwmPanel: Font "xft:SFProText:size=12"
+*FvwmPanel: Frame 0
+*FvwmPanel: Geometry 192x173-0+0
 *FvwmPanel: Columns 192
 *FvwmPanel: Rows 173
 
-*FvwmPanel: (192x32, ActiveColorset 2, Title "/  /  /  /", \
+*FvwmPanel: (192x32, ActiveColorset 2, PressColorset 2, \
+             Padding 0 0, Icon haikustart.png, \
              Action(Mouse 1) Menu rootmenu Root o100-176p 16p, \
              Action(Mouse 3) Exec exec $[infostore.runcmd])
 
 *FvwmPanel: (192x1, Colorset 11)
 
-*FvwmPanel: (96x32, Colorset 2, Padding 8 4, Left, Swallow(NoClose, UseOld) \
+*FvwmPanel: (128x32, Colorset 2, Padding 8 4, Left, Swallow(NoClose, UseOld) \
              stalonetray 'Exec exec stalonetray -c $HOME/.fvwm/stalonetrayrc')
-*FvwmPanel: (96x32, Colorset 2, id "FvwmClock", Padding 8 4, Title (Right) "clock")
+*FvwmPanel: (64x32, Colorset 2, id "FvwmClock", Padding 8 4, Title (Right) "clock")
 
 *FvwmPanel: (192x1, Colorset 11)
 *FvwmPanel: (1x106, Colorset 11)
@@ -51,16 +52,14 @@ Schedule Periodic 10000 PipeRead 'echo "SendToModule \
 FvwmButtons ChangeButton FvwmClock Title \"`date +%I:%M`\""'
 
 DestroyModuleConfig FvwmPager: *
-*FvwmPager: Font None
-*FvwmPager: NoDeskHilight
-*FvwmPager: WindowFont "xft:Ttyp0:size=8"
 *FvwmPager: Colorset * 22
 *FvwmPager: WindowColorsets 3 4
+*FvwmPager: Font None
+*FvwmPager: NoDeskHilight
+#*FvwmPager: UseSkipList
 *FvwmPager: Window3DBorders
-*FvwmPager: UseSkipList
 
 DestroyModuleConfig FvwmIconMan: *
-*FvwmIconMan: IconName TaskBarIcons
 *FvwmIconMan: Resolution global
 *FvwmIconMan: UseWinList true
 *FvwmIconMan: FollowFocus true
@@ -103,10 +102,16 @@ DestroyModuleConfig FvwmIconMan: *
 *FvwmIconMan: Action Mouse 1 A sendcommand IconManClick
 
 DestroyModuleConfig FvwmCatclock: *
-*FvwmCatclock: Geometry 192x300-0-0
 *FvwmCatclock: Colorset 22
 *FvwmCatclock: Frame 0
+*FvwmCatclock: Geometry 192x300-0-0
 *FvwmCatclock: Columns 1
 *FvwmCatclock: Rows 1
 
 *FvwmCatclock: (1x1, Swallow(NoClose, UseOld) Catclock 'Exec exec xclock -background "#891446"')
+
+DestroyFunc StartFunction
+AddToFunc   StartFunction
++ I Module FvwmButtons FvwmPanel
++ I Module FvwmIconMan
++ I Module FvwmButtons FvwmCatclock

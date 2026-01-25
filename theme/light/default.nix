@@ -1,7 +1,7 @@
 rec {
     # black
-    base00 = "ffffea";
-    base08 = "ffffea";
+    base00 = "ffffff";
+    base08 = "ffffff";
     # red
     base01 = "d977a3";
     base09 = "d977a3";

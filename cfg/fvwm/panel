@@ -26,62 +26,61 @@ DestroyModuleConfig FvwmPanel: *
              Action(Mouse 3) Exec exec $[infostore.runcmd])
 
 *FvwmPanel: (2272x1, Padding 4 4, \
-             Swallow TaskBarIcons 'Module FvwmIconMan TaskBarIcons')
+             Swallow TaskBarIcons 'Module FvwmIconMan')
 
 *FvwmPanel: (160x1, Swallow(NoClose, UseOld) stalonetray 'Exec exec stalonetray -c $HOME/.fvwm/stalonetrayrc')
 
 *FvwmPanel: (64x1, id "FvwmClock", Title "clock")
 
 # taskbar icons
-DestroyModuleConfig TaskBarIcons: *
-*TaskBarIcons: IconName TaskBarIcons
-*TaskBarIcons: Resolution global
-*TaskBarIcons: UseWinList true
-*TaskBarIcons: FollowFocus true
+DestroyModuleConfig FvwmIconMan: *
+*FvwmIconMan: Resolution global
+*FvwmIconMan: UseWinList true
+*FvwmIconMan: FollowFocus true
 
-*TaskBarIcons: Font "xft:SFProText:size=12"
-*TaskBarIcons: ButtonGeometry 192x24
-*TaskBarIcons: MaxButtonWidth 192
-*TaskBarIcons: ManagerGeometry 1x1
+*FvwmIconMan: Font "xft:SFProText:size=12"
+*FvwmIconMan: ButtonGeometry 192x24
+*FvwmIconMan: MaxButtonWidth 192
+*FvwmIconMan: ManagerGeometry 1x1
 
-*TaskBarIcons: DrawIcons always
-*TaskBarIcons: ReliefThickness 3
-*TaskBarIcons: Format "%t"
+*FvwmIconMan: DrawIcons always
+*FvwmIconMan: ReliefThickness 3
+*FvwmIconMan: Format "%t"
 
-*TaskBarIcons: FocusButton down
-*TaskBarIcons: IconButton down
-*TaskBarIcons: SelectButton down
-*TaskBarIcons: FocusAndSelectButton down
-*TaskBarIcons: IconAndSelectButton down
+*FvwmIconMan: FocusButton down
+*FvwmIconMan: IconButton down
+*FvwmIconMan: SelectButton down
+*FvwmIconMan: FocusAndSelectButton down
+*FvwmIconMan: IconAndSelectButton down
 
-*TaskBarIcons: Background #000000
-*TaskBarIcons: PlainColorset 33
-*TaskBarIcons: IconColorset 33
-*TaskBarIcons: FocusColorset 33
-*TaskBarIcons: SelectColorset 33
-*TaskBarIcons: IconAndSelectColorset 33
-*TaskBarIcons: FocusAndSelectColorset 33
+*FvwmIconMan: Background #000000
+*FvwmIconMan: PlainColorset 33
+*FvwmIconMan: IconColorset 33
+*FvwmIconMan: FocusColorset 33
+*FvwmIconMan: SelectColorset 33
+*FvwmIconMan: IconAndSelectColorset 33
+*FvwmIconMan: FocusAndSelectColorset 33
 
-*TaskBarIcons: ShowOnlyIcons false
-*TaskBarIcons: Tips never
+*FvwmIconMan: ShowOnlyIcons false
+*FvwmIconMan: Tips never
 
-*TaskBarIcons: Sort weighted
-*TaskBarIcons: SortWeight 10 class=firefox
-*TaskBarIcons: SortWeight 15 class=feishin
-*TaskBarIcons: SortWeight 20 class=discord title=*Discord
-*TaskBarIcons: SortWeight 20 class=vesktop title=Discord*
-*TaskBarIcons: SortWeight 25 class=discord
-*TaskBarIcons: SortWeight 25 class=vesktop
-*TaskBarIcons: SortWeight 30 class=steam title=Steam
-*TaskBarIcons: SortWeight 35 class=steam
-*TaskBarIcons: SortWeight 40 class=org.nicotine_plus.Nicotine
-*TaskBarIcons: SortWeight 45 class=qBittorrent
-*TaskBarIcons: SortWeight 55 class=Alacritty
-*TaskBarIcons: SortWeight 65 class=Thunar
-*TaskBarIcons: SortWeight 100 # everything else trailing
+*FvwmIconMan: Sort weighted
+*FvwmIconMan: SortWeight 10 class=firefox
+*FvwmIconMan: SortWeight 15 class=feishin
+*FvwmIconMan: SortWeight 20 class=discord title=*Discord
+*FvwmIconMan: SortWeight 20 class=vesktop title=Discord*
+*FvwmIconMan: SortWeight 25 class=discord
+*FvwmIconMan: SortWeight 25 class=vesktop
+*FvwmIconMan: SortWeight 30 class=steam title=Steam
+*FvwmIconMan: SortWeight 35 class=steam
+*FvwmIconMan: SortWeight 40 class=org.nicotine_plus.Nicotine
+*FvwmIconMan: SortWeight 45 class=qBittorrent
+*FvwmIconMan: SortWeight 55 class=Alacritty
+*FvwmIconMan: SortWeight 65 class=Thunar
+*FvwmIconMan: SortWeight 100 # everything else trailing
 
-*TaskBarIcons: Action Mouse 0 N sendcommand Nop
-*TaskBarIcons: Action Mouse 1 A sendcommand IconManClick
+*FvwmIconMan: Action Mouse 0 N sendcommand Nop
+*FvwmIconMan: Action Mouse 1 A sendcommand IconManClick
 
 # clock loop
 PipeRead 'echo "SendToModule FvwmButtons ChangeButton \
@@ -89,3 +88,7 @@ FvwmClock Title \"`date +%I:%M`\""'
 
 Schedule Periodic 10000 PipeRead 'echo "SendToModule \
 FvwmButtons ChangeButton FvwmClock Title \"`date +%I:%M`\""'
+
+DestroyFunc StartFunction
+AddToFunc   StartFunction
++ I Module FvwmButtons FvwmPanel

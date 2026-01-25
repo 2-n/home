@@ -10,9 +10,9 @@ InfoStoreAdd filecmd  thunar
 InfoStoreAdd passcmd  keepassxc
 InfoStoreAdd scrotcmd shot
 
-# start window styles
-Style * !Icon, !StippledTitle, !StickyStippledTitle, \
-        Title, SloppyFocus, FPGrabFocus, CascadePlacement
+# icons, placement, focus
+Style * !Icon, CascadePlacement, SloppyFocus, \
+        FPFocusByFunctionWarpPointer, FPGrabFocus
 
 # hide geometry window and enable opaque move
 GeometryWindow Hide
@@ -24,8 +24,6 @@ Style *             StartsOnDesk 0
 
 Style Alacritty     Sticky
 Style Thunar        Sticky
-Style Catclock      !Title, !Borders, !Handles, Sticky, \
-                    WindowListSkip, NeverFocus
 
 Style firefox       StartsOnPage 0 0, Maximize
 
@@ -33,7 +31,7 @@ Style feishin       StartsOnPage 1 0, Maximize
 Style discord       StartsOnPage 1 0, Maximize
 Style vesktop       StartsOnPage 1 0, Maximize
 Style *nicotine*    StartsOnPage 1 0, Maximize
-Style qBittorrent   StartsOnPage 1 0, SkipMapping, Maximize
+Style qBittorrent   StartsOnPage 1 0, Maximize, SkipMapping
 
 Style steam*        StartsOnPage 0 1
 
@@ -58,7 +56,7 @@ Style * BorderWidth 4, HandleWidth 4
 BorderStyle -- Flat
 
 # title bar config
-#Style * TitleFormat %c
+Style * Title, !StippledTitle, !StickyStippledTitle
 TitleStyle LeftJustified Height 28 -- Flat
 ButtonStyle 1 Pixmap menu.xpm -- Flat
 ButtonStyle 6 Pixmap min.xpm -- Flat
@@ -95,9 +93,3 @@ AddToFunc   InitFunction
 + I Exec exec qbittorrent
 + I Exec exec $[infostore.stmcmd] -system-composer
 + I Exec exec $[infostore.discmd]
-
-DestroyFunc StartFunction
-AddToFunc   StartFunction
-+ I Module FvwmButtons FvwmPanel
-+ I Module FvwmIconMan
-+ I Module FvwmButtons FvwmCatclock

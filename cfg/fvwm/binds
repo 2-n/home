@@ -12,7 +12,7 @@ AddToFunc   MaxCenter
 DestroyFunc ResizeWarp
 AddToFunc   ResizeWarp
 + I Resize $0 $1
-+ I WarpToWindow 100 100
++ I WarpToWindow 50 50
 
 # mouse bindings
 Mouse 1      R N  Menu rootmenu
@@ -22,7 +22,8 @@ Mouse 2     FS A  MouseDrag Move
 Mouse 3     FS A  MouseDrag Move
 
 Mouse 1    FSW 4  MouseDrag Move
-Mouse 3    FSW 4  MouseDrag "Resize Direction SE"
+Mouse 2    FSW 4  Iconify
+Mouse 3    FSW 4  MouseDrag "Resize Direction SE warptoborder"
 
 # title bar bindings
 Mouse 1      T A  MouseDrag Move Maximize
@@ -80,6 +81,11 @@ Key h        A 4  Move w-100p keep Warp
 Key j        A 4  Move keep w+100p Warp
 Key k        A 4  Move keep w-100p Warp
 Key l        A 4  Move w+100p keep Warp
+
+Key h        A 4C Move shuffle Warp left
+Key j        A 4C Move shuffle Warp down
+Key k        A 4C Move shuffle Warp up
+Key l        A 4C Move shuffle Warp right
 
 Key h        A 4S ResizeWarp w-100p keep
 Key j        A 4S ResizeWarp keep w+100p
