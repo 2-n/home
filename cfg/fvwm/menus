@@ -1,6 +1,7 @@
 DestroyMenu rootmenu
 AddToMenu   rootmenu
 + "&run"      Exec exec $[infostore.runcmd]
++ "" Nop
 + "&acme"     Exec exec $[infostore.acmecmd]
 + "&terminal" Exec exec $[infostore.termcmd]
 + "" Nop

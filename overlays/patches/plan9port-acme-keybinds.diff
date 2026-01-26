@@ -1,0 +1,174 @@
+diff --git a/src/cmd/acme/text.c b/src/cmd/acme/text.c
+index 09422dd..b068608 100644
+--- a/src/cmd/acme/text.c
++++ b/src/cmd/acme/text.c
+@@ -540,7 +540,7 @@ textbswidth(Text *t, Rune c)
+ 	int skipping;
+ 
+ 	/* there is known to be at least one character to erase */
+-	if(c == 0x08)	/* ^H: erase character */
++	if (c == 0x08 || 0x7F)	/* ^H: erase character */
+ 		return 1;
+ 	q = t->q0;
+ 	skipping = TRUE;
+@@ -563,6 +563,48 @@ textbswidth(Text *t, Rune c)
+ 	return t->q0-q;
+ }
+ 
++/* Distance to BOL, if xtabs is true then \t is counted as tabstop */
++int
++textbacklinewidth(Text *t, uint nline, int xtabs)
++{
++	uint q, tb;
++	Rune r;
++
++	q = t->q0;
++	tb = 0;
++	while(q > 0){
++		r = textreadc(t, q-1);
++		if(r == '\n' && !--nline)
++			break;
++		if(r == '\t' && xtabs && t->tabstop)
++			tb += t->tabstop-1;
++		--q;
++	}
++	return t->q0-q+tb;
++}
++
++/* Distance to next BOL, if xtabs is true then \t is counted as tabstop */
++int
++textforwardlinewidth(Text *t, uint nline, int xtabs)
++{
++	uint q, tb;
++	Rune r;
++
++	q = t->q0;
++	tb = 0;
++	while(q < t->file->b.nc){
++		r = textreadc(t, q);
++		if(r == '\n' && !--nline) { /* eat the last newline */
++			++q;
++			break;
++		}
++		if(r == '\t' && xtabs && t->tabstop)
++			tb += t->tabstop-1;
++		++q;
++	}
++	return q-t->q0+tb;
++}
++
+ int
+ textfilewidth(Text *t, uint q0, int oneelement)
+ {
+@@ -694,8 +736,21 @@ texttype(Text *t, Rune r)
+ 	case Kdown:
+ 		if(t->what == Tag)
+ 			goto Tagdown;
+-		n = t->fr.maxlines/3;
+-		goto case_Down;
++		typecommit(t);
++
++		/* go forward one line, then current line offset */
++		nnb = textforwardlinewidth(t, 1, FALSE);
++		nb = nnb + textbacklinewidth(t, 1, TRUE);
++
++		/* go forward until we reach our original offset or EOL */
++		while (t->q0+nnb<t->file->b.nc && nb>nnb && (r=textreadc(t, t->q0+nnb))!='\n') {
++			if (r=='\t' && t->tabstop)
++				nb -= t->tabstop-1;
++			nnb++;
++		}
++
++		textshow(t, t->q0+nnb, t->q0+nnb, TRUE);
++		return;
+ 	case Kscrollonedown:
+ 		if(t->what == Tag)
+ 			goto Tagdown;
+@@ -712,8 +767,21 @@ texttype(Text *t, Rune r)
+ 	case Kup:
+ 		if(t->what == Tag)
+ 			goto Tagup;
+-		n = t->fr.maxlines/3;
+-		goto case_Up;
++		typecommit(t);
++
++		/* back up two lines, go forward current line offset */
++		nnb = textbacklinewidth(t, 2, FALSE);
++		nb = nnb - textbacklinewidth(t, 1, TRUE); /* can be negative */
++
++		/* go forward until we reach our original offset or EOL */
++		while (t->q0-nnb<t->file->b.nc && nnb>nb && (r=textreadc(t, t->q0-nnb))!='\n') {
++			if (r=='\t' && t->tabstop)
++				nb += t->tabstop-1;
++			nnb--;
++		}
++
++		textshow(t, t->q0-nnb, t->q0-nnb, TRUE);
++		return;
+ 	case Kscrolloneup:
+ 		if(t->what == Tag)
+ 			goto Tagup;
+@@ -760,6 +828,18 @@ texttype(Text *t, Rune r)
+ 			q0++;
+ 		textshow(t, q0, q0, TRUE);
+ 		return;
++	case 0x03:	/* ^C: copy */
++		typecommit(t);
++		cut(t, t, nil, TRUE, FALSE, nil, 0);
++		return;
++	case 0x1A:	/* ^Z: undo */
++	 	typecommit(t);
++		undo(t, nil, nil, TRUE, 0, nil, 0);
++		return;
++	case 0x19: /* ^Y: redo */
++	 	typecommit(t);
++		undo(t, nil, nil, FALSE, 0, nil, 0);
++		return;
+ 	case Kcmd+'c':	/* %C: copy */
+ 		typecommit(t);
+ 		cut(t, t, nil, TRUE, FALSE, nil, 0);
+@@ -796,6 +876,26 @@ texttype(Text *t, Rune r)
+ 	}
+ 	/* cut/paste must be done after the seq++/filemark */
+ 	switch(r){
++	case 0x18:	/* ^X: cut */
++		typecommit(t);
++		if(t->what == Body){
++			seq++;
++			filemark(t->file);
++		}
++		cut(t, t, nil, TRUE, TRUE, nil, 0);
++		textshow(t, t->q0, t->q0, 1);
++		t->iq1 = t->q0;
++		return;
++	case 0x16:	/* ^V: paste */
++		typecommit(t);
++		if(t->what == Body){
++			seq++;
++			filemark(t->file);
++		}
++		paste(t, t, nil, TRUE, FALSE, nil, 0);
++		textshow(t, t->q0, t->q1, 1);
++		t->iq1 = t->q1;
++		return;
+ 	case Kcmd+'x':	/* %X: cut */
+ 		typecommit(t);
+ 		if(t->what == Body){
+@@ -844,6 +944,17 @@ texttype(Text *t, Rune r)
+ 			typecommit(t);
+ 		t->iq1 = t->q0;
+ 		return;
++	case 0x7F:  /* [delete key] */
++		/* ensure we're not at the end of the buffer */
++		if(t->q1 >= t->file->b.nc) {
++			return;
++		}
++		/* emulate rightarrow key */
++		typecommit(t);
++		textshow(t, t->q1+1, t->q1+1, TRUE);
++		/* emulate backspace key */
++		// r = 0x08; /* needed for textbswidth() to return correct value */
++					 /* now fall through to next case */
+ 	case 0x08:	/* ^H: erase character */
+ 	case 0x15:	/* ^U: erase line */
+ 	case 0x17:	/* ^W: erase word */

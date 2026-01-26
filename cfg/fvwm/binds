@@ -15,80 +15,84 @@ AddToFunc   ResizeWarp
 + I WarpToWindow 50 50
 
 # mouse bindings
-Mouse 1      R N  Menu rootmenu
+Mouse 1      R N   Menu rootmenu
 
-Mouse 1     FS A  MouseDrag Resize
-Mouse 2     FS A  MouseDrag Move
-Mouse 3     FS A  MouseDrag Move
+Mouse 1     FS A   MouseDrag Resize
+Mouse 2     FS A   MouseDrag Move
+Mouse 3     FS A   MouseDrag Move
 
-Mouse 1    FSW 4  MouseDrag Move
-Mouse 2    FSW 4  Iconify
-Mouse 3    FSW 4  MouseDrag "Resize Direction SE warptoborder"
+Mouse 1    FSW 4   MouseDrag Move
+Mouse 2    FSW 4   Iconify
+Mouse 3    FSW 4   MouseDrag "Resize Direction SE warptoborder"
 
 # title bar bindings
-Mouse 1      T A  MouseDrag Move Maximize
-Mouse 1      1 A  Menu windowops
-Mouse 1      2 A  Close
-Mouse 1      4 A  Maximize
-Mouse 2      4 A  Maximize 0 100
-Mouse 1      6 A  Iconify
-Mouse 2      6 A  Lower
+Mouse 1      T A   MouseDrag Move Maximize
+Mouse 1      1 A   Menu windowops
+Mouse 1      2 A   Close
+Mouse 1      4 A   Maximize
+Mouse 2      4 A   Maximize 0 100
+Mouse 1      6 A   Iconify
+Mouse 2      6 A   Lower
 
 # key bindings
-Key   d      A 4  Exec exec $[infostore.runcmd]
-Key   d      A 4S Menu rootmenu
-Key   Return A 4  Exec exec $[infostore.termcmd]
+Key   d      A 4   Exec exec $[infostore.runcmd]
+Key   d      A 4S  Menu rootmenu
+Key   Return A 4   Exec exec $[infostore.termcmd]
 
-Key   Print  A N  Exec exec $[infostore.scrotcmd]
-Key   Print  A 4  Exec exec $[infostore.scrotcmd] s
+Key   Print  A N   Exec exec $[infostore.scrotcmd]
+Key   Print  A 4   Exec exec $[infostore.scrotcmd] s
 
 # basic window management
-Key   q      A 4  Iconify
-Key   q      A 4S Close
+Key   q      A 4   Iconify
+Key   q      A 4S  Close
 
-Key   r      A 4  Raise
-Key   r      A 4S Lower
-Key   Tab    A 4  Next (CurrentPage, !Focused, !Iconic, AcceptsFocus) WarpToWindow 50 50
+Key   r      A 4   Raise
+Key   r      A 4S  Lower
+Key   Tab    A 4   Next (CurrentPage, !Focused, !Iconic, AcceptsFocus) WarpToWindow 50 50
 
-Key   f      A 4  Maximize
-Key   f      A 4S Maximize Fullscreen
-Key   v      A 4  Maximize 0 100
-Key   v      A 4S Maximize 100 0
-Key   Space  A 4  MaxCenter
+Key   f      A 4   Maximize
+Key   f      A 4S  Maximize Fullscreen
+Key   v      A 4   Maximize 0 100
+Key   v      A 4S  Maximize 100 0
+Key   Space  A 4   MaxCenter
 
 # desks
-Key 1        A 4  GotoPage 0 0
-Key 2        A 4  GotoPage 1 0
-Key 3        A 4  GotoPage 0 1
-Key 4        A 4  GotoPage 1 1
+Key   1      A 4   GotoPage 0 0
+Key   2      A 4   GotoPage 1 0
+Key   3      A 4   GotoPage 0 1
+Key   4      A 4   GotoPage 1 1
 
-Key 1        A 4S MoveToPage 0 0
-Key 2        A 4S MoveToPage 1 0
-Key 3        A 4S MoveToPage 0 1
-Key 4        A 4S MoveToPage 1 1
+Key   1      A 4S  MoveToPage 0 0
+Key   2      A 4S  MoveToPage 1 0
+Key   3      A 4S  MoveToPage 0 1
+Key   4      A 4S  MoveToPage 1 1
 
 # y u |  k
 #  g  | h l
 # b n |  j
 # manipulate windows
-Key g        A 4  Move 50-50w 50-50w Warp
-Key y        A 4  Move 0 0 Warp
-Key u        A 4  Move 100-100w 0 Warp
-Key b        A 4  Move 0 100-100w Warp
-Key n        A 4  Move 100-100w 100-100w Warp
+Key   g      A 4   Move 50-50w 50-50w Warp
+Key   y      A 4   Move 0 0 Warp
+Key   u      A 4   Move 100-100w 0 Warp
+Key   b      A 4   Move 0 100-100w Warp
+Key   n      A 4   Move 100-100w 100-100w Warp
 
-Key h        A 4  Move w-100p keep Warp
-Key j        A 4  Move keep w+100p Warp
-Key k        A 4  Move keep w-100p Warp
-Key l        A 4  Move w+100p keep Warp
+Key   h      A 4   Move w-100p keep Warp
+Key   j      A 4   Move keep w+100p Warp
+Key   k      A 4   Move keep w-100p Warp
+Key   l      A 4   Move w+100p keep Warp
 
-Key h        A 4C Move shuffle Warp left
-Key j        A 4C Move shuffle Warp down
-Key k        A 4C Move shuffle Warp up
-Key l        A 4C Move shuffle Warp right
+Key   h      A 4C  Move shuffle Warp left
+Key   j      A 4C  Move shuffle Warp down
+Key   k      A 4C  Move shuffle Warp up
+Key   l      A 4C  Move shuffle Warp right
 
-Key h        A 4S ResizeWarp w-100p keep
-Key j        A 4S ResizeWarp keep w+100p
-Key k        A 4S ResizeWarp keep w-100p
-Key l        A 4S ResizeWarp w+100p keep
+Key   h      A 4S  ResizeWarp w-100p keep
+Key   j      A 4S  ResizeWarp keep w+100p
+Key   k      A 4S  ResizeWarp keep w-100p
+Key   l      A 4S  ResizeWarp w+100p keep
 
+Key   h      A 4CS Maximize True growleft 0
+Key   j      A 4CS Maximize True 0 growdown
+Key   k      A 4CS Maximize True 0 growup
+Key   l      A 4CS Maximize True growright 0

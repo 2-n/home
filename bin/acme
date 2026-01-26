@@ -25,5 +25,5 @@ else
     echo "no dump"
 fi
 
-9 acme -a -f $HOME/.9font/SFMono-Regular/14a/font $ACME_DUMP $* &
+9 acme -ab -f $HOME/.9font/SFProRounded-Regular/14a/font $ACME_DUMP $* &
 

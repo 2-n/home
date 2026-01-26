@@ -74,8 +74,8 @@
         keepassxc
         
         protonup-ng
-        pkgs-unstable.osu-lazer-bin
         prismlauncher blockbench
+        pkgs-unstable.osu-lazer-bin
     ];
 
     xdg = {

@@ -34,7 +34,7 @@ final: prev: {
 
     plan9port = prev.plan9port.overrideAttrs (old: rec {
         patches = [
-            ./patches/plan9port-acme-cuabinds.diff
+            ./patches/plan9port-acme-keybinds.diff
         ];
     });
 
