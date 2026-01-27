@@ -3,7 +3,7 @@
 , pkgs
 , ...
 }:
-   
+
 {
     config = lib.mkIf (config.programs.bash.enable) {
         programs.bash = {
@@ -13,11 +13,11 @@
             bashrcExtra = ". $HOME/.profile";
             sessionVariables = {
                 PATH = "$HOME/bin:$PATH";
-                #PLAN9 = "${pkgs.plan9port}";
                 EDITOR = "micro";
-                VISUAL = "$EDITOR";
+                VISUAL = "acme";
             };
             shellAliases = {
+                a = "$VISUAL";
                 e = "$EDITOR";
                 c = "9 bc -l";
                 calc = "c";

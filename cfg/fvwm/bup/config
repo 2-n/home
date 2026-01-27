@@ -1,0 +1,95 @@
+# infostore
+InfoStoreAdd runcmd   drun
+InfoStoreAdd acmecmd  acme
+InfoStoreAdd termcmd  "alacritty msg create-window"
+InfoStoreAdd ffxcmd   firefox
+InfoStoreAdd muscmd   feishin
+InfoStoreAdd stmcmd   steam
+InfoStoreAdd discmd   vesktop
+InfoStoreAdd filecmd  thunar
+InfoStoreAdd passcmd  keepassxc
+InfoStoreAdd scrotcmd shot
+
+# icons, placement, focus
+Style * !Icon, CascadePlacement, SloppyFocus, \
+        FPFocusByFunctionWarpPointer, FPGrabFocus
+
+# hide geometry window and enable opaque move
+GeometryWindow Hide
+OpaqueMoveSize unlimited
+Style * ResizeOpaque, SnapAttraction 15 SameType ScreenAll, SnapGrid
+
+# window rules
+Style *             StartsOnDesk 0
+
+Style Alacritty     Sticky
+Style Thunar        Sticky
+
+Style firefox       StartsOnPage 0 0, Maximize
+
+Style feishin       StartsOnPage 1 0, Maximize
+Style discord       StartsOnPage 1 0, Maximize
+Style vesktop       StartsOnPage 1 0, Maximize
+Style *nicotine*    StartsOnPage 1 0, Maximize
+Style qBittorrent   StartsOnPage 1 0, Maximize, SkipMapping
+
+Style steam*        StartsOnPage 0 1
+
+Style .gamescope*   StartsOnPage 1 1, StaysOnTop
+Style PrismLauncher StartsOnPage 1 1
+Style Minecraft*    StartsOnPage 1 1
+
+# configure desktops
++-----+-----+
+| 0 0 | 1 0 |
++-----+-----+
+| 0 1 | 1 1 |
++-----+-----+
+DesktopSize 2x2
+EwmhNumberOfDesktops 1
+EdgeResistance -1
+EwmhBaseStruts screen $[monitor.primary] 0 0 0 0 # struts updated in panel cfg
+
+# main config
+DefaultFont "xft:SFProRounded:size=12"
+Style * BorderWidth 2, HandleWidth 2
+BorderStyle -- Flat
+
+# title bar config
+Style * Title, !StippledTitle, !StickyStippledTitle
+TitleStyle LeftJustified Height 30 -- Flat
+ButtonStyle 1 Pixmap menu.xpm -- Flat
+ButtonStyle 6 Pixmap min.xpm -- Flat
+ButtonStyle 4 Pixmap max.xpm -- Flat
+ButtonStyle 2 Pixmap close.xpm -- Flat
+ButtonStyle All AllInactive Pixmap nul.xpm -- Flat
+
+# colorsets
+#   0   -> inactive window titles
+# 1 & 2 -> titles / menus, inactive / active
+# 3 & 4 -> borders, inactive / active
+Colorset 0 fg black, bg black
+Colorset 1 fg white, bg black, hi #404040, sh #404040
+Colorset 2 fg white, bg #1d1d1d
+Colorset 3 bg #404040
+Colorset 4 bg #737373
+
+Style * Colorset 0, HilightColorset 1, \
+        BorderColorset 3, HilightBorderColorset 4
+
+MenuStyle * MenuColorset 1, ActiveColorset 2, \
+            BorderWidth 2, Hilight3DOff, HilightBack, \
+            ItemFormat "%|     %l%>     %|", VerticalItemSpacing 6 7, \
+            SeparatorsShort, TrianglesSolid
+
+# init
+Read binds
+Read haikupanel
+Read menus
+
+DestroyFunc InitFunction
+AddToFunc   InitFunction
++ I Exec exec nm-applet
++ I Exec exec qbittorrent
++ I Exec exec $[infostore.stmcmd] -system-composer
++ I Exec exec $[infostore.discmd]

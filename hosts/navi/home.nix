@@ -2,7 +2,7 @@
 , config
 , pkgs
 , pkgs-unstable
-, ... 
+, ...
 }:
 
 {
@@ -16,7 +16,7 @@
                     recursive = true; };
         ".fvwm" = { source = config.lib.file.mkOutOfStoreSymlink /home/eli/nix/cfg/fvwm;
                     recursive = true; };
-        ".config/sx/sxrc".source = config.lib.file.mkOutOfStoreSymlink /home/eli/nix/cfg/sxrc;
+        ".xinitrc".source = config.lib.file.mkOutOfStoreSymlink /home/eli/nix/cfg/xinitrc;
         #".bg.png".source   = ../../cfg/bg.png;
     };
 
@@ -38,7 +38,7 @@
         name = "DMZ-Black";
         size = 16;
     };
-    
+
     programs = {
         bash.enable = true;
         alacritty.enable = true;
@@ -55,24 +55,24 @@
         pfetch tmux
         btop pstree tree
 
-        plan9port 
+        plan9port
         ad catclock
-        
+
         dmenu xclip scrot
-        hsetroot xdotool        
+        hsetroot xdotool
 
         arc-theme
         lxappearance
 
-        stalonetray 
+        stalonetray
         networkmanagerapplet
 
         vesktop discord
         imv mpv gimp
-        feishin spek picard  
+        feishin spek picard
         qbittorrent nicotine-plus
         keepassxc
-        
+
         protonup-ng
         prismlauncher blockbench
         pkgs-unstable.osu-lazer-bin

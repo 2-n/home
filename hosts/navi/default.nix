@@ -1,11 +1,11 @@
 { lib
 , config
 , pkgs
-, ... 
+, ...
 }:
 
-{ 
-    imports = [ 
+{
+    imports = [
         ./hardware.nix
         ../../modules/nixos
     ];
@@ -33,44 +33,27 @@
 
     networking = {
         hostName = "navi";
-        useDHCP = lib.mkDefault true;
         networkmanager.enable = true;
-        networkmanager.wifi.powersave = false;
-        firewall.enable = true;
         firewall.allowedTCPPorts = [ 4747 7777 39617 57532 ];
         firewall.allowedUDPPorts = [ 4747 7777 39617 57532 ];
     };
 
     time.timeZone = "America/Chicago";
     time.hardwareClockInLocalTime = true;
-    i18n.defaultLocale = "en_US.UTF-8";
 
-    users.defaultUserShell = pkgs.bash;
     users.users.eli = {
         isNormalUser = true;
-        useDefaultShell = true;
-        extraGroups = [ 
-            "wheel" 
-            "minecraft" 
-        ];
+        extraGroups = [ "wheel" ];
     };
 
-    # probably turn this into a real proper script that symbolizes
-    # when i have changed user to root or into a nix-shell etc.
-    # bash prompt
-    programs.bash.promptInit =
-        ''
-        PS1="\[\e[36m\]\h\[\e[33m\]%\[\e[0m\] ";
-        '';
+    programs.bash.promptInit = '' PS1='\[\e]0;\w\a\]\[\e[36m\]%\[\e[0m\] ' '';
 
     security.sudo.enable = false;
-    security.doas = {
-        enable = true;
-        extraRules = [{
-            groups = [ "wheel" ];
-            keepEnv = true;
-        }];
-    };
+    security.doas.enable = true;
+    security.doas.extraRules = [{ 
+        groups = [ "wheel" ]; 
+        keepEnv = true; 
+    }];
 
     security.rtkit.enable = true;
     services.pipewire = {
@@ -81,27 +64,20 @@
         extraConfig.pipewire = {
             "99-no-bell"."context.properties"."module.x11.bell" = false;
         };
-    };  
-    
-    services.xserver = {
-        enable = true;
-        autorun = false;
-        enableCtrlAltBackspace = true;
-        displayManager.sx.enable = true;
-        windowManager.fvwm3.enable = true;
-        videoDrivers = [ "amdgpu" ];
-        deviceSection = ''Option "TearFree" "true"'';
     };
+
+    services.xserver.enable = true;
+    services.xserver.displayManager.startx.enable = true;
+    services.xserver.windowManager.fvwm3.enable = true;
 
     programs.thunar = {
         enable = true;
-        plugins = with pkgs; [ xarchiver ] ++ 
+        plugins = with pkgs; [ xarchiver ] ++
                  (with pkgs.xfce; [ thunar-archive-plugin thunar-volman ]);
     };
     services.tumbler.enable = true;
     services.gvfs.enable = true;
 
-    hardware.keyboard.qmk.enable = true;
     services.libinput.mouse.accelProfile = "flat";
     services.udev.extraRules = ''
         KERNEL=="hidraw*", SUBSYSTEM=="hidraw", OWNER="eli"
@@ -110,12 +86,6 @@
     programs.steam.enable = true;
     services.lact.enable = true;
     services.minecraft-servers.enable = false;
-
-    services.sunshine = {
-        enable = true;
-        openFirewall = true;
-        autoStart = false;
-    };
 
     services.tailscale.enable = true;
     services.gonic = {
@@ -133,19 +103,6 @@
             multi-value-genre = "multi";
         };
     };
-
-    #services.samba = {
-    #    enable = true;
-    #    settings = {
-    #        "share" = {
-    #            "path" = "/mnt/hdd/srv/share";
-    #            "valid users" = "eli;"
-    #            "force user" = "eli";
-    #            "public" = "no";
-    #            "writeable" = "yes";
-    #        };
-    #    };
-    #};
 
     environment.systemPackages = with pkgs; [
         micro git wget curl

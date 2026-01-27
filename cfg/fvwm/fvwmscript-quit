@@ -1,6 +1,6 @@
 WindowTitle {quit}
 WindowSize  300 80
-Font "xft:SFProText Nerd Font:size=12"
+Font "xft:SFCompact:size=12"
 Init
  Begin
  End

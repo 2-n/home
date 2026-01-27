@@ -1,7 +1,7 @@
 { lib
 , config
 , inputs
-, ... 
+, ...
 }:
 
 {
@@ -20,8 +20,6 @@
                 AutofillAddressEnabled = false;
                 AutofillCreditCardEnabled = false;
                 Cookies.Behavior = "reject-tracker-and-partition-foreign";
-                #DisableBuiltinPDFViewer = true;
-                #DisableFirefoxAccounts = true;
                 DisableFirefoxStudies = true;
                 DisableFormHistory = true;
                 DisableMasterPasswordCreation = true;
@@ -31,10 +29,10 @@
                 DisplayBookmarksToolbar = "newtab";
                 DisplayMenuBar = "default-off";
                 EncryptedMediaExtensions = true;
-                #GenerativeAI.Enabled = false;
+                GenerativeAI.Enabled = false;
                 HardwareAcceleration = true;
                 Homepage.StartPage = "previous-session";
-                #HttpsOnlyMode = "enabled";
+                HttpsOnlyMode = "enabled";
                 NoDefaultBookmarks = true;
                 OfferToSaveLogins = false;
                 PasswordManagerEnabled = false;
@@ -145,17 +143,10 @@
                         URLTemplate = "https://www.protondb.com/search?q={searchTerms}";
                         IconURL = "https://www.protondb.com/favicon.ico";
                     }
-                    #{
-                    #    Name = "SearXNG";
-                    #    Alias = "@sx";
-                    #    URLTemplate = "https://searx.party/search?q={searchTerms}";
-                    #    IconURL = "https://searx.space/favicon.png";
-                    #}
                 ];
                 SearchEngines.Remove = [
                     "Amazon.com"
                     "Bing"
-                    #"DuckDuckGo"
                     "eBay"
                     "Google"
                     "Perplexity"

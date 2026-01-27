@@ -1,7 +1,7 @@
 { lib, pkgs, stdenv, fetchzip
 , pkg-config, bmake
 , cairo, glib, libevdev, libinput, libxkbcommon, linux-pam, pango, pixman
-, libucl, wayland, wayland-scanner, wayland-protocols, wlroots_0_17, mesa, pandoc, xorg
+, libucl, wayland, wayland-scanner, wayland-protocols, wlroots_0_18, mesa, pandoc, xorg
 , features ? {
     gammacontrol = true;
     layershell   = true;
@@ -15,16 +15,16 @@
   
 stdenv.mkDerivation rec {
     pname = "hikari";
-    version = "2.3.7";
+    version = "2.3.9";
 
     src = fetchzip {
         url = "https://hub.darcs.net/hiroo/hikari/dist/hikari.zip";
         hash = "sha256-SwBU0WWG3uPOqjT+5KZqLiHnExSVvyPk3fHt3Z+TfV8=";
     };
 
-    patches = [
-        ./hikari-show-indicator-on-alt-instead.diff
-    ]; # figure out how to keep original functionality while allowing alt to work too
+    #patches = [
+    #    ./hikari-show-indicator-on-alt-instead.diff
+    #]; # figure out how to keep original functionality while allowing alt to work too
 
     nativeBuildInputs = [ pkg-config bmake ];
 
@@ -43,7 +43,7 @@ stdenv.mkDerivation rec {
         wayland
         wayland-scanner
         wayland-protocols
-        wlroots_0_17
+        wlroots_0_18
         xorg.xcbutilwm # for xcb/xcb_ewmh.h as its not provided for wlroots xwayland?
     ];
 

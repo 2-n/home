@@ -1,16 +1,16 @@
 DestroyMenu rootmenu
 AddToMenu   rootmenu
-+ "&run"      Exec exec $[infostore.runcmd]
++ "&run"      Exec exec $[infostore.dmenucmd]
 + "" Nop
-+ "&acme"     Exec exec $[infostore.acmecmd]
-+ "&terminal" Exec exec $[infostore.termcmd]
++ "&acme"     Exec exec $[infostore.9acmecmd]
++ "&terminal" Exec exec $[infostore.terminal]
 + "" Nop
-+ "&browser"  Exec exec $[infostore.ffxcmd]
-+ "&music"    Exec exec $[infostore.muscmd]
-+ "&steam"    Exec exec $[infostore.stmcmd] -system-composer
-+ "&discord"  Exec exec $[infostore.discmd]
-+ "&files"    Exec exec $[infostore.filecmd]
-+ "&keepass"  Exec exec $[infostore.passcmd]
++ "&browser"  Exec exec $[infostore.browscmd]
++ "&music"    Exec exec $[infostore.musiccmd]
++ "&steam"    Exec exec $[infostore.steamcmd] -system-composer
++ "&discord"  Exec exec $[infostore.voicecmd]
++ "&files"    Exec exec $[infostore.filescmd]
++ "&keepass"  Exec exec $[infostore.kpasscmd]
 + "" Nop
 + "options"   Popup rootops
 
@@ -21,19 +21,3 @@ AddToMenu   rootops
 + "" Nop
 + "reboot"   Module FvwmScript fvwmscript-reboot
 + "shutdown" Module FvwmScript fvwmscript-shutdown
-
-DestroyMenu windowops
-AddToMenu   windowops
-+ "(un)iconify"  Iconify
-+ "(un)sticky"   Stick
-+ "(un)maximize" Maximize
-+ "" Nop
-+ "raise"        Raise
-+ "lower"        Lower
-+ "" Nop
-+ "-> page 1"    MoveToPage 0 0
-+ "-> page 2"    MoveToPage 1 0
-+ "-> page 3"    MoveToPage 0 1
-+ "-> page 4"    MoveToPage 1 1
-+ "" Nop
-+ "close"        Close

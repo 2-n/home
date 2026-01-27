@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-xrandr -s 2560x1440 -r 144
-[[ -e $HOME/.Xresources ]] && xrdb -merge $HOME/.Xresources
-
-xset -dpms s off
-xsetroot -solid "#891446" -cursor_name left_ptr
-
-fvwm3

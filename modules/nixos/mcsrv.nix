@@ -6,6 +6,8 @@
 
 {
     config = lib.mkIf (config.services.minecraft-servers.enable) {
+        users.users.eli.extraGroups = [ "minecraft" ];
+    
         environment.systemPackages = with pkgs; [
             (writeScriptBin "mcsrvcon" 
             ''${pkgs.tmux}/bin/tmux -S /run/minecraft/$(ls /run/minecraft | ${pkgs.fzf}/bin/fzf) attach'') 
@@ -29,16 +31,16 @@
                     stuffedcat = "a0164952-8e47-4690-856b-9eb0db75b35e";
                 };
                 whitelist = {
-                    stuffedcat = "a0164952-8e47-4690-856b-9eb0db75b35e";
-                    Danpolbar = "b316af9b-60f8-4670-8121-130d7e5ea170";
-                    Im_Throwing = "6b0098df-d7df-41a6-aff7-b659da58f98b";
-                    KingsAdamas = "1bd6851a-c3fb-455e-878f-aac7439b48cd";
-                    JJu1ce = "9211c306-718c-4eb1-b130-be2e31bee95d";
-                    TheCarrotMan = "1bbf4e3c-bacd-43f4-b2ce-4ed2fdf67f84";
-                    Dirt_Snowman = "7a2d816c-e347-4aa6-a6e6-ec91692e6510";
-                    rowtheatl = "3faf3db9-2be0-4039-9164-325865c0e689";
                     Blu45 = "6082655f-f9ad-4b05-a0e6-6ba58e34b4f6";
+                    Danpolbar = "b316af9b-60f8-4670-8121-130d7e5ea170";
+                    Dirt_Snowman = "7a2d816c-e347-4aa6-a6e6-ec91692e6510";
+                    Im_Throwing = "6b0098df-d7df-41a6-aff7-b659da58f98b";
+                    JJu1ce = "9211c306-718c-4eb1-b130-be2e31bee95d";
+                    KingsAdamas = "1bd6851a-c3fb-455e-878f-aac7439b48cd";
+                    rowtheatl = "3faf3db9-2be0-4039-9164-325865c0e689";
                     SpicyCactus00 = "a619525a-a7cf-4730-a8e2-3dbb7f1a0a1e";
+                    stuffedcat = "a0164952-8e47-4690-856b-9eb0db75b35e";
+                    TheCarrotMan = "1bbf4e3c-bacd-43f4-b2ce-4ed2fdf67f84";
                 };
                 symlinks = {
                     mods = pkgs.linkFarmFromDrvs "mods" (builtins.attrValues {

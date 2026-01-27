@@ -1,0 +1,39 @@
+DestroyMenu rootmenu
+AddToMenu   rootmenu
++ "&run"      Exec exec $[infostore.runcmd]
++ "" Nop
++ "&acme"     Exec exec $[infostore.acmecmd]
++ "&terminal" Exec exec $[infostore.termcmd]
++ "" Nop
++ "&browser"  Exec exec $[infostore.ffxcmd]
++ "&music"    Exec exec $[infostore.muscmd]
++ "&steam"    Exec exec $[infostore.stmcmd] -system-composer
++ "&discord"  Exec exec $[infostore.discmd]
++ "&files"    Exec exec $[infostore.filecmd]
++ "&keepass"  Exec exec $[infostore.passcmd]
++ "" Nop
++ "options"   Popup rootops
+
+DestroyMenu rootops
+AddToMenu   rootops
++ "restart"  Restart
++ "quit"     Module FvwmScript fvwmscript-quit
++ "" Nop
++ "reboot"   Module FvwmScript fvwmscript-reboot
++ "shutdown" Module FvwmScript fvwmscript-shutdown
+
+DestroyMenu windowops
+AddToMenu   windowops
++ "(un)iconify"  Iconify
++ "(un)sticky"   Stick
++ "(un)maximize" Maximize
++ "" Nop
++ "raise"        Raise
++ "lower"        Lower
++ "" Nop
++ "-> page 1"    MoveToPage 0 0
++ "-> page 2"    MoveToPage 1 0
++ "-> page 3"    MoveToPage 0 1
++ "-> page 4"    MoveToPage 1 1
++ "" Nop
++ "close"        Close

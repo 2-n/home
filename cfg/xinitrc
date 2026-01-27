@@ -6,4 +6,6 @@ xrandr -s 2560x1440 -r 144
 xset -dpms s off
 xsetroot -solid "#891446" -cursor_name left_ptr
 
+alacritty --daemon &
+
 fvwm3

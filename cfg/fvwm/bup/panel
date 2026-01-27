@@ -1,4 +1,4 @@
-EwmhBaseStruts screen $[monitor.primary] 6 6 30 6
+EwmhBaseStruts screen $[monitor.primary] 0 0 0 32
 
 DestroyFunc IconManClick
 AddToFunc IconManClick
@@ -11,57 +11,58 @@ AddToFunc IconManClick
 Style FvwmPanel !Title, !Borders, !Handles, Sticky, \
                 WindowListSkip, NeverFocus
 
-DestroyModuleConfig FvwmPanel: *
-*FvwmPanel: Geometry 2560x24+0+0
-*FvwmPanel: Colorset 2
-*FvwmPanel: Frame 0
-*FvwmPanel: Font "xft:SFCompact:size=12"
-*FvwmPanel: Columns 2560
-*FvwmPanel: Rows 24
+Colorset 11 fg black, bg #bebebf, hi white, sh #605f5f
 
-*FvwmPanel: (72x24, ActiveColorset 3, PressColorset 3, \
-             Padding 0 0, Icon orb.png, Title (Side) Start, \
-             Action(Mouse 1) Menu rootmenu Root 0+36p 0+12p, \
+DestroyModuleConfig FvwmPanel: *
+*FvwmPanel: Geometry 2560x32+0-0
+*FvwmPanel: Colorset 1
+*FvwmPanel: Frame 0
+*FvwmPanel: Font "xft:SFProRounded:size=12"
+*FvwmPanel: Columns 2560
+*FvwmPanel: Rows 1
+
+*FvwmPanel: (64x1, ActiveColorset 2, Icon start.png, \
+             Action(Mouse 1) Menu rootmenu Root 0p o100-32p, \
              Action(Mouse 3) Exec exec $[infostore.runcmd])
 
-*FvwmPanel: (3x24, Padding 0 0, Icon pad.xpm)
+*FvwmPanel: (2272x1, Padding 4 4, \
+             Swallow TaskBarIcons 'Module FvwmIconMan')
 
-*FvwmPanel: (2343x24, Swallow FvwmIconMan 'Module FvwmIconMan')
+*FvwmPanel: (160x1, Swallow(NoClose, UseOld) stalonetray 'Exec exec stalonetray -c $HOME/.fvwm/stalonetrayrc')
 
-*FvwmPanel: (3x24, Padding 0 0, Icon pad.xpm)
+*FvwmPanel: (64x1, id "FvwmClock", Title "clock")
 
-*FvwmPanel: (64x24, id "FvwmClock", Title "clock")
-
-*FvwmPanel: (3x24, Padding 0 0, Icon pad.xpm)
-
-*FvwmPanel: (24x24, ActiveColorset 3, PressColorset 3, \
-             Icon min.xpm, Action(Mouse 1) Pick Iconify)
-*FvwmPanel: (24x24, ActiveColorset 3, PressColorset 3, \
-             Icon max.xpm, Action(Mouse 1) Pick Maximize)
-*FvwmPanel: (24x24, ActiveColorset 3, PressColorset 3, \
-             Icon close.xpm, Action(Mouse 1) Pick Close)
-
+# taskbar icons
 DestroyModuleConfig FvwmIconMan: *
 *FvwmIconMan: Resolution global
 *FvwmIconMan: UseWinList true
 *FvwmIconMan: FollowFocus true
 
-*FvwmIconMan: Font "xft:SFCompact:size=12"
+*FvwmIconMan: Font "xft:SFProRounded:size=12"
 *FvwmIconMan: ButtonGeometry 192x24
-*FvwmIconMan: MaxButtonWidth 2343
+*FvwmIconMan: MaxButtonWidth 192
 *FvwmIconMan: ManagerGeometry 1x1
 
 *FvwmIconMan: DrawIcons always
-*FvwmIconMan: ReliefThickness 0
+*FvwmIconMan: ReliefThickness 3
 *FvwmIconMan: Format "%t"
 
-*FvwmIconMan: Colorset 2
-*FvwmIconMan: PlainColorset 2
-*FvwmIconMan: IconColorset 2
-*FvwmIconMan: FocusColorset 2
-*FvwmIconMan: SelectColorset 3
-*FvwmIconMan: IconAndSelectColorset 3
-*FvwmIconMan: FocusAndSelectColorset 3
+*FvwmIconMan: FocusButton down
+*FvwmIconMan: IconButton down
+*FvwmIconMan: SelectButton down
+*FvwmIconMan: FocusAndSelectButton down
+*FvwmIconMan: IconAndSelectButton down
+
+*FvwmIconMan: Background #000000
+*FvwmIconMan: PlainColorset 33
+*FvwmIconMan: IconColorset 33
+*FvwmIconMan: FocusColorset 33
+*FvwmIconMan: SelectColorset 33
+*FvwmIconMan: IconAndSelectColorset 33
+*FvwmIconMan: FocusAndSelectColorset 33
+
+*FvwmIconMan: ShowOnlyIcons false
+*FvwmIconMan: Tips never
 
 *FvwmIconMan: Sort weighted
 *FvwmIconMan: SortWeight 10 class=firefox
@@ -72,8 +73,8 @@ DestroyModuleConfig FvwmIconMan: *
 *FvwmIconMan: SortWeight 25 class=vesktop
 *FvwmIconMan: SortWeight 30 class=steam title=Steam
 *FvwmIconMan: SortWeight 35 class=steam
-*FvwmIconMan: SortWeight 40 class=qBittorrent
-*FvwmIconMan: SortWeight 45 class=org.nicotine_plus.Nicotine
+*FvwmIconMan: SortWeight 40 class=org.nicotine_plus.Nicotine
+*FvwmIconMan: SortWeight 45 class=qBittorrent
 *FvwmIconMan: SortWeight 55 class=Alacritty
 *FvwmIconMan: SortWeight 65 class=Thunar
 *FvwmIconMan: SortWeight 100 # everything else trailing
@@ -81,6 +82,7 @@ DestroyModuleConfig FvwmIconMan: *
 *FvwmIconMan: Action Mouse 0 N sendcommand Nop
 *FvwmIconMan: Action Mouse 1 A sendcommand IconManClick
 
+# clock loop
 PipeRead 'echo "SendToModule FvwmButtons ChangeButton \
 FvwmClock Title \"`date +%I:%M`\""'
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-fn='SFProText:size=12'
+fn='SFCompact:size=12'
 nb='black'
 nf='white'
 sb='#1d1d1d'
@@ -13,6 +13,6 @@ sf='white'
 # h 32 x 0 z 2368
 
 dmenu_run -fn "$fn" \
--h 32 -x 0 -z 2368    \
+-h 24 -x 75 -z 2485    \
 -nb "$nb" -nf "$nf"    \
 -sb "$sb" -sf "$sf"    \

@@ -1,6 +1,6 @@
 { lib
 , config
-,  ... 
+,  ...
 }:
 
 {
@@ -9,19 +9,19 @@
             settings = {
                 font = {
                     size = config.theme.font.size + 0.0;
-                    normal = { 
+                    normal = {
                         family = config.theme.font.name;
                         style = "Regular";
                     };
-                    bold = { 
+                    bold = {
                         family = config.theme.font.name;
                         style = "Regular";
                     };
-                    italic = { 
+                    italic = {
                         family = config.theme.font.name;
                         style = "Regular";
                     };
-                    bold_italic = { 
+                    bold_italic = {
                         family = config.theme.font.name;
                         style = "Regular";
                     };
@@ -30,8 +30,8 @@
                     resize_increments = true;
                     dimensions.columns = 85;
                     dimensions.lines = 35;
-                    padding.x = config.theme.font.size;
-                    padding.y = config.theme.font.size;  
+                    padding.x = 8; #config.theme.font.size
+                    padding.y = 8;
                 };
                 colors = {
                     primary = {
@@ -63,6 +63,6 @@
                     };
                 };
             };
-        };            
+        };
     };
 }

@@ -22,7 +22,7 @@ Colorset 22 fg white, bg #891446
 
 DestroyModuleConfig FvwmPanel: *
 *FvwmPanel: Colorset 1
-*FvwmPanel: Font "xft:SFProText:size=12"
+*FvwmPanel: Font "xft:SFProRounded:size=12"
 *FvwmPanel: Frame 0
 *FvwmPanel: Geometry 192x173-0+0
 *FvwmPanel: Columns 192
@@ -65,7 +65,7 @@ DestroyModuleConfig FvwmIconMan: *
 *FvwmIconMan: UseWinList true
 *FvwmIconMan: FollowFocus true
 
-*FvwmIconMan: Font "xft:SFProText:size=12"
+*FvwmIconMan: Font "xft:SFProRounded:size=12"
 *FvwmIconMan: ButtonGeometry 192x32
 *FvwmIconMan: ManagerGeometry 1x0-0+173
 
