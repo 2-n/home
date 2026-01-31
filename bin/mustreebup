@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+musdir=/mnt/hdd/mus
+
+for m in $musdir; do
+    tree -ndL 3 $m
+done

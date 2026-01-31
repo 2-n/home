@@ -17,7 +17,6 @@
         ".fvwm" = { source = config.lib.file.mkOutOfStoreSymlink /home/eli/nix/cfg/fvwm;
                     recursive = true; };
         ".xinitrc".source = config.lib.file.mkOutOfStoreSymlink /home/eli/nix/cfg/xinitrc;
-        #".bg.png".source   = ../../cfg/bg.png;
     };
 
     theme = {
@@ -40,66 +39,46 @@
     };
 
     programs = {
-        bash.enable = true;
         alacritty.enable = true;
+        bash.enable = true;
         firefox.enable = true;
         micro.enable = true;
-        rofi.enable = true;
     };
 
-    services.easyeffects.enable = true;
-
     home.packages = with pkgs; [
-        git gh fzf
-        yazi p7zip
-        pfetch tmux
         btop pstree tree
+        fzf pfetch tmux
 
         plan9port
-        ad catclock
 
-        dmenu xclip scrot
+        dmenu scrot xclip
         hsetroot xdotool
 
-        arc-theme
-        lxappearance
+        lxappearance lxmenu-data
 
-        stalonetray
-        networkmanagerapplet
+        gimp imv mpv
+        pcmanfm xarchiver
 
-        vesktop discord
-        imv mpv gimp
-        feishin spek picard
-        qbittorrent nicotine-plus
-        keepassxc
+        keepassxc vesktop
+
+        qbittorrent
+        feishin picard spek
 
         protonup-ng
-        prismlauncher blockbench
+        prismlauncher
         pkgs-unstable.osu-lazer-bin
     ];
 
-    xdg = {
-        userDirs = {
-            enable = true;
-            desktop = "$HOME/";
-            documents = "$HOME/doc";
-            download = "$HOME/dwn";
-            music = "/mnt/hdd/mus";
-            pictures = "$HOME/pix";
-            videos = "$HOME/vid";
-            publicShare = null;
-            templates = null;
-        };
-        desktopEntries = {
-            "gimp" = {
-                name = "GNU Image Manipulation Program";
-                noDisplay = true;
-            };
-            "yazi" = {
-                name = "Yazi";
-                noDisplay = true;
-            };
-        };
+    xdg.userDirs = {
+        enable = true;
+        desktop = "$HOME/";
+        documents = "$HOME/doc";
+        download = "$HOME/dwn";
+        music = "/mnt/hdd/mus";
+        pictures = "$HOME/pix";
+        videos = "$HOME/vid";
+        publicShare = null;
+        templates = null;
     };
 
     home.stateVersion = "24.05";

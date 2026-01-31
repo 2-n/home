@@ -5,11 +5,10 @@
 
 {
     imports = [
-        ./bash.nix
         ./alacritty.nix
+        ./bash.nix
         ./firefox.nix
         ./micro.nix
-        ./rofi.nix
     ];
 
     options = {

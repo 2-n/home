@@ -1,4 +1,4 @@
-EwmhBaseStruts screen $[monitor.primary] 6 6 30 6
+EwmhBaseStruts screen $[monitor.primary] 8 8 32 8
 
 DestroyFunc IconManClick
 AddToFunc IconManClick

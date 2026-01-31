@@ -29,7 +29,9 @@
             enable = true;
             libraries = with pkgs; [ libz ];
         }; # for GModCEFCodecFix to patch GMod
-      
+
+        # basic launch options for all games:
+        # gamemoderun gamescope -- %command%      
         programs.gamescope = {
             enable = true;
             args = [
@@ -43,8 +45,7 @@
                 "--rt"
             ];
         };
-        # basic launch options for all games:
-        # gamemoderun gamescope -- %command%
+
         programs.gamemode = {
             enable = true;
             settings = {

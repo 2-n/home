@@ -16,6 +16,11 @@ AddToFunc   MaxCenter
 + I Maximize 75 100
 + I Current (Maximized) Move 50-50w 50-50w Warp
 
+DestroyFunc SafeToDesk
+AddToFunc   SafeToDesk
++ I ThisWindow (Sticky) Stick
++ I MoveToDesk $0 $1
+
 DestroyFunc ResizeWarp
 AddToFunc   ResizeWarp
 + I Resize $0 $1
@@ -24,18 +29,19 @@ AddToFunc   ResizeWarp
 # mouse bindings
 Mouse 1      R N   Menu rootmenu
 
-Mouse 1     FS A   MouseDrag Resize Lower
-Mouse 2     FS A   MouseDrag Move
-Mouse 3     FS A   MouseDrag Move
+Mouse 1     FS N   MouseDrag Resize Lower
+Mouse 2     FS N   MouseDrag Move
+Mouse 3     FS N   MouseDrag Move
 
 Mouse 1    FSW 4   MouseDrag Move Lower
 Mouse 2    FSW 4   Iconify
+Mouse 2    FSW 4S  Stick
 Mouse 3    FSW 4   MouseDrag "Resize Direction SE warptoborder"
 
 # key bindings
 Key   d      A 4   Exec exec $[infostore.dmenucmd]
 Key   d      A 4S  Menu rootmenu
-Key   Return A 4   Exec exec $[infostore.terminal]
+Key   grave  A 4   Exec exec $[infostore.terminal]
 
 Key   Print  A N   Exec exec $[infostore.scrotcmd]
 Key   Print  A 4   Exec exec $[infostore.scrotcmd] s
@@ -46,6 +52,8 @@ Key   q      A 4S  Close
 Key   r      A 4   Raise
 Key   r      A 4S  Lower
 Key   Tab    A 4   Next (CurrentDesk, !Focused, !Iconic, AcceptsFocus) WarpToWindow 50 50
+Key   Tab    A M   WindowList Root c c CurrentAtEnd, IconifiedAtEnd, NoCurrentDeskTitle, \
+                   NoGeometry, NoHotkeys, NotAlphabetic, SelectOnRelease Alt_L
 
 Key   f      A 4   Maximize
 Key   f      A 4S  Maximize Fullscreen
@@ -59,11 +67,11 @@ Key   3      A 4   GotoDesk 0 2
 Key   4      A 4   GotoDesk 0 3
 Key   5      A 4   GotoDesk 0 4
 
-Key   1      A 4S  MoveToDesk 0 0
-Key   2      A 4S  MoveToDesk 0 1
-Key   3      A 4S  MoveToDesk 0 2
-Key   4      A 4S  MoveToDesk 0 3
-Key   5      A 4S  MoveToDesk 0 4
+Key   1      A 4S  SafeToDesk 0 0
+Key   2      A 4S  SafeToDesk 0 1
+Key   3      A 4S  SafeToDesk 0 2
+Key   4      A 4S  SafeToDesk 0 3
+Key   5      A 4S  SafeToDesk 0 4
 
 # y u |  k
 #  g  | h l

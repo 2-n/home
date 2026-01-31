@@ -14,10 +14,9 @@
             sessionVariables = {
                 PATH = "$HOME/bin:$PATH";
                 EDITOR = "micro";
-                VISUAL = "acme";
+                VISUAL = "$EDITOR";
             };
             shellAliases = {
-                a = "$VISUAL";
                 e = "$EDITOR";
                 c = "9 bc -l";
                 calc = "c";
