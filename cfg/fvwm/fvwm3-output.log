@@ -1,4 +1,0 @@
-[1769722653.195225] FScreenInit: Using RandR 1.6
-[1769722653.198517] scan_screens: Case 1: Add new monitors
-[1769722653.198549] monitor_mark_new: Added new monitor: DP-1 (0x564a1036e4c0)
-[1769722653.207594] SetupICCCM2: another ICCCM 2.0 compliant WM is running, try -replace
