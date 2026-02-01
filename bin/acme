@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
 
-# variable -f
-# mono -F
-# for some reason it must be set with -f right now
-# and switching fonts isnt working with the 'Font' command
-# $HOME/.9font/SFProRounded-Regular/14a/font
-# $HOME/.9font/SFMono-Regular/14a/font
-
 SHELL=rc
 ACME_DUMP=
 
@@ -25,5 +18,5 @@ else
     echo "no dump"
 fi
 
-9 acme -a -f $HOME/.9font/SFMono-Regular/14a/font $ACME_DUMP $* &
+9 acme -a -f $HOME/.9font/SFProRounded-Regular/14a/font -F $HOME/.9font/SFMono-Regular/14a/font $ACME_DUMP $* &
 
