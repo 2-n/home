@@ -15,9 +15,14 @@ final: prev: {
         };
     });
 
-    colloid-gtk-theme = prev.colloid-gtk-theme.overrideAttrs (old: rec {
+    colloid-gtk-theme = (prev.colloid-gtk-theme.overrideAttrs (old: rec {
         patches = [ ./patches/colloid-gtk-theme-no-radius.diff ];
-    });
+    })).override {
+        themeVariants = [ "purple" ];
+        colorVariants = [ "light" ];
+        sizeVariants = [ "compact" ];
+        tweaks = [ "nord" ];
+    };
 
     cwm = prev.cwm.overrideAttrs (old: rec {
         patches = [ 
