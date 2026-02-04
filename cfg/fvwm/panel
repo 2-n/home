@@ -15,7 +15,7 @@ DestroyModuleConfig FvwmPanel: *
 *FvwmPanel: Geometry 2560x24+0+0
 *FvwmPanel: Colorset 2
 *FvwmPanel: Frame 0
-*FvwmPanel: Font "xft:SFCompact:size=12"
+*FvwmPanel: Font "xft:SF Compact Display:style=Medium:size=12"
 *FvwmPanel: Columns 2560
 *FvwmPanel: Rows 24
 
@@ -46,7 +46,7 @@ DestroyModuleConfig FvwmIconMan: *
 *FvwmIconMan: UseWinList true
 *FvwmIconMan: FollowFocus true
 
-*FvwmIconMan: Font "xft:SFCompact:size=12"
+*FvwmIconMan: Font "xft:SF Compact Display:style=Medium:size=12"
 *FvwmIconMan: ButtonGeometry 192x24
 *FvwmIconMan: MaxButtonWidth 2343
 *FvwmIconMan: ManagerGeometry 1x1

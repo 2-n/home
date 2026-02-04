@@ -10,7 +10,7 @@
 
         environment.systemPackages = with pkgs; [
             (writeScriptBin "tersrvcon" 
-            ''${pkgs.tmux}/bin/tmux -S /run/terraria/terraria.sock attach'') 
+            ''${pkgs.tmux}/bin/tmux -S /srv/terraria/terraria.sock attach'') 
         ];
 
         services.terraria = {

@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-fn='SFCompact:size=12'
+fn='SF Compact Display:style=Medium:size=12'
 nb='black'
 nf='white'
 sb='#1d1d1d'

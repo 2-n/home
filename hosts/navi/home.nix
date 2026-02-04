@@ -54,6 +54,13 @@
         dmenu scrot xclip
         hsetroot xdotool
 
+        (colloid-gtk-theme.override {
+            themeVariants = [ "purple" ];
+            colorVariants = [ "light" ];
+            sizeVariants = [ "compact" ];
+            tweaks = [ "nord" ];
+        })
+        
         lxappearance lxmenu-data
 
         gimp imv mpv

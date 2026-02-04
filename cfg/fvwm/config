@@ -25,7 +25,7 @@ Style .gamescope*   StartsOnDesk 4, StaysOnTop
 Style PrismLauncher StartsOnDesk 4
 Style Minecraft*    StartsOnDesk 4
 
-DefaultFont "xft:SFCompact:size=12"
+DefaultFont "xft:SF Compact Display:style=Medium:size=12"
 
 #       404040 737373
 #       deadca d977a3
