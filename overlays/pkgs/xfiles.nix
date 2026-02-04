@@ -23,10 +23,6 @@ stdenv.mkDerivation rec {
         hash = "sha256-Qf/C4OkhvyGDzvmA/07rZAnK9PIsjBSqXIdJaX2AJFg=";
     };
 
-    patches = [
-        ./xfiles-xfilesctl.diff
-    ];
-
     nativeBuildInputs = [ mandoc ];
 
     buildInputs = [
@@ -43,7 +39,6 @@ stdenv.mkDerivation rec {
     installPhase = ''
         install -D xfiles -t $out/bin/
         install -Dm644 xfiles.1 -t $out/share/man/man1/
-        install -D examples/xfiles{ctl,thumb} -t $out/bin/
     '';
 
     meta = with lib; {

@@ -10,8 +10,6 @@
         ../../modules/nixos
     ];
 
-    system.stateVersion = "24.05";
-
     nix = {
         gc = {
             automatic = true;
@@ -77,10 +75,7 @@
 
     programs.steam.enable = true;
     services.lact.enable = true;
-
     services.gonic.enable = true;
-    services.minecraft-servers.enable = false;
-    services.terraria.enable = false;
 
     environment.systemPackages = with pkgs; [
         curl gh git micro p7zip wget 
@@ -91,5 +86,7 @@
         dejavu_fonts
         unifont uw-ttyp0
     ];
+
+    system.stateVersion = "24.05";
 }
 

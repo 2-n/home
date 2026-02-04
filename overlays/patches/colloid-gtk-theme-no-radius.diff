@@ -1,0 +1,61 @@
+diff --git a/src/sass/_variables.scss b/src/sass/_variables.scss
+index 86efa25..6a699f3 100644
+--- a/src/sass/_variables.scss
++++ b/src/sass/_variables.scss
+@@ -20,10 +20,10 @@ $root-font-size: if($compact == 'false', 14px, 13px);
+ // Radiuses
+ //
+ 
+-$modal-radius: 6px;
+-$corner-radius: 6px;
+-$menu-radius: $corner-radius + $space-size;
+-$window-radius: $corner-radius + $space-size;
++$modal-radius: 0px;
++$corner-radius: 0px;
++$menu-radius: 0px;
++$window-radius: 0px;
+ $circular-radius: 9999px;
+ 
+ //
+diff --git a/src/sass/gnome-shell/_variables.scss b/src/sass/gnome-shell/_variables.scss
+index 3e648ca..00d22a3 100644
+--- a/src/sass/gnome-shell/_variables.scss
++++ b/src/sass/gnome-shell/_variables.scss
+@@ -30,11 +30,11 @@ $large_scalable_icon_size: $scalable_icon_size * 2;
+ 
+ // radiuses
+ $circular_radius: 9999px;
+-$base_radius: 6px;
+-$icon_radius: 16px;
+-$window_radius: 12px;
+-$menu_radius: $base_radius + $base_padding;
+-$modal_radius: $menu_radius;
++$base_radius: 0px;
++$icon_radius: 0px;
++$window_radius: 0px;
++$menu_radius: 0px;
++$modal_radius: 0px;
+ 
+ // icons
+ $base_icon_size: 16px;
+diff --git a/src/sass/libadwaita/_variables.scss b/src/sass/libadwaita/_variables.scss
+index 9fc0bdd..13c5936 100644
+--- a/src/sass/libadwaita/_variables.scss
++++ b/src/sass/libadwaita/_variables.scss
+@@ -21,11 +21,11 @@ $menuitem_size: if($compact == 'false', 28px, 24px);
+ // Radiuses
+ //
+ 
+-$button_radius: 6px;
+-$card_radius: $button_radius + 6px;
+-$menuitem_radius: $button_radius;
+-$window_radius: $button_radius + $base_padding;
+-$popover_radius: $menuitem_radius + $base_padding;
++$button_radius: 0px;
++$card_radius: 0px;
++$menuitem_radius: 0px;
++$window_radius: 0px;
++$popover_radius: 0px;
+ $circular_radius: 9999px;
+ 
+ //
