@@ -9,6 +9,25 @@
 
     config = lib.mkIf (config.programs.firefox.enable) {
         programs.firefox = {
+            profiles.eli.userChrome = 
+            ''
+                #statuspanel {
+                  display: none;
+                }
+                
+                #back-button, #forward-button, #reload-button, #stop-button {
+                  display: none;
+                }
+                
+                #urlbar-container {
+                  margin-left: 4px !important;
+                  margin-right: 2px !important;
+                }
+                
+                #PanelUI-menu-button {
+                	padding: 0px 4px 0px 0px !important;
+                }
+            '';
             betterfox = {
                 enable = true;
                 profiles.eli = {
