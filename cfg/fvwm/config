@@ -53,5 +53,5 @@ Read panel
 
 DestroyFunc InitFunction
 AddToFunc   InitFunction
-+ I Exec exec hsetroot -fill $HOME/.fvwm/bg.jpg
++ I Exec exec fvwm-root -fill $HOME/.fvwm/bg.pmg
 + I Exec exec qbittorrent
