@@ -28,15 +28,12 @@ final: prev: {
         patches = [ 
             ./patches/cwm-center.diff
             ./patches/cwm-nomwmhints.diff
+            ./patches/cwm-smooth.diff
         ];
     });
 
     dmenu = prev.dmenu.overrideAttrs (old: rec {
-        src = prev.fetchurl {
-            url = "https://dl.suckless.org/tools/dmenu-5.2.tar.gz";
-            hash = "sha256-1NTKd7WRQPJyJy21N+BbuRpZFPVoAmUtxX5hp3PUN5I=";
-        };
-        patches = [ ./patches/dmenu-mega-patch.diff ];
+        patches = [ ./patches/dmenu-patch.diff ];
     });
 
     plan9port = prev.plan9port.overrideAttrs (old: rec {

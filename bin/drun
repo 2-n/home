@@ -6,13 +6,7 @@ nf='white'
 sb='#1d1d1d'
 sf='white'
 
-# taskbar dmenu
-# b h 32 x 64 z 2432
-
-# haiku inspired panel dmenu
-# h 32 x 0 z 2368
-
-dmenu_run -fn "$fn" \
--h 24 -x 75 -z 2485    \
--nb "$nb" -nf "$nf"    \
--sb "$sb" -sf "$sf"    \
+dmenu_run           \
+-fn "$fn" -b -h 24  \
+-nb "$nb" -nf "$nf" \
+-sb "$sb" -sf "$sf" \

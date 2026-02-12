@@ -10,41 +10,23 @@
         ../../modules/nixos
     ];
 
-    nix = {
-        gc = {
-            automatic = true;
-            dates = "weekly";
-            options = "--delete-older-than 14d";
-        };
-        settings = {
-            auto-optimise-store = true;
-            experimental-features = [ "nix-command" "flakes" ];
-        };
-    };
+    time.timeZone = "America/Chicago";
+    time.hardwareClockInLocalTime = true;
 
     boot = {
         kernelPackages = pkgs.linuxPackages_xanmod_latest;
         loader.efi.canTouchEfiVariables = true;
         loader.systemd-boot.enable = true;
+        loader.timeout = 0;
         tmp.cleanOnBoot = true;
     };
 
     networking = {
-        hostName = "navi";
+        hostName = "meiframe";
         networkmanager.enable = true;
-        firewall.allowedTCPPorts = [ 7777 39617 ];
-        firewall.allowedUDPPorts = [ 7777 39617 ];
+        firewall.allowedTCPPorts = [ 39617 ];
+        firewall.allowedUDPPorts = [ 39617 ];
     };
-
-    time.timeZone = "America/Chicago";
-    time.hardwareClockInLocalTime = true;
-
-    security.sudo.enable = false;
-    security.doas.enable = true;
-    security.doas.extraRules = [{ 
-        groups = [ "wheel" ]; 
-        keepEnv = true; 
-    }];
 
     security.rtkit.enable = true;
     services.pipewire = {
@@ -57,16 +39,23 @@
         };
     };
 
-    programs.bash.promptInit = '' PS1='\[\e]0;\w\a\]\[\e[36m\]%\[\e[0m\] ' '';
+    programs.bash.promptInit = '' PS1='\[\e[36m\]%\[\e[0m\] ' '';
 
     users.users.eli = {
         isNormalUser = true;
         extraGroups = [ "wheel" ];
     };
 
+    security.sudo.enable = false;
+    security.doas.enable = true;
+    security.doas.extraRules = [{ 
+        groups = [ "wheel" ]; 
+        keepEnv = true; 
+    }];
+
     services.xserver.enable = true;
     services.xserver.displayManager.startx.enable = true;
-    services.xserver.windowManager.fvwm3.enable = true;
+    services.xserver.windowManager.cwm.enable = true;
 
     services.libinput.mouse.accelProfile = "flat";
     services.udev.extraRules = ''
@@ -76,9 +65,10 @@
     programs.steam.enable = true;
     services.lact.enable = true;
     services.gonic.enable = true;
+    services.qbittorrent.enable = true;
 
     environment.systemPackages = with pkgs; [
-        curl gh git micro p7zip wget 
+        git micro p7zip wget 
     ];
 
     fonts.packages = with pkgs; [
@@ -87,6 +77,18 @@
         unifont uw-ttyp0
     ];
 
-    system.stateVersion = "24.05";
+    nix = {
+        gc = {
+            automatic = true;
+            dates = "weekly";
+            options = "--delete-older-than 14d";
+        };
+        settings = {
+            auto-optimise-store = true;
+            experimental-features = [ "nix-command" "flakes" ];
+        };
+    };
+
+    system.stateVersion = "25.11";
 }
 

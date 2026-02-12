@@ -29,16 +29,16 @@
     in
     {
         nixosConfigurations = {
-            navi = nixpkgs.lib.nixosSystem rec {
+            meiframe = nixpkgs.lib.nixosSystem rec {
                 specialArgs = { inherit system inputs pkgs-unstable; };
                 modules = [
-                    ./hosts/navi
+                    ./hosts/meiframe
                     home-manager.nixosModules.home-manager {
                         nixpkgs.pkgs = pkgs;
                         home-manager.useGlobalPkgs = true;
                         home-manager.useUserPackages = true;
                         home-manager.extraSpecialArgs = specialArgs;
-                        home-manager.users.eli = import ./hosts/navi/home.nix;
+                        home-manager.users.eli = import ./hosts/meiframe/home.nix;
                     }
                 ];
             };

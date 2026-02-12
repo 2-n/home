@@ -1,0 +1,26 @@
+diff --git a/kbfunc.c b/kbfunc.c
+index b6f6355..3d9d4ea 100644
+--- a/kbfunc.c
++++ b/kbfunc.c
+@@ -176,8 +176,8 @@ kbfunc_client_move_mb(void *ctx, struct cargs *cargs)
+ 		XMaskEvent(X_Dpy, MOUSEMASK, &ev);
+ 		switch (ev.type) {
+ 		case MotionNotify:
+-			/* not more than 60 times / second */
+-			if ((ev.xmotion.time - ltime) <= (1000 / 60))
++			/* not more than 144 times / second */
++			if ((ev.xmotion.time - ltime) <= (1000 / 144))
+ 				continue;
+ 			ltime = ev.xmotion.time;
+ 
+@@ -265,8 +265,8 @@ kbfunc_client_resize_mb(void *ctx, struct cargs *cargs)
+ 		XMaskEvent(X_Dpy, MOUSEMASK, &ev);
+ 		switch (ev.type) {
+ 		case MotionNotify:
+-			/* not more than 60 times / second */
+-			if ((ev.xmotion.time - ltime) <= (1000 / 60))
++			/* not more than 144 times / second */
++			if ((ev.xmotion.time - ltime) <= (1000 / 144))
+ 				continue;
+ 			ltime = ev.xmotion.time;
+ 
