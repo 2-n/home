@@ -20,7 +20,7 @@
     };
 
     theme = {
-        colors = (import ../../theme/light);
+        colors = (import ../../theme/acme-wcolors);
         font.name = "SFMono";
         font.size = 12;
     };

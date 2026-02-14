@@ -14,7 +14,7 @@
     time.hardwareClockInLocalTime = true;
 
     boot = {
-        kernelPackages = pkgs.linuxPackages_xanmod_latest;
+        kernelPackages = pkgs.linuxPackages_xanmod_stable;
         loader.efi.canTouchEfiVariables = true;
         loader.systemd-boot.enable = true;
         loader.timeout = 0;
@@ -24,8 +24,6 @@
     networking = {
         hostName = "meiframe";
         networkmanager.enable = true;
-        firewall.allowedTCPPorts = [ 39617 ];
-        firewall.allowedUDPPorts = [ 39617 ];
     };
 
     security.rtkit.enable = true;
@@ -39,11 +37,30 @@
         };
     };
 
-    programs.bash.promptInit = '' PS1='\[\e[36m\]%\[\e[0m\] ' '';
+    programs.bash.promptInit = ''
+        set_prompt() {
+            case $USER in
+                eli)
+                    if [ -z $IN_NIX_SHELL ]; then
+                        sym="%"
+                    else
+                        sym="$"
+                    fi
+                    ;;
+                root)
+                    sym="#"
+                    ;;
+            esac
+        
+            PS1="\[\e[32m\]''${sym}\[\e[0m\] "
+        }
+
+        PROMPT_COMMAND='set_prompt'
+    '';
 
     users.users.eli = {
         isNormalUser = true;
-        extraGroups = [ "wheel" ];
+        extraGroups = [ "networkmanager" "wheel" ];
     };
 
     security.sudo.enable = false;
@@ -56,6 +73,7 @@
     services.xserver.enable = true;
     services.xserver.displayManager.startx.enable = true;
     services.xserver.windowManager.cwm.enable = true;
+    services.xserver.windowManager.fvwm3.enable = true;
 
     services.libinput.mouse.accelProfile = "flat";
     services.udev.extraRules = ''

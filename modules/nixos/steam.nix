@@ -9,28 +9,23 @@
         users.users.eli.extraGroups = [ "gamemode" ];
 
         programs.steam = {
-            extraCompatPackages = [ pkgs.proton-ge-bin ];
             dedicatedServer.openFirewall = true;
-            protontricks.enable = true;
+            extraPackages = [ pkgs.gamescope ];
+            extraCompatPackages = [ pkgs.proton-ge-bin ];
         };
-
-        programs.nix-ld = {
-            enable = true;
-            libraries = with pkgs; [ libz ];
-        }; # for GModCEFCodecFix to patch GMod
 
         programs.gamemode = {
             enable = true;
             settings = {
                 general = {
                     desiredgov = "performance";
-                    softrealtime = "auto";
                     renice = 10;
+                    softrealtime = "auto";
                 };
                 gpu = {
+                    amd_performance_level = "high";
                     apply_gpu_optimisations = "accept-responsibility";
                     gpu_device = 1;
-                    amd_performance_level = "high";
                 };
             };
         }; # gamemoderun gamescope -- %command% 
@@ -39,17 +34,22 @@
             enable = true;
             capSysNice = true;
             args = [
-                "-W 2560"
-                "-H 1440"
-                "-r 144"
-                "-f"
-                "--force-grab-cursor"
+                "--output-width 2560"
+                "--output-height 1440"
+                "--nested-refresh 144"
+                "--fullscreen"
                 "--backend sdl"
+                "--force-grab-cursor"
                 "--immediate-flips"
                 "--rt"
             ];
         };
 
+        programs.nix-ld = {
+            enable = true;
+            libraries = with pkgs; [ libz ];
+        }; # for GModCEFCodecFix to patch GMod
+        
         environment.systemPackages = with pkgs; [
             (writeScriptBin "fixcss.sh" 
             ''

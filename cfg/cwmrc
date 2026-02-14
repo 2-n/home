@@ -4,7 +4,7 @@ moveamount 10
 snapdist   20
 sticky     yes
 
-fontname       "SFProText:size=12"
+fontname       "SF Compact Display:style=Medium:size=12"
 color font     "#ffffff"
 color selfont  "#ffffff"
 color menubg   "#000000"
@@ -12,7 +12,7 @@ color menufg   "#1d1d1d"
 
 borderwidth 4
 color inactiveborder "#404040"
-color activeborder   "#737373"
+color activeborder   "#deadca"
 color groupborder    "#d977a3"
 color ungroupborder  "#d977a3"
 color urgencyborder  "#d977a3"
@@ -21,22 +21,21 @@ ignore bar
 
 autogroup 1 "firefox"
 autogroup 2 "feishin"
+autogroup 2 "picard"
 autogroup 3 "discord"
 autogroup 3 "vesktop"
 autogroup 4 "steam"
-autogroup 5 "qBittorrent"
-autogroup 5 "org.nicotine_plus.Nicotine"
 
 # apps
 
 command run      "drun"
-command terminal "alacritty"
+command terminal "alacritty msg create-window"
 command browser  "firefox"
+command music    "feishin"
 command steam    "steam -system-composer"
 command discord  "vesktop"
+command files    "pcmanfm"
 command keepass  "keepassxc"
-command files    "thunar"
-command music    "feishin"
 
 # bindings
 
@@ -52,7 +51,6 @@ bind-mouse 4-3  window-resize
 
 unbind-key all
 
-#bind-key 4-d      "rofi -show combi"
 bind-key 4-d      drun
 bind-key 4-Return alacritty
 

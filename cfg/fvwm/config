@@ -17,11 +17,10 @@ Style Alacritty     Sticky
 Style firefox       StartsOnDesk 0
 Style feishin       StartsOnDesk 1
 Style picard        StartsOnDesk 1
-Style qbittorrent   StartsOnDesk 1, SkipMapping
 Style discord       StartsOnDesk 2
 Style vesktop       StartsOnDesk 2
 Style steam*        StartsOnDesk 3
-Style .gamescope*   StartsOnDesk 4, StaysOnTop
+Style .gamescope*   StartsOnDesk 4
 Style PrismLauncher StartsOnDesk 4
 Style Minecraft*    StartsOnDesk 4
 
@@ -29,7 +28,7 @@ DefaultFont "xft:SF Compact Display:style=Medium:size=12"
 
 #       404040 737373
 #       deadca d977a3
-Colorset 0 bg #404040
+Colorset 0 bg #404040 
 Colorset 1 bg #deadca
 Colorset 2 fg white, bg black, hi #404040, sh #404040
 Colorset 3 fg white, bg #1d1d1d
@@ -49,9 +48,7 @@ MenuStyle * MenuColorset 2, ActiveColorset 3, BorderWidth 4, \
 
 Read binds
 Read menus
-Read panel
 
 DestroyFunc InitFunction
 AddToFunc   InitFunction
-+ I Exec exec fvwm-root -fill $HOME/.fvwm/bg.pmg
-+ I Exec exec qbittorrent
++ I Exec exec fvwm-root $HOME/.fvwm/bg.png

@@ -28,6 +28,8 @@ AddToFunc   ResizeWarp
 
 # mouse bindings
 Mouse 1      R N   Menu rootmenu
+Mouse 3      R N   WindowList CurrentAtEnd, IconifiedAtEnd, NoCurrentDeskTitle, \
+                   NoGeometry, NoHotkeys, NotAlphabetic
 
 Mouse 1     FS N   MouseDrag Resize Lower
 Mouse 2     FS N   MouseDrag Move
@@ -35,13 +37,13 @@ Mouse 3     FS N   MouseDrag Move
 
 Mouse 1    FSW 4   MouseDrag Move Lower
 Mouse 2    FSW 4   Iconify
-Mouse 2    FSW 4S  Stick
+Mouse 2    FSW 4S  Sticky
 Mouse 3    FSW 4   MouseDrag "Resize Direction SE warptoborder"
 
 # key bindings
 Key   d      A 4   Exec exec $[infostore.dmenucmd]
 Key   d      A 4S  Menu rootmenu
-Key   grave  A 4   Exec exec $[infostore.terminal]
+Key   Return A 4   Exec exec $[infostore.terminal]
 
 Key   Print  A N   Exec exec $[infostore.scrotcmd]
 Key   Print  A 4   Exec exec $[infostore.scrotcmd] s
@@ -60,6 +62,7 @@ Key   f      A 4S  Maximize Fullscreen
 Key   v      A 4   Maximize 0 100
 Key   v      A 4S  Maximize 100 0
 Key   Space  A 4   MaxCenter
+
 
 Key   1      A 4   GotoDesk 0 0
 Key   2      A 4   GotoDesk 0 1

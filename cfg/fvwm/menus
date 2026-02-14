@@ -2,9 +2,9 @@ DestroyMenu rootmenu
 AddToMenu   rootmenu
 + "&run"      Exec exec $[infostore.dmenucmd]
 + "" Nop
+Test (x 9) \
 + "&acme"     Exec exec $[infostore.9acmecmd]
 + "&terminal" Exec exec $[infostore.terminal]
-+ "" Nop
 + "&browser"  Exec exec $[infostore.browscmd]
 + "&music"    Exec exec $[infostore.musiccmd]
 + "&steam"    Exec exec $[infostore.steamcmd] -system-composer
