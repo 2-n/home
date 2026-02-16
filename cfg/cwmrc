@@ -8,7 +8,7 @@ fontname       "SF Compact Display:style=Medium:size=12"
 color font     "#ffffff"
 color selfont  "#ffffff"
 color menubg   "#000000"
-color menufg   "#1d1d1d"
+color menufg   "#4c4c4c"
 
 borderwidth 4
 color inactiveborder "#404040"
@@ -33,7 +33,7 @@ command terminal "alacritty msg create-window"
 command browser  "firefox"
 command music    "feishin"
 command steam    "steam -system-composer"
-command discord  "vesktop"
+command discord  "discord"
 command files    "pcmanfm"
 command keepass  "keepassxc"
 

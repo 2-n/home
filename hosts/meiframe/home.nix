@@ -4,81 +4,73 @@
 , pkgs-unstable
 , ...
 }:
-
+let
+  link = config.lib.file.mkOutOfStoreSymlink;
+in
 {
-    imports = [ ../../modules/home ];
+  imports = [ ../../modules/home ];
 
-    home.username = "eli";
-    home.homeDirectory = "/home/eli";
+  home.username = "eli";
+  home.homeDirectory = "/home/eli";
 
-    home.file = {
-        "bin"   = { source = config.lib.file.mkOutOfStoreSymlink /home/eli/nix/bin;
-                    recursive = true; };
-        #".fvwm" = { source = config.lib.file.mkOutOfStoreSymlink /home/eli/nix/cfg/fvwm;
-        #            recursive = true; };
-        #".xinitrc".source = config.lib.file.mkOutOfStoreSymlink /home/eli/nix/cfg/xinitrc;
+  home.file = {
+    "bin"   = {
+      source = link /home/eli/nix/bin;
+      recursive = true;
     };
-
-    theme = {
-        colors = (import ../../theme/acme-wcolors);
-        font.name = "SFMono";
-        font.size = 12;
+    ".cwmrc".source = link /home/eli/nix/cfg/cwmrc;
+    ".fvwm" = {
+      source = link /home/eli/nix/cfg/fvwm;
+      recursive = true;
     };
+    ".xinitrc".source = link /home/eli/nix/cfg/xinitrc;
+  };
 
-    gtk.cursorTheme = {
-        package = pkgs.vanilla-dmz;
-        name = "DMZ-Black";
-        size = 16;
-    };
+  gtk.enable = true;
 
-    home.pointerCursor = {
-        enable = true;
-        package = pkgs.vanilla-dmz;
-        name = "DMZ-Black";
-        size = 16;
-    };
+  theme = {
+    colors = (import ../../theme/acme-wcolors);
+    font.name = "SFMono";
+    font.size = 12;
+  };
 
-    programs = {
-        alacritty.enable = true;
-        bash.enable = true;
-        firefox.enable = true;
-        micro.enable = true;
-    };
+  programs = {
+    alacritty.enable = true;
+    bash.enable = true;
+    firefox.enable = true;
+    micro.enable = true;
+  };
 
-    home.packages = (with pkgs; [
-        btop pstree tree
-        fzf pfetch tmux
+  home.packages = (with pkgs; [
+    btop pstree tree
+    fzf pfetch tmux
 
-        #plan9port
+    #plan9port
 
-        dmenu scrot xclip
-        hsetroot xdotool
+    dmenu scrot xclip
+    hsetroot xdotool
 
-        colloid-gtk-theme
-        pcmanfm xarchiver
-        lxappearance lxmenu-data
+    pcmanfm xarchiver lxmenu-data
 
-        gimp imv mpv
-        keepassxc vesktop
+    gimp imv mpv
+    keepassxc discord
+    picard spek
+    prismlauncher
+  ]) ++ (with pkgs-unstable; [
+    feishin osu-lazer-bin
+  ]);
 
-        picard spek
+  xdg.userDirs = {
+    enable = true;
+    desktop = "$HOME/";
+    documents = "$HOME/doc";
+    download = "$HOME/dwn";
+    music = "/mnt/hdd/mus";
+    pictures = "$HOME/pix";
+    videos = "$HOME/vid";
+    publicShare = null;
+    templates = null;
+  };
 
-        prismlauncher
-    ]) ++ (with pkgs-unstable; [
-        feishin osu-lazer-bin
-    ]);
-
-    xdg.userDirs = {
-        enable = true;
-        desktop = "$HOME/";
-        documents = "$HOME/doc";
-        download = "$HOME/dwn";
-        music = "/mnt/hdd/mus";
-        pictures = "$HOME/pix";
-        videos = "$HOME/vid";
-        publicShare = null;
-        templates = null;
-    };
-
-    home.stateVersion = "25.11";
+  home.stateVersion = "25.11";
 }

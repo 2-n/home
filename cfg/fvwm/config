@@ -3,7 +3,7 @@ InfoStoreAdd 9acmecmd "acme"
 InfoStoreAdd terminal "alacritty msg create-window"
 InfoStoreAdd browscmd "firefox"
 InfoStoreAdd musiccmd "feishin"
-InfoStoreAdd voicecmd "vesktop"
+InfoStoreAdd voicecmd "discord"
 InfoStoreAdd steamcmd "steam"
 InfoStoreAdd filescmd "pcmanfm"
 InfoStoreAdd kpasscmd "keepassxc"
@@ -28,7 +28,7 @@ DefaultFont "xft:SF Compact Display:style=Medium:size=12"
 
 #       404040 737373
 #       deadca d977a3
-Colorset 0 bg #404040 
+Colorset 0 bg #404040
 Colorset 1 bg #deadca
 Colorset 2 fg white, bg black, hi #404040, sh #404040
 Colorset 3 fg white, bg #1d1d1d
@@ -48,7 +48,3 @@ MenuStyle * MenuColorset 2, ActiveColorset 3, BorderWidth 4, \
 
 Read binds
 Read menus
-
-DestroyFunc InitFunction
-AddToFunc   InitFunction
-+ I Exec exec fvwm-root $HOME/.fvwm/bg.png

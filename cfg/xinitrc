@@ -8,4 +8,5 @@ xsetroot -solid "#891446" -cursor_name left_ptr
 
 alacritty --daemon &
 
+#cwm
 fvwm3
