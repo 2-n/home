@@ -6,7 +6,7 @@
 
 {
   boot = {
-    kernelParams = [ "quiet" ];
+    kernelParams = [ "quiet" "splash" ];
     kernelModules = [ "kvm-amd" ];
     initrd.kernelModules = [ "amdgpu" ];
     initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
@@ -30,7 +30,6 @@
     options = [ "rw" "uid=1000" "noatime" ];
   };
 
-
   swapDevices = [{
     device = "/swap";
     size = 16 * 1024;
@@ -42,13 +41,11 @@
   hardware.enableRedistributableFirmware = true;
   powerManagement.cpuFreqGovernor = "performance";
 
+  hardware.graphics.enable = true;
+  hardware.graphics.enable32Bit = true;
+
   hardware.amdgpu.overdrive.enable = true;
   hardware.amdgpu.overdrive.ppfeaturemask = "0xffffffff";
-
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
 
   nixpkgs.hostPlatform = "x86_64-linux";
 }

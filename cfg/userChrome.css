@@ -1,0 +1,230 @@
+/*
+pretty much copy and paste of https://github.com/Dook97/firefox-qutebrowser-userchrome/
+but some things changed, removed, or fixed to my liking
+
+prepare firefox by:
+setting theme to light mode
+browser.uidensity set to 0
+browser.theme.dark-private-windows set to false
+*/
+
+:root {
+
+  --tab-active-bg-color: #ffffff;
+  --tab-inactive-bg-color: #f8f8f8;
+  --tab-active-fg-fallback-color: #000000;
+  --tab-inactive-fg-fallback-color: #808080;
+
+  --toolbar-bgcolor: #ffffff !important;
+  --urlbar-focused-bg-color: #ffffff;
+  --urlbar-not-focused-bg-color: #ffffff;
+
+  --border-radius-medium: 0 !important;
+
+  --tab-min-height: 32px !important;
+  --urlbar-height-setting: 32px;
+
+  --toolbar-field-focus-background-color: var(--urlbar-focused-bg-color) !important;
+  --toolbar-field-background-color: var(--urlbar-not-focused-bg-color) !important;
+  --toolbar-field-focus-border-color: transparent !important;
+}
+
+#statuspanel { display: none; }
+
+/* - - - begin tabs toolbar customization - - - */
+
+.titlebar-buttonbox-container { display: none; }
+.titlebar-spacer { display: none !important; }
+.private-browsing-indicator-with-label { display: none; }
+#tabs-newtab-button { display: none !important; }
+#scrollbutton-up, #scrollbutton-down { display: none !important; }
+#tab-preview-panel { display: none; }
+
+#TabsToolbar, .tabbrowser-tab {
+  max-height: var(--tab-min-height) !important;
+}
+
+/* Change color of normal tabs */
+tab:not([selected="true"]) {
+  background-color: var(--tab-inactive-bg-color) !important;
+  color: var(--identity-icon-color, var(--tab-inactive-fg-fallback-color)) !important;
+}
+
+tab {
+  border: none !important;
+  padding-top: 0 !important;
+}
+
+.tab-content {
+  padding: 0 0 0 var(--tab-inline-padding);
+}
+
+.tab-background {
+  margin-block: 0 !important;
+  min-height: var(--tab-min-height);
+  outline-offset: 0 !important;
+}
+
+arrowscrollbox > .tabbrowser-tab[fadein]:not([pinned]):not([style*="max-width"]) {
+  max-width: 100vw !important;
+  border: none
+}
+
+/* Hide close button on tabs */
+#tabbrowser-tabs .tabbrowser-tab .tab-close-button { display: none !important; }
+
+.tabbrowser-tab {
+  /* remove border between tabs */
+  padding-inline: 0px !important;
+  /* reduce fade effect of tab text */
+  --tab-label-mask-size: 1em !important;
+  /* fix pinned tab behaviour on overflow */
+  overflow-clip-margin: 0px !important;
+}
+
+/* Tab: selected colors */
+#tabbrowser-tabs .tabbrowser-tab[selected] .tab-content {
+  background: var(--tab-active-bg-color) !important;
+  color: var(--identity-icon-color, var(--tab-active-fg-fallback-color)) !important;
+}
+
+/* Tab: hovered colors */
+#tabbrowser-tabs .tabbrowser-tab:hover:not([selected]) .tab-content {
+  background: var(--tab-active-bg-color) !important;
+}
+
+/* remove container line, we indicate container with text color */
+.tabbrowser-tab[usercontextid] > .tab-stack > .tab-background > .tab-context-line {
+  display: none !important;
+}
+
+/* disable tab shadow */
+#tabbrowser-tabs:not([noshadowfortests]) .tab-background:is([selected], [multiselected]) {
+  box-shadow: none !important;
+}
+
+/* remove dark space between pinned tab and first non-pinned tab */
+#pinned-tabs-container {
+  margin-inline-end: 0 !important;
+}
+
+/* remove dropdown menu button which displays all tabs on overflow */
+#alltabs-button { display: none !important }
+
+/* fix displaying of pinned tabs on overflow */
+#tabbrowser-tabs:not([secondarytext-unsupported]) .tab-label-container {
+  height: var(--tab-min-height) !important;
+}
+
+#tabbrowser-tabs {
+  min-height: var(--tab-min-height) !important;
+}
+
+:root[inFullscreen] > body > #browser {
+  margin-top: 0 !important;
+}
+
+/* - - - end tabs toolbar customization - - - */
+
+/* - - - begin navbar customization - - - */
+
+/* #back-button, #forward-button, #reload-button, #stop-button, */
+#home-button { display: none; }
+#customizableui-special-spring1, #customizableui-special-spring2 { display: none; }
+#tracking-protection-icon-container { display: none !important; }
+#identity-icon-box { display: none !important; }
+/* .identity-box-button { display: none !important; } hide permissions button */
+/* #userContext-label, #userContext-indicator { display: none !important;} hide container text */
+#reader-mode-button{ display: none !important; }
+.urlbar-go-button { display: none !important; }
+
+#back-button, #forward-button,
+#reload-button, #stop-button,
+#downloads-button,
+#reset-pbm-toolbar-button,
+#unified-extensions-button,
+#PanelUI-menu-button {
+  padding: 0px 0px 0px 0px !important;
+}
+
+#nav-bar {
+  border-top: none !important;
+}
+
+#urlbar-container {
+  --urlbar-container-height: var(--urlbar-height-setting) !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  box-shadow: none !important;
+}
+
+#urlbar {
+  --urlbar-height: var(--urlbar-height-setting) !important;
+  --urlbar-toolbar-height: var(--urlbar-height-setting) !important;
+  min-height: var(--urlbar-height-setting) !important;
+  border-color: var(--lwt-toolbar-field-border-color, hsla(240,5%,5%,.25)) !important;
+}
+
+#urlbar-input {
+  margin-left: 0.4em !important;
+  margin-right: 0.4em !important;
+}
+
+#urlbar > .urlbar-input-container {
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+#navigator-toolbox {
+  border: none !important;
+}
+
+.urlbar-page-action {
+  margin-inline-end: calc(-16px - 2 * var(--urlbar-icon-padding) );
+  opacity: 0;
+  transition: margin-inline-end 100ms linear, opacity 200ms linear;
+}
+
+#urlbar:hover .urlbar-page-action,
+.urlbar-page-action[open],
+.urlbar-page-action[open] ~ .urlbar-page-action{
+  opacity: 1;
+  margin-inline-end: 0px !important;
+}
+
+/* - - - end navbar customization - - - */
+
+/* - - - begin unified extensions - - - */
+
+#unified-extensions-view {
+  --uei-icon-size: 16px;
+}
+
+.unified-extensions-item-message-deck,
+#unified-extensions-view > .panel-header,
+#unified-extensions-view > toolbarseparator,
+#unified-extensions-manage-extensions {
+  display: none !important;
+}
+
+.panel-subview-body {
+  padding: 8px 0px !important;
+}
+
+.unified-extensions-item-contents {
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+
+#unified-extensions-panel .unified-extensions-item {
+  margin-block: 0 !important;
+}
+
+.toolbar-menupopup :is(menu, menuitem), .subview-subheader, panelview
+.toolbarbutton-1, .subviewbutton, .widget-overflow-list .toolbarbutton-1 {
+  padding: 4px !important;
+}
+
+/* - - - end unified extensions - - - */

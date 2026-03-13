@@ -1,6 +1,6 @@
 WindowTitle {quit}
 WindowSize  300 80
-Font "xft:SF Compact Display:style=Medium:size=12"
+Font "xft:Go Regular:size=12"
 Init
  Begin
  End

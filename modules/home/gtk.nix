@@ -22,7 +22,8 @@ in
         size = 16;
       };
       font = {
-        name = "SF Compact Display Medium";
+        # SF Compact Display Medium
+        name = "Go Regular";
         size = 12;
       };
       iconTheme = {
@@ -43,7 +44,6 @@ in
         "file:///mnt/hdd/tor"
       ];
     };
-
 
     home.pointerCursor = {
       enable = true;

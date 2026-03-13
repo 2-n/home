@@ -1,7 +1,7 @@
 rec {
   # black
-  base00 = "ffffff";
-  base08 = "ffffff";
+  base00 = "000000";
+  base08 = "303030";
   # red
   base01 = "d977a3";
   base09 = "d977a3";
@@ -21,11 +21,14 @@ rec {
   base06 = "757ad8";
   base14 = "757ad8";
   # white
-  base07 = "000000";
-  base15 = "000000";
+  base07 = "f8f8f8";
+  base15 = "ffffff";
   # term colors
-  termbg = base00;
-  termfg = base15;
+  termbg = base15;
+  termfg = base00;
+  # selection colors
+  selebg = base02;
+  selefg = termfg;
   # cursor color
   cursor = base01;
 }

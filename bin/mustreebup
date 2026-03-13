@@ -1,7 +1,23 @@
 #!/usr/bin/env bash
 
-musdir=/mnt/hdd/mus
+musdir="/mnt/hdd/mus"
+tordir="/mnt/hdd/tor"
 
-for m in $musdir; do
-    tree -ndL 3 $m
-done
+case $1 in
+  m|mus)
+    path=$musdir
+    depth=3
+    ;;
+  t|tor)
+    path=$tordir
+    depth=1
+    ;;
+  *)
+    echo "mustreebup [opt]"
+    echo "           (m)us"
+    echo "           (t)or"
+    exit
+    ;;
+esac
+
+tree -ndL $depth $path

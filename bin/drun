@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-fn='SF Compact Display:style=Medium:size=12'
+fn='Go Mono:size=12'
 nb='black'
 nf='white'
 sb='#1d1d1d'
@@ -10,3 +10,4 @@ dmenu_run           \
 -fn "$fn" -b -h 24  \
 -nb "$nb" -nf "$nf" \
 -sb "$sb" -sf "$sf" \
+

@@ -3,20 +3,23 @@
 SHELL=rc
 ACME_DUMP=
 
+VAR_FONT="$HOME/.9font/SFProRounded-Regular/14a/font"
+MONO_FONT="$HOME/.9font/SFMono-Regular/14a/font"
+
 if [ "$(pgrep fontsrv)" ]; then
-    echo "fontsrv running"
+  echo "fontsrv running"
 else
-    echo "starting fontsrv"
-    9 fontsrv -m $HOME/.9font &
-    sleep 0.05 # fontsrv takes a moment and wont let acme open
+  echo "starting fontsrv"
+  9 fontsrv -m $HOME/.9font &
+  sleep 0.05 # fontsrv takes a moment and wont let acme open
 fi
 
 if [ -f "$HOME/acme.dump" ]; then
-    echo "loading dump"
-    ACME_DUMP="-l $HOME/acme.dump"
+  echo "loading dump"
+  ACME_DUMP="-l $HOME/acme.dump"
 else
-    echo "no dump"
+  echo "no dump"
 fi
 
-9 acme -a -f $HOME/.9font/SFProRounded-Regular/14a/font -F $HOME/.9font/SFMono-Regular/14a/font $ACME_DUMP $* &
+9 acme -a -f $VAR_FONT -F $MONO_FONT $ACME_DUMP $* &
 

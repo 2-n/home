@@ -8,7 +8,7 @@
     programs.bash = {
       historySize = 512;
       historyFileSize = 4096;
-      historyIgnore = [ "ls" "lc" "ll" "clear" "exit" ];
+      historyIgnore = [ "&" "[ ]*" "ls" "lc" "ll" "clear" "exit" ];
       bashrcExtra = ". $HOME/.profile";
       sessionVariables = {
         PATH = "$HOME/bin:$PATH";

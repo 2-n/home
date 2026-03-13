@@ -30,10 +30,11 @@
   {
     nixosConfigurations = {
       meiframe = nixpkgs.lib.nixosSystem rec {
-        specialArgs = { inherit system inputs pkgs-unstable; };
+        specialArgs = { inherit system pkgs-unstable inputs; };
         modules = [
           ./hosts/meiframe
-          home-manager.nixosModules.home-manager {
+          home-manager.nixosModules.home-manager
+          {
             nixpkgs.pkgs = pkgs;
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;

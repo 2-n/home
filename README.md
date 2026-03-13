@@ -2,7 +2,7 @@
 
 |           |                                           |
 |-----------|-------------------------------------------|
-| $wm       | [cwm](./cfg/cwmrc) & [fvwm](./cfg/fvwm)   |
+| $wm       | [fvwm](./cfg/fvwm)                        |
 | $shell    | [bash](./modules/home/bash.nix)           |
 | $editor   | [micro](./modules/home/micro.nix)         |
 | $terminal | [alacritty](./modules/home/alacritty.nix) |

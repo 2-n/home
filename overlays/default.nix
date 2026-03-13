@@ -1,7 +1,7 @@
 final: prev: {
   apple-fonts = prev.callPackage ./pkgs/apple-fonts.nix {};
   haiku-icon-theme = prev.callPackage ./pkgs/haiku-icon-theme.nix {};
-  hikari = prev.callPackage ./pkgs/hikari/default.nix {};
+  hikari = prev.callPackage ./pkgs/hikari.nix {};
   stmps = prev.callPackage ./pkgs/stmps.nix {};
 
   colloid-gtk-theme = prev.colloid-gtk-theme.overrideAttrs (old: rec {

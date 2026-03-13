@@ -1,7 +1,6 @@
 { lib
 , config
 , pkgs
-, pkgs-unstable
 , ...
 }:
 
@@ -11,16 +10,16 @@
     ../../modules/nixos
   ];
 
-  time.timeZone = "America/Chicago";
-  time.hardwareClockInLocalTime = true;
-
   boot = {
-    kernelPackages = pkgs.linuxPackages_xanmod_stable;
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
     loader.efi.canTouchEfiVariables = true;
     loader.systemd-boot.enable = true;
     loader.timeout = 0;
     tmp.cleanOnBoot = true;
   };
+
+  time.timeZone = "America/Chicago";
+  time.hardwareClockInLocalTime = true;
 
   networking = {
     hostName = "meiframe";
@@ -36,6 +35,18 @@
     extraConfig.pipewire = {
       "99-no-bell"."context.properties"."module.x11.bell" = false;
     };
+  };
+
+  security.sudo.enable = false;
+  security.doas.enable = true;
+  security.doas.extraRules = [{
+    groups = [ "wheel" ];
+    keepEnv = true;
+  }];
+
+  users.users.eli = {
+    isNormalUser = true;
+    extraGroups = [ "networkmanager" "wheel" ];
   };
 
   programs.bash.promptInit = ''
@@ -59,18 +70,6 @@
     PROMPT_COMMAND='set_prompt'
   '';
 
-  users.users.eli = {
-    isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" ];
-  };
-
-  security.sudo.enable = false;
-  security.doas.enable = true;
-  security.doas.extraRules = [{
-    groups = [ "wheel" ];
-    keepEnv = true;
-  }];
-
   services.xserver.enable = true;
   services.xserver.displayManager.startx.enable = true;
   services.xserver.windowManager.cwm.enable = true;
@@ -86,15 +85,10 @@
   services.gonic.enable = true;
   services.qbittorrent.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    bc git p7zip wget
-    pkgs-unstable.micro
-  ];
-
   fonts.packages = with pkgs; [
-    apple-fonts
-    dejavu_fonts
     unifont uw-ttyp0
+    apple-fonts dejavu_fonts go-font
+    noto-fonts noto-fonts-color-emoji
   ];
 
   nix = {

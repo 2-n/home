@@ -11,4 +11,4 @@ exec labwc
 
 # debugging hikari
 #exec hikari -a $HOME/.config/hikari/autostart 2>\
-#    /tmp/hikari-session_$(date +%m%d%g%H%M%S).log
+#  /tmp/hikari-session_$(date +%m%d%g%H%M%S).log

@@ -24,8 +24,8 @@
         infobar = false;
         ruler = false;
         showchars = "ispace=|,itab=>";
-        statusformatl = "$(modified)";
-        statusformatr = "$(filename)";
+        statusformatl = "$(modified)$(filename)";
+        statusformatr = "ft:$(opt:filetype)";
         colorscheme = "custom-simple";
       };
     };
@@ -42,6 +42,7 @@
     home.file.".config/micro/colorschemes/custom-simple.micro".text = ''
       # default "simple" colorscheme
       # with indent-char edited
+      # modified ruler, original yellow red
       color-link comment "blue"
       color-link constant "red"
       color-link identifier "cyan"
@@ -56,7 +57,7 @@
       color-link hlsearch "black,yellow"
       color-link statusline "black,white"
       color-link indent-char "white"
-      color-link line-number "yellow"
+      color-link line-number "green"
       color-link current-line-number "red"
       color-link diff-added "green"
       color-link diff-modified "yellow"

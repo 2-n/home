@@ -1,6 +1,6 @@
 { lib, pkgs, stdenv, fetchzip
 , pkg-config, bmake
-, cairo, glib, libevdev, libinput, libxkbcommon, linux-pam, pango, pixman
+, cairo, glib, libdrm, libevdev, libinput, libxkbcommon, linux-pam, pango, pixman
 , libucl, wayland, wayland-scanner, wayland-protocols, wlroots_0_18, mesa, pandoc, xorg
 , features ? {
     gammacontrol = true;
@@ -10,7 +10,8 @@
   }
 }:
 
-# hikari fork picking up where original maintainer left off
+# this derivation doesnt work anymore
+# just keeping incase i wanna figure it out
 
 stdenv.mkDerivation rec {
   pname = "hikari";
@@ -18,7 +19,7 @@ stdenv.mkDerivation rec {
 
   src = fetchzip {
     url = "https://hub.darcs.net/hiroo/hikari/dist/hikari.zip";
-    hash = "sha256-SwBU0WWG3uPOqjT+5KZqLiHnExSVvyPk3fHt3Z+TfV8=";
+    hash = "sha256-8oS7lOjsMZzJVoB911FUIcttL+o3cAqZTvCOJIuJk1w=";
   };
 
   nativeBuildInputs = [ pkg-config bmake ];
@@ -27,6 +28,7 @@ stdenv.mkDerivation rec {
     cairo
     pandoc
     glib
+    libdrm
     libevdev
     libinput
     libxkbcommon

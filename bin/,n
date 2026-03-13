@@ -8,28 +8,28 @@ flakepath="$HOME/nix"
 # git push
 
 clean-sys() {
-    doas nix-collect-garbage -d
+  doas nix-collect-garbage -d
 }
 
 rebuild-sw() {
-    doas nixos-rebuild switch ${@:2} --flake $flakepath/#
+  doas nixos-rebuild switch ${@:2} --flake $flakepath/#
 }
 
 update-sys() {
-    wd=$PWD
-    cd $flakepath
-    nix flake update
-    rebuild-sw
-    cd $wd; unset wd
+  wd=$PWD
+  cd $flakepath
+  nix flake update
+  rebuild-sw
+  cd $wd; unset wd
 }
 
 case $1 in
-    c) clean-sys ;;
-    r) rebuild-sw ;;
-    u) update-sys ;;
-    *) echo ",n (c,r,u)"
-       echo ",  nix helper script"
-       echo "c: collect old nix garbage from old generations"
-       echo "r: rebuild switch flake located at $HOME/nix"
-       echo "u: update flake locks and rebuild switch" ;;
+  c) clean-sys ;;
+  r) rebuild-sw ;;
+  u) update-sys ;;
+  *) echo ",n (c,r,u)"
+     echo ",  nix helper script"
+     echo "c: collect old nix garbage from old generations"
+     echo "r: rebuild switch flake located at $HOME/nix"
+     echo "u: update flake locks and rebuild switch" ;;
 esac

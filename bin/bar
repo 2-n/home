@@ -10,31 +10,32 @@ fifo="/tmp/panel_fifo"
 [ -e "$fifo" ] && rm "$fifo"
 mkfifo "$fifo"
 
+# this is only for windowchef redo for cwm
 groups() {
-    buf=""
-    active="$(xprop -root WINDOWCHEF_ACTIVE_GROUPS | cut -d\  -f3- | sed 's/,//g')"
-    
-    for grp in 1 2 3 4 5; do
-        groupcmd="waitron group_toggle $grp"
-    
-        if grep $grp <<< $active; then
-            buf="${buf}%{B${tg}}%{A:${groupcmd}:}%{O6}$grp%{O6}%{A}"
-        else
-            buf="${buf}%{B${bg}}%{A:${groupcmd}:}%{O6}$grp%{O6}%{A}"
-        fi
-    done
-    
-    printf "%s\n" "groups${buf}"
+  buf=""
+  active="$(xprop -root WINDOWCHEF_ACTIVE_GROUPS | cut -d\  -f3- | sed 's/,//g')"
+
+  for grp in 1 2 3 4 5; do
+    groupcmd="waitron group_toggle $grp"
+
+    if grep $grp <<< $active; then
+      buf="${buf}%{B${tg}}%{A:${groupcmd}:}%{O6}$grp%{O6}%{A}"
+    else
+      buf="${buf}%{B${bg}}%{A:${groupcmd}:}%{O6}$grp%{O6}%{A}"
+    fi
+  done
+
+  printf "%s\n" "groups${buf}"
 }
 
 activeWindow() {
-    window="$(xdotool getactivewindow getwindowname)"
-    [[ $window != "bar" ]] && printf "%s\n" "activeWindow${window}"
+  window="$(xdotool getactivewindow getwindowname)"
+  [[ $window != "bar" ]] && printf "%s\n" "activeWindow${window}"
 }
 
 clock() {
-    time="$(date "+%I:%M")"
-    printf "%s\n" "clock${time}"
+  time="$(date "+%I:%M")"
+  printf "%s\n" "clock${time}"
 }
 
 [[ -n $(cat $HOME/.xinitrc | grep windowchef) ]] && \

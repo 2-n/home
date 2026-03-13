@@ -6,7 +6,7 @@
 
 stdenv.mkDerivation rec {
   pname = "apple-fonts";
-  version = "1";
+  version = "7.0.5"; # version from aur
 
   pro = fetchurl {
     url = "https://devimages-cdn.apple.com/design/resources/download/SF-Pro.dmg";
@@ -35,43 +35,26 @@ stdenv.mkDerivation rec {
   dontUnpack = true;
 
   installPhase = ''
-    7z x ${pro}
-    cd SFProFonts
-    7z x 'SF Pro Fonts.pkg'
-    7z x 'Payload~'
-    mkdir -p $out/fontfiles
-    mv Library/Fonts/* $out/fontfiles
-    cd ..
+    mkdir -p tmp fonts
 
-    7z x ${mono}
-    cd SFMonoFonts
-    7z x 'SF Mono Fonts.pkg'
-    7z x 'Payload~'
-    mv Library/Fonts/* $out/fontfiles
-    cd ..
-
-    7z x ${compact}
-    cd SFCompactFonts
-    7z x 'SF Compact Fonts.pkg'
-    7z x 'Payload~'
-    mv Library/Fonts/* $out/fontfiles
-    cd ..
-
-    7z x ${ny}
-    cd NYFonts
-    7z x 'NY Fonts.pkg'
-    7z x 'Payload~'
-    mv Library/Fonts/* $out/fontfiles
-    cd ..
+    for archive in ${pro} ${compact} ${mono} ${ny}; do
+      7z e "$archive" -y -otmp
+      cd tmp/
+      7z x *.pkg -y
+      7z x Payload\~ -y
+      mv Library/Fonts/* ../fonts
+      cd ../
+      rm -r tmp/{*,.*}
+    done
 
     mkdir -p $out/usr/share/fonts/OTF $out/usr/share/fonts/TTF
-    mv $out/fontfiles/*.otf $out/usr/share/fonts/OTF
-    mv $out/fontfiles/*.ttf $out/usr/share/fonts/TTF
-    rm -rf $out/fontfiles
+    mv fonts/*.otf $out/usr/share/fonts/OTF/
+    mv fonts/*.ttf $out/usr/share/fonts/TTF/
+    rm -r tmp fonts
   '';
 
   meta = with lib; {
-    description = "Apple San Francisco, New York fonts";
+    description = "Apple San Francisco and New York fonts";
     homepage = "https://developer.apple.com/fonts/";
     license = licenses.unfree;
     platforms = platforms.linux;

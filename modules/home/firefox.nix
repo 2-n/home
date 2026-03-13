@@ -9,24 +9,7 @@
 
   config = lib.mkIf (config.programs.firefox.enable) {
     programs.firefox = {
-      profiles.eli.userChrome = ''
-        #statuspanel {
-          display: none;
-        }
-
-        #back-button, #forward-button, #reload-button, #stop-button {
-          display: none;
-        }
-
-        #urlbar-container {
-          margin-left: 4px !important;
-          margin-right: 2px !important;
-        }
-
-        #PanelUI-menu-button {
-          padding: 0px 4px 0px 0px !important;
-        }
-      '';
+      profiles.eli.userChrome = (builtins.readFile ../../cfg/userChrome.css);
       betterfox = {
         enable = true;
         profiles.eli = {
@@ -35,37 +18,47 @@
         };
       };
       policies = {
+        # general
+        AppAutoUpdate = false;
         AutofillAddressEnabled = false;
         AutofillCreditCardEnabled = false;
-        Cookies.Behavior = "reject-tracker-and-partition-foreign";
+        CaptivePortal = false;
+        DisableAppUpdate = false;
         DisableFirefoxStudies = true;
         DisableFormHistory = true;
         DisableMasterPasswordCreation = true;
-        DisablePocket = true;
-        DisableSetDesktopBackground = true;
+        DisableProfileImport = true;
         DisableTelemetry = true;
-        DisplayBookmarksToolbar = "newtab";
-        DisplayMenuBar = "default-off";
-        EncryptedMediaExtensions = true;
+        DontCheckDefaultBrowser = true;
         GenerativeAI.Enabled = false;
-        HardwareAcceleration = true;
-        Homepage.StartPage = "previous-session";
         HttpsOnlyMode = "enabled";
-        NoDefaultBookmarks = true;
         OfferToSaveLogins = false;
+        OfferToSaveLoginsDefault = false;
         PasswordManagerEnabled = false;
-        PictureInPicture.Enabled = true;
         PopupBlocking.Default = true;
         PrimaryPassword = false;
-        SearchBar = "unified";
         SearchSuggestEnabled = false;
-        ShowHomeButton = false;
+        # ui
+        DisplayMenuBar = "default-off";
+        DisplayBookmarksToolbar = "newtab";
+        Homepage.StartPage = "previous-session";
+        NoDefaultBookmarks = true;
+        SearchBar = "unified";
+        # misc
+        DisableBuiltinPDFViewer = true;
+        DisableSetDesktopBackground = true;
+        HardwareAcceleration = true;
         SkipTermsOfUse = true;
-        TranslateEnabled = true;
         ExtensionSettings = {
-          "uBlock0@raymondhill.net" = {
+          "CanvasBlocker@kkapsner.de" = {
             installation_mode = "force_installed";
-            install_url = "http://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+            install_url = "http://addons.mozilla.org/firefox/downloads/latest/canvasblocker/latest.xpi";
+            default_area = "menupanel";
+            private_browsing = true;
+          };
+          "@testpilot-containers" = {
+            installation_mode = "force_installed";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/multi-account-containers/latest.xpi";
             default_area = "menupanel";
             private_browsing = true;
           };
@@ -75,15 +68,18 @@
             default_area = "menupanel";
             private_browsing = true;
           };
+          "uBlock0@raymondhill.net" = {
+            installation_mode = "force_installed";
+            install_url = "http://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+            default_area = "menupanel";
+            private_browsing = true;
+          };
         };
         FirefoxHome = {
-          "Highlights" = false;
-          "Pocket" = false;
-          "Search" = false;
-          "Snippets" = false;
-          "SponsoredPocket" = false;
-          "SponsoredTopSites" = false;
-          "TopSites" = false;
+          Highlights = false;
+          Search = false;
+          SponsoredTopSites = false;
+          TopSites = false;
         };
         FirefoxSuggest = {
           ImproveSuggest = false;
@@ -92,34 +88,22 @@
         };
         Permissions = {
           Autoplay.Default = "block-audio";
+          Camera.BlockNewRequests = true;
+          Location.BlockNewRequests = true;
+          Microphone.BlockNewRequests = true;
           Notifications.BlockNewRequests = true;
+          ScreenShare.BlockNewRequests = true;
           VirtualReality.BlockNewRequests = true;
         };
         Preferences = {
           "browser.newtabpage.activity-stream.showWeather" = false;
           "browser.search.separatePrivateDefault" = false;
+          "browser.theme.dark-private-windows" = false;
           "browser.uidensity" = 0;
-          "browser.uiCustomization.state" = builtins.toJSON {
-            placements = {
-              nav-bar = [
-                "back-button"
-                "forward-button"
-                "stop-reload-button"
-                "urlbar-container"
-                "downloads-button"
-                "unified-extensions-button"
-              ];
-              TabsToolbar = [
-                "tabbrowser-tabs"
-                "new-tab-button"
-              ];
-            };
-            currentVersion = 23;
-          };
           "extensions.activeThemeID" = "firefox-compact-light@mozilla.org";
           "general.autoScroll" = true;
         };
-        SearchEngines.Default = "DuckDuckGo";
+        SearchEngines.Default = "Startpage";
         SearchEngines.Add = [
           {
             Name = "Arch Wiki";
@@ -157,11 +141,17 @@
             URLTemplate = "https://www.protondb.com/search?q={searchTerms}";
             IconURL = "https://www.protondb.com/favicon.ico";
           }
+          {
+            Name = "Startpage";
+            Alias = "@sp";
+            URLTemplate = "https://www.startpage.com/sp/search?q={searchTerms}";
+            IconURL = "https://cdn.startpage.com/sp/cdn/favicons/favicon-16x16-gradient.png";
+          }
         ];
         SearchEngines.Remove = [
           "Amazon.com"
           "Bing"
-          "eBay"
+          "Google"
           "Perplexity"
         ];
       };

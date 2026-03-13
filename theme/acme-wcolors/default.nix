@@ -26,6 +26,9 @@ rec {
   # term colors
   termbg = base15;
   termfg = base00;
+  # selection colors
+  selebg = base07;
+  selefg = termfg;
   # cursor color
   cursor = termfg;
 }

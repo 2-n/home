@@ -11,7 +11,7 @@ InfoStoreAdd scrotcmd "shot"
 
 DesktopSize 1x1
 EwmhNumberOfDesktops 5 5
-EwmhBaseStruts screen $[monitor.primary] 8 8 8 8
+EwmhBaseStruts screen $[monitor.primary] 3 3 3 3
 
 Style Alacritty     Sticky
 Style firefox       StartsOnDesk 0
@@ -24,7 +24,8 @@ Style .gamescope*   StartsOnDesk 4
 Style PrismLauncher StartsOnDesk 4
 Style Minecraft*    StartsOnDesk 4
 
-DefaultFont "xft:SF Compact Display:style=Medium:size=12"
+# xft:SF Compact Display:style=Medium:size=12
+DefaultFont "xft:Go Regular:size=12"
 
 #       404040 737373
 #       deadca d977a3
@@ -37,14 +38,14 @@ GeometryWindow Hide
 OpaqueMoveSize unlimited
 
 BorderStyle -- Flat
-Style     * HandleWidth 4, BorderColorset 0, HilightBorderColorset 1
+Style     * HandleWidth 3, BorderColorset 0, HilightBorderColorset 1
 
 Style     * !Icon, !Title, SloppyFocus, CascadePlacement, \
             ResizeOpaque, SnapAttraction 20 SameType Screen
 
-MenuStyle * MenuColorset 2, ActiveColorset 3, BorderWidth 4, \
+MenuStyle * MenuColorset 2, ActiveColorset 3, BorderWidth 3, \
             HilightBack, Hilight3DOff, SeparatorsShort, TrianglesSolid, \
-            ItemFormat "%| %l%> %|", VerticalItemSpacing 2 3
+            ItemFormat "%|%4p%l%>%4p%|", VerticalItemSpacing 2 3
 
 Read binds
 Read menus

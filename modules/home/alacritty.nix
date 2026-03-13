@@ -30,9 +30,9 @@ in
         };
         window = {
           resize_increments = true;
-          dimensions.columns = 85;
-          dimensions.lines = 35;
-          padding.x = 0; #theme.font.size
+          dimensions.columns = 81;
+          dimensions.lines = 30;
+          padding.x = 0;
           padding.y = 0;
         };
         cursor.style = {
@@ -45,8 +45,8 @@ in
             foreground = "#${theme.colors.termfg}";
           };
           selection = {
-            text       = "#${theme.colors.termfg}";
-            background = "#${theme.colors.base07}";
+            text       = "#${theme.colors.selefg}";
+            background = "#${theme.colors.selebg}";
           };
           cursor = {
             cursor     = "#${theme.colors.cursor}";
@@ -72,6 +72,18 @@ in
             white      = "#${theme.colors.base15}";
           };
         };
+        keyboard.bindings = [
+          {
+            key = "Tab";
+            mods = "Control";
+            chars = "\\u001b[27;5;9~";
+          }
+          {
+            key = "Tab";
+            mods = "Control|Shift";
+            chars = "\\u001b[27;6;9~";
+          }
+        ];
       };
     };
   };

@@ -1,0 +1,4 @@
+Style * FirmBorder
+Style * BorderWidth 7, HandleWidth 5
+Style * ForeColor black, BackColor grye
+Style * HilightFore White, HilightBack "#6666F6"

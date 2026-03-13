@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
 case $1 in
-    s) scrot -fs -q 100 -F - ;;
-    *) scrot -q 100 -F - ;;
+  s) scrot -fs -q 100 -F - ;;
+  *) scrot -q 100 -F - ;;
 esac | xclip -selection clipboard -t image/png

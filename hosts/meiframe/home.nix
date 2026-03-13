@@ -23,6 +23,7 @@ in
       source = link /home/eli/nix/cfg/fvwm;
       recursive = true;
     };
+    ".tmux.conf".source = link /home/eli/nix/cfg/tmux.conf;
     ".xinitrc".source = link /home/eli/nix/cfg/xinitrc;
   };
 
@@ -30,7 +31,7 @@ in
 
   theme = {
     colors = (import ../../theme/acme-wcolors);
-    font.name = "SFMono";
+    font.name = "Go Mono";
     font.size = 12;
   };
 
@@ -42,22 +43,42 @@ in
   };
 
   home.packages = (with pkgs; [
-    btop pstree tree
-    fzf pfetch tmux
-
-    #plan9port
-
-    dmenu scrot xclip
-    hsetroot xdotool
-
-    pcmanfm xarchiver lxmenu-data
-
-    gimp imv mpv
-    keepassxc discord
-    picard spek
+    # tui
+    bc
+    btop
+    fzf
+    git
+    p7zip
+    pfetch
+    pstree
+    tree
+    tmux
+    wget
+    wiremix
+    # x11
+    dmenu
+    hsetroot
+    scrot
+    xclip
+    xdotool
+    # applications
+    gimp
+    imv
+    keepassxc
+    libreoffice
+    mpv
+    pcmanfm
+    xarchiver
+    zathura
+    # etc
+    discord
+    jellyfin-desktop
+    picard
     prismlauncher
+    spek
   ]) ++ (with pkgs-unstable; [
-    feishin osu-lazer-bin
+    feishin
+    osu-lazer-bin
   ]);
 
   xdg.userDirs = {
