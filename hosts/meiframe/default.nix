@@ -11,7 +11,7 @@
   ];
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    kernelPackages = pkgs.linuxPackages_latest;
     loader.efi.canTouchEfiVariables = true;
     loader.systemd-boot.enable = true;
     loader.timeout = 0;
@@ -24,6 +24,8 @@
   networking = {
     hostName = "meiframe";
     networkmanager.enable = true;
+    firewall.allowedTCPPorts = [ 25565 28000 28001 28002 ];
+    firewall.allowedUDPPorts = [ 25565 28000 28001 28002 ];
   };
 
   security.rtkit.enable = true;
@@ -70,10 +72,12 @@
     PROMPT_COMMAND='set_prompt'
   '';
 
-  services.xserver.enable = true;
-  services.xserver.displayManager.startx.enable = true;
-  services.xserver.windowManager.cwm.enable = true;
-  services.xserver.windowManager.fvwm3.enable = true;
+  services.xserver = {
+    enable = true;
+    displayManager.startx.enable = true;
+    windowManager.cwm.enable = true;
+    windowManager.fvwm3.enable = true;
+  };
 
   services.libinput.mouse.accelProfile = "flat";
   services.udev.extraRules = ''
@@ -84,6 +88,10 @@
   services.lact.enable = true;
   services.gonic.enable = true;
   services.qbittorrent.enable = true;
+
+  #services.flatpak.enable = true;
+  #xdg.portal.enable = true;
+  #xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   fonts.packages = with pkgs; [
     unifont uw-ttyp0

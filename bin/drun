@@ -7,7 +7,7 @@ sb='#1d1d1d'
 sf='white'
 
 dmenu_run           \
--fn "$fn" -b -h 24  \
+-fn "$fn" -b -h 30  \
 -nb "$nb" -nf "$nf" \
 -sb "$sb" -sf "$sf" \
 

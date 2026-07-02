@@ -47,6 +47,7 @@ in
     bc
     btop
     fzf
+    gh
     git
     p7zip
     pfetch
@@ -59,6 +60,7 @@ in
     dmenu
     hsetroot
     scrot
+    stalonetray
     xclip
     xdotool
     # applications
@@ -72,10 +74,11 @@ in
     zathura
     # etc
     discord
-    jellyfin-desktop
+    lxmenu-data
     picard
     prismlauncher
     spek
+    vesktop
   ]) ++ (with pkgs-unstable; [
     feishin
     osu-lazer-bin
@@ -83,6 +86,7 @@ in
 
   xdg.userDirs = {
     enable = true;
+    setSessionVariables = true;
     desktop = "$HOME/";
     documents = "$HOME/doc";
     download = "$HOME/dwn";

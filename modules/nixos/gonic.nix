@@ -9,6 +9,7 @@
     networking.firewall.allowedUDPPorts = [ 4747 ];
 
     services.tailscale.enable = true;
+    services.tailscale.extraSetFlags = [ "--accept-dns=false" ];
 
     services.gonic.settings = {
       listen-addr = "0.0.0.0:4747";

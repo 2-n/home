@@ -40,6 +40,13 @@ Mouse 2    FSW 4   Iconify
 Mouse 2    FSW 4S  Sticky
 Mouse 3    FSW 4   MouseDrag "Resize Direction SE warptoborder"
 
+Mouse 1      T A   MouseDrag Move Maximize
+Mouse 1      2 A   Close
+Mouse 1      4 A   Maximize
+Mouse 2      4 A   Maximize 0 100
+Mouse 1      6 A   Lower
+Mouse 2      6 A   Iconify
+
 # key bindings
 Key   d      A 4   Exec exec $[infostore.dmenucmd]
 Key   d      A 4S  Menu rootmenu

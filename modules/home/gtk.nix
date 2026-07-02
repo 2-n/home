@@ -34,6 +34,7 @@ in
         package = custom-colloid-theme;
         name = "Colloid-Purple-Light-Compact-Nord";
       };
+      gtk4.theme = config.gtk.theme;
       gtk3.bookmarks = [
         "file:///home/eli/doc"
         "file:///home/eli/dwn"

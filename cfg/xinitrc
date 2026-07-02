@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-xrandr -s 2560x1440 -r 144
+xrandr -s 2560x1440 -r 200
 [[ -e $HOME/.Xresources ]] && xrdb -merge $HOME/.Xresources
 
 xset -dpms s off

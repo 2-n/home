@@ -11,7 +11,7 @@ InfoStoreAdd scrotcmd "shot"
 
 DesktopSize 1x1
 EwmhNumberOfDesktops 5 5
-EwmhBaseStruts screen $[monitor.primary] 3 3 3 3
+EwmhBaseStruts screen $[monitor.primary] 0 0 0 0
 
 Style Alacritty     Sticky
 Style firefox       StartsOnDesk 0
@@ -24,28 +24,31 @@ Style .gamescope*   StartsOnDesk 4
 Style PrismLauncher StartsOnDesk 4
 Style Minecraft*    StartsOnDesk 4
 
-# xft:SF Compact Display:style=Medium:size=12
-DefaultFont "xft:Go Regular:size=12"
+DefaultFont "xft:Go Mono:size=12"
 
-#       404040 737373
-#       deadca d977a3
-Colorset 0 bg #404040
-Colorset 1 bg #deadca
-Colorset 2 fg white, bg black, hi #404040, sh #404040
+Colorset 0 fg white, bg #404040
+Colorset 1 fg white, bg #737373
+Colorset 2 fg white, bg black, hi #737373, sh #737373
 Colorset 3 fg white, bg #1d1d1d
 
 GeometryWindow Hide
 OpaqueMoveSize unlimited
 
-BorderStyle -- Flat
-Style     * HandleWidth 3, BorderColorset 0, HilightBorderColorset 1
+#BorderStyle -- Flat
+Style     * HandleWidth 6, Colorset 0, HilightColorset 1, \
+            BorderColorset 0, HilightBorderColorset 1
 
-Style     * !Icon, !Title, SloppyFocus, CascadePlacement, \
+TitleStyle  RightJustified Height 24
+Style     * Title, !StippledTitle, !StickyStippledTitle
+
+Style     * !Icon, SloppyFocus, CascadePlacement, \
             ResizeOpaque, SnapAttraction 20 SameType Screen
 
-MenuStyle * MenuColorset 2, ActiveColorset 3, BorderWidth 3, \
+MenuStyle * MenuColorset 2, ActiveColorset 3, BorderWidth 5, \
             HilightBack, Hilight3DOff, SeparatorsShort, TrianglesSolid, \
             ItemFormat "%|%4p%l%>%4p%|", VerticalItemSpacing 2 3
 
 Read binds
+Read panel
 Read menus
+

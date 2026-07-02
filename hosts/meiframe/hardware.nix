@@ -7,7 +7,7 @@
 {
   boot = {
     kernelParams = [ "quiet" "splash" ];
-    kernelModules = [ "kvm-amd" ];
+    kernelModules = [ "kvm-amd" "ntsync" ];
     initrd.kernelModules = [ "amdgpu" ];
     initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   };

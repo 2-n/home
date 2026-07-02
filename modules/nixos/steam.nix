@@ -10,7 +10,6 @@
 
     programs.steam = {
       dedicatedServer.openFirewall = true;
-      extraPackages = [ pkgs.gamescope ];
       extraCompatPackages = [ pkgs.proton-ge-bin ];
     };
 
@@ -32,11 +31,10 @@
 
     programs.gamescope = {
       enable = true;
-      capSysNice = true;
       args = [
         "--output-width 2560"
         "--output-height 1440"
-        "--nested-refresh 144"
+        "--nested-refresh 200"
         "--fullscreen"
         "--backend sdl"
         "--force-grab-cursor"
