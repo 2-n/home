@@ -11,7 +11,7 @@
   ];
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
     loader.efi.canTouchEfiVariables = true;
     loader.systemd-boot.enable = true;
     loader.timeout = 0;
@@ -72,12 +72,19 @@
     PROMPT_COMMAND='set_prompt'
   '';
 
-  services.xserver = {
-    enable = true;
-    displayManager.startx.enable = true;
-    windowManager.cwm.enable = true;
-    windowManager.fvwm3.enable = true;
-  };
+  #services.xserver = {
+  #  enable = true;
+  #  displayManager.startx.enable = true;
+  #  windowManager.fvwm3.enable = true;
+  #};
+
+  programs.labwc.enable = true;
+
+  #xdg.portal = {
+  #  enable = true;
+  #  wlr.enable = true;
+  #  extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  #};
 
   services.libinput.mouse.accelProfile = "flat";
   services.udev.extraRules = ''
@@ -86,12 +93,9 @@
 
   programs.steam.enable = true;
   services.lact.enable = true;
+  services.flatpak.enable = true;
   services.gonic.enable = true;
   services.qbittorrent.enable = true;
-
-  #services.flatpak.enable = true;
-  #xdg.portal.enable = true;
-  #xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   fonts.packages = with pkgs; [
     unifont uw-ttyp0
@@ -111,6 +115,6 @@
     };
   };
 
-  system.stateVersion = "25.11";
+  system.stateVersion = "26.05";
 }
 

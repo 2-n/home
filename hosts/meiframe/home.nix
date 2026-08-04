@@ -18,13 +18,14 @@ in
       source = link /home/eli/nix/bin;
       recursive = true;
     };
-    ".cwmrc".source = link /home/eli/nix/cfg/cwmrc;
-    ".fvwm" = {
-      source = link /home/eli/nix/cfg/fvwm;
-      recursive = true;
-    };
     ".tmux.conf".source = link /home/eli/nix/cfg/tmux.conf;
-    ".xinitrc".source = link /home/eli/nix/cfg/xinitrc;
+    # keep here just incase wayland doesnt work out.
+    # ".cwmrc".source = link /home/eli/nix/cfg/cwmrc;
+    # ".fvwm" = {
+    #   source = link /home/eli/nix/cfg/fvwm;
+    #   recursive = true;
+    # };
+    # ".xinitrc".source = link /home/eli/nix/cfg/xinitrc;
   };
 
   gtk.enable = true;
@@ -35,10 +36,13 @@ in
     font.size = 12;
   };
 
+  wayland.windowManager.labwc.enable = true;
+
   programs = {
-    alacritty.enable = true;
+    alacritty.enable = false;
     bash.enable = true;
     firefox.enable = true;
+    foot.enable = true;
     micro.enable = true;
   };
 
@@ -63,10 +67,15 @@ in
     stalonetray
     xclip
     xdotool
+    # wayland
+    wl-clipboard-rs
+    wlr-randr
     # applications
+    freecad
     gimp
     imv
     keepassxc
+    kicad
     libreoffice
     mpv
     pcmanfm
@@ -97,5 +106,5 @@ in
     templates = null;
   };
 
-  home.stateVersion = "25.11";
+  home.stateVersion = "26.05";
 }

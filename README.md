@@ -2,10 +2,10 @@
 
 |           |                                           |
 |-----------|-------------------------------------------|
-| $wm       | [fvwm](./cfg/fvwm)                        |
+| $wm       | [labwc](./modules/home/labwc.nix)         |
 | $shell    | [bash](./modules/home/bash.nix)           |
 | $editor   | [micro](./modules/home/micro.nix)         |
-| $terminal | [alacritty](./modules/home/alacritty.nix) |
-| $launcher | [dmenu](./bin/drun)                       |
+| $terminal | [foot](./modules/home/foot.nix)           |
+| $launcher | noctalia                                  |
 
 ![screenshot](./ss.png)

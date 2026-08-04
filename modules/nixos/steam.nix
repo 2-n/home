@@ -31,12 +31,13 @@
 
     programs.gamescope = {
       enable = true;
+      #"--backend sdl"
       args = [
         "--output-width 2560"
         "--output-height 1440"
         "--nested-refresh 200"
         "--fullscreen"
-        "--backend sdl"
+
         "--force-grab-cursor"
         "--immediate-flips"
         "--rt"

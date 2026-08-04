@@ -8,7 +8,9 @@
     ./alacritty.nix
     ./bash.nix
     ./firefox.nix
+    ./foot.nix
     ./gtk.nix
+    ./labwc.nix
     ./micro.nix
   ];
 

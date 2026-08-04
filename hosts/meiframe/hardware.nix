@@ -6,28 +6,34 @@
 
 {
   boot = {
-    kernelParams = [ "quiet" "splash" ];
+    kernelParams = [ "quiet" "splash" "split_lock_detect=off" ];
     kernelModules = [ "kvm-amd" "ntsync" ];
     initrd.kernelModules = [ "amdgpu" ];
     initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   };
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/6d24fce4-21af-4309-908e-63f01fc8c216";
+    device = "/dev/disk/by-uuid/54f1d5b5-479a-42a5-8041-1366fff917ce";
     fsType = "ext4";
-    options = [ "discard" "noatime" ];
+    options = [ "noatime" ];
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/66A3-08E5";
+    device = "/dev/disk/by-uuid/E90A-6232";
     fsType = "vfat";
-    options = [ "fmask=0077" "dmask=0077" "discard" "noatime" ];
+    options = [ "fmask=0077" "dmask=0077" "noatime" ];
   };
 
   fileSystems."/mnt/hdd" = {
     device = "/dev/disk/by-uuid/E62CF22F2CF1FA7F";
-    fsType = "ntfs-3g";
-    options = [ "rw" "uid=1000" "noatime" ];
+    fsType = "ntfs3";
+    options = [ "uid=1000" "noatime" "nofail" ];
+  };
+
+  fileSystems."/mnt/nvme" = {
+    device = "/dev/disk/by-uuid/d9a8df28-5bfb-4ae3-aa91-4ba98252ceb7";
+    fsType = "ext4";
+    options = [ "noatime" "nofail" ];
   };
 
   swapDevices = [{

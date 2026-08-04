@@ -38,11 +38,11 @@ in
       gtk3.bookmarks = [
         "file:///home/eli/doc"
         "file:///home/eli/dwn"
-        "file:///mnt/hdd/mus"
+        "file:///mnt/nvme/mus"
         "file:///home/eli/pix"
         "file:///home/eli/vid"
         "file:///mnt/hdd"
-        "file:///mnt/hdd/tor"
+        "file:///mnt/nvme/"
       ];
     };
 

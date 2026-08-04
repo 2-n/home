@@ -7,6 +7,8 @@
     home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     betterfox-nix.url = "github:HeitorAugustoLN/betterfox-nix";
+    noctalia.url = "github:noctalia-dev/noctalia";
+    noctalia.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs@{
@@ -40,6 +42,7 @@
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = specialArgs;
             home-manager.users.eli = import ./hosts/meiframe/home.nix;
+            home-manager.backupFileExtension = "bup";
           }
         ];
       };

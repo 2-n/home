@@ -56,12 +56,6 @@
             default_area = "menupanel";
             private_browsing = true;
           };
-          "@testpilot-containers" = {
-            installation_mode = "force_installed";
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/multi-account-containers/latest.xpi";
-            default_area = "menupanel";
-            private_browsing = true;
-          };
           "sponsorBlocker@ajay.app" = {
             installation_mode = "force_installed";
             install_url = "http://addons.mozilla.org/firefox/downloads/latest/sponsorblock/latest.xpi";
@@ -99,11 +93,12 @@
           "browser.newtabpage.activity-stream.showWeather" = false;
           "browser.search.separatePrivateDefault" = false;
           "browser.theme.dark-private-windows" = false;
+          "browser.tabs.inTitlebar" = 0;
           "browser.uidensity" = 0;
           "extensions.activeThemeID" = "firefox-compact-light@mozilla.org";
           "general.autoScroll" = true;
         };
-        SearchEngines.Default = "Startpage";
+        SearchEngines.Default = "Google";
         SearchEngines.Add = [
           {
             Name = "Arch Wiki";
@@ -141,17 +136,12 @@
             URLTemplate = "https://www.protondb.com/search?q={searchTerms}";
             IconURL = "https://www.protondb.com/favicon.ico";
           }
-          {
-            Name = "Startpage";
-            Alias = "@sp";
-            URLTemplate = "https://www.startpage.com/sp/search?q={searchTerms}";
-            IconURL = "https://cdn.startpage.com/sp/cdn/favicons/favicon-16x16-gradient.png";
-          }
         ];
         SearchEngines.Remove = [
           "Amazon.com"
           "Bing"
-          "Google"
+          "DuckDuckGo"
+          "eBay"
           "Perplexity"
         ];
       };
