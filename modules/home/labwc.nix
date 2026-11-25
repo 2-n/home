@@ -1,28 +1,25 @@
 { lib
 , config
-, inputs
+, pkgs-unstable
 , ...
 }:
 let
   theme = config.theme;
 in
 {
-  imports = [ inputs.noctalia.homeModules.default ];
-
   config = lib.mkIf (config.wayland.windowManager.labwc.enable) {
-    programs.noctalia = {
-      enable = true;
-    };
+    home.packages = [ pkgs-unstable.noctalia ];
 
     wayland.windowManager.labwc = {
+      package = pkgs-unstable.labwc;
       environment = [
         "NIXOS_OZONE_WL=1"
         "MOZ_ENABLE_WAYLAND=1"
         "_JAVA_AWT_WM_NONREPARENTING=1"
+        "WLR_RENDERER=vulkan"
       ];
 
       autostart = [
-        "wlr-randr --output DP-2 --mode 2560x1440@200Hz &"
         "noctalia &"
         "foot -s &"
       ];
@@ -39,10 +36,23 @@ in
 
         core = {
           allowTearing = "yes";
+          hdr = "no";
         };
 
         windowRules = {
           windowRule = [
+            {
+              "@identifier" = "foot*";
+              action = { "@name" = "ToggleOmnipresent"; };
+            }
+            {
+              "@identifier" = "pcmanfm*";
+              action = { "@name" = "ToggleOmnipresent"; };
+            }
+            {
+              "@identifier" = "dev.noctalia.Noctalia";
+              action = { "@name" = "ToggleOmnipresent"; };
+            }
             {
               "@identifier" = "firefox";
               "@matchOnce" = true;
@@ -57,8 +67,16 @@ in
               action = { "@name" = "SendToDesktop"; "@to" = 3; "@follow" = "no"; };
             }
             {
+              "@identifier" = "vesktop";
+              action = { "@name" = "SendToDesktop"; "@to" = 3; "@follow" = "no"; };
+            }
+            {
               "@identifier" = "steam*";
               action = { "@name" = "SendToDesktop"; "@to" = 4; "@follow" = "no"; };
+            }
+            {
+              "@identifier" = "org.vinegarhq.Sober";
+              action = { "@name" = "SendToDesktop"; "@to" = 5; "@follow" = "no"; };
             }
           ];
         };
@@ -95,9 +113,11 @@ in
         };
 
         windowSwitcher = {
-          "@preview" = "no";
+          "@preview" = "yes";
           "@outlines" = "yes";
+          "@unshade" = "yes";
           osd = {
+            "@show" = "no";
             "@style" = "thumbnail";
           };
         };
@@ -105,11 +125,11 @@ in
         keyboard = {
           keybind = [
             {
-              "@key" = "W-Esc";
+              "@key" = "W-Escape";
               action = { "@name" = "Reconfigure"; };
             }
             {
-              "@key" = "W-C-S-Esc";
+              "@key" = "W-C-S-Escape";
               action = { "@name" = "Exit"; };
             }
             {
@@ -120,6 +140,7 @@ in
               "@key" = "W-d";
               action = { "@name" = "Execute"; "@command" = "noctalia msg panel-toggle launcher"; };
             }
+            #
             {
               "@key" = "Print";
               action = { "@name" = "Execute"; "@command" = "noctalia msg screenshot-fullscreen"; };
@@ -128,6 +149,7 @@ in
               "@key" = "W-Print";
               action = { "@name" = "Execute"; "@command" = "noctalia msg screenshot-region"; };
             }
+            #
             {
               "@key" = "W-q";
               action = { "@name" = "Iconify"; };
@@ -136,6 +158,7 @@ in
               "@key" = "W-S-q";
               action = { "@name" = "Close"; };
             }
+            #
             {
               "@key" = "W-r";
               action = { "@name" = "Raise"; };
@@ -152,6 +175,7 @@ in
               "@key" = "W-S-Tab";
               action = { "@name" = "PreviousWindow"; };
             }
+            #
             {
               "@key" = "W-f";
               action = { "@name" = "ToggleMaximize"; };
@@ -168,9 +192,10 @@ in
               "@key" = "W-S-v";
               action = { "@name" = "ToggleMaximize"; "@direction" = "horizontal"; };
             }
+            #
             {
               "@key" = "W-g";
-              action = { "@name" = "SnapToRegion"; "@region" = "center"; };
+              action = { "@name" = "SnapToEdge"; "@direction" = "center"; };
             }
             {
               "@key" = "W-y";
@@ -200,6 +225,7 @@ in
                 { "@name" = "MoveToEdge"; "@direction" = "right"; "@snapWindows" = "no"; }
               ];
             }
+            #
             {
               "@key" = "W-h";
               action = { "@name" = "MoveRelative"; "@x" = "-100"; };
@@ -216,6 +242,24 @@ in
               "@key" = "W-l";
               action = { "@name" = "MoveRelative"; "@x" = "100"; };
             }
+            #
+            {
+              "@key" = "W-C-h";
+              action = { "@name" = "MoveToEdge"; "@direction" = "left"; "@snapWindows" = "yes"; };
+            }
+            {
+              "@key" = "W-C-j";
+              action = { "@name" = "MoveToEdge"; "@direction" = "down"; "@snapWindows" = "yes"; };
+            }
+            {
+              "@key" = "W-C-k";
+              action = { "@name" = "MoveToEdge"; "@direction" = "up"; "@snapWindows" = "yes"; };
+            }
+            {
+              "@key" = "W-C-l";
+              action = { "@name" = "MoveToEdge"; "@direction" = "right"; "@snapWindows" = "yes"; };
+            }
+            #
             {
               "@key" = "W-S-h";
               action = { "@name" = "ResizeRelative"; "@right" = "-100"; };
@@ -232,6 +276,24 @@ in
               "@key" = "W-S-l";
               action = { "@name" = "ResizeRelative"; "@right" = "100"; };
             }
+            #
+            {
+              "@key" = "W-C-S-h";
+              action = { "@name" = "GrowToEdge"; "@direction" = "left"; };
+            }
+            {
+              "@key" = "W-C-S-j";
+              action = { "@name" = "GrowToEdge"; "@direction" = "down"; };
+            }
+            {
+              "@key" = "W-C-S-k";
+              action = { "@name" = "GrowToEdge"; "@direction" = "up"; };
+            }
+            {
+              "@key" = "W-C-S-l";
+              action = { "@name" = "GrowToEdge"; "@direction" = "right"; };
+            }
+            #
             {
               "@key" = "W-1";
               action = { "@name" = "GoToDesktop"; "@to" = "1"; };
@@ -252,6 +314,7 @@ in
               "@key" = "W-5";
               action = { "@name" = "GoToDesktop"; "@to" = "5"; };
             }
+            #
             {
               "@key" = "W-S-1";
               action = { "@name" = "SendToDesktop"; "@to" = "1"; "@follow" = "no"; };
@@ -302,11 +365,16 @@ in
                   action = { "@name" = "Iconify"; };
                 }
                 {
+                  "@button" = "W-S-Middle";
+                  "@action" = "Click";
+                  action = { "@name" = "ToggleOmnipresent"; };
+                }
+                {
                   "@button" = "W-Right";
                   "@action" = "Drag";
                   action = [
                     { "@name" = "Raise"; }
-                    { "@name" = "Resize"; }
+                    { "@name" = "Resize"; "@direction" = "down-right"; }
                   ];
                 }
               ];

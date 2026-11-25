@@ -15,12 +15,15 @@ in
   config = lib.mkIf (config.gtk.enable) {
     home.packages = [ pkgs.dconf ];
 
+    home.pointerCursor = {
+      enable = true;
+      gtk.enable = true;
+      package = pkgs.vanilla-dmz;
+      name = "DMZ-Black";
+      size = 16;
+    };
+
     gtk = {
-      cursorTheme = {
-        package = pkgs.vanilla-dmz;
-        name = "DMZ-Black";
-        size = 16;
-      };
       font = {
         # SF Compact Display Medium
         name = "Go Regular";
@@ -41,16 +44,9 @@ in
         "file:///mnt/nvme/mus"
         "file:///home/eli/pix"
         "file:///home/eli/vid"
-        "file:///mnt/hdd"
         "file:///mnt/nvme/"
+        "file:///mnt/nvme/srv/samba"
       ];
-    };
-
-    home.pointerCursor = {
-      enable = true;
-      package = pkgs.vanilla-dmz;
-      name = "DMZ-Black";
-      size = 16;
     };
   };
 }

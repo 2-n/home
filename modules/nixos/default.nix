@@ -3,8 +3,10 @@
 {
   imports = [
     ./gonic.nix
-    #./lact.nix settings cant be written properly currently
+    ./minecraft.nix
     ./qbit.nix
+    ./samba.nix
     ./steam.nix
+    ./terraria.nix
   ];
 }

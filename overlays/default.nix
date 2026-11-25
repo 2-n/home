@@ -1,5 +1,6 @@
 final: prev: {
   apple-fonts = prev.callPackage ./pkgs/apple-fonts.nix {};
+  cow-wm = prev.callPackage ./pkgs/cow-wm.nix {};
   haiku-icon-theme = prev.callPackage ./pkgs/haiku-icon-theme.nix {};
   hikari = prev.callPackage ./pkgs/hikari.nix {};
   stmps = prev.callPackage ./pkgs/stmps.nix {};

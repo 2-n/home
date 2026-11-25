@@ -25,6 +25,7 @@
         mv = "mv -iv";
         rm = "rm -iv";
         mkdir = "mkdir -p";
+        sp = "tmux new-session -A -s scratchpad";
       };
     };
   };

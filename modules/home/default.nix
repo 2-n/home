@@ -7,11 +7,14 @@
   imports = [
     ./alacritty.nix
     ./bash.nix
+    ./cow.nix
     ./firefox.nix
     ./foot.nix
     ./gtk.nix
     ./labwc.nix
+    ./mango.nix
     ./micro.nix
+    ./tofi.nix
   ];
 
   options = {

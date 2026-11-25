@@ -24,11 +24,11 @@
     options = [ "fmask=0077" "dmask=0077" "noatime" ];
   };
 
-  fileSystems."/mnt/hdd" = {
-    device = "/dev/disk/by-uuid/E62CF22F2CF1FA7F";
-    fsType = "ntfs3";
-    options = [ "uid=1000" "noatime" "nofail" ];
-  };
+  # fileSystems."/mnt/hdd" = {
+  #   device = "/dev/disk/by-uuid/E62CF22F2CF1FA7F";
+  #   fsType = "ntfs3";
+  #   options = [ "uid=1000" "noatime" "nofail" ];
+  # };
 
   fileSystems."/mnt/nvme" = {
     device = "/dev/disk/by-uuid/d9a8df28-5bfb-4ae3-aa91-4ba98252ceb7";

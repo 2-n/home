@@ -93,6 +93,7 @@
           "browser.newtabpage.activity-stream.showWeather" = false;
           "browser.search.separatePrivateDefault" = false;
           "browser.theme.dark-private-windows" = false;
+          "browser.tabs.insertAfterCurrent" = true;
           "browser.tabs.inTitlebar" = 0;
           "browser.uidensity" = 0;
           "extensions.activeThemeID" = "firefox-compact-light@mozilla.org";

@@ -6,10 +6,6 @@
 {
   config = lib.mkIf (config.services.gonic.enable) {
     networking.firewall.allowedTCPPorts = [ 4747 ];
-    networking.firewall.allowedUDPPorts = [ 4747 ];
-
-    services.tailscale.enable = true;
-    services.tailscale.extraSetFlags = [ "--accept-dns=false" "--accept-routes" ];
 
     fileSystems."/var/lib/gonic" = {
       device = "/mnt/nvme/srv/gonic/db";

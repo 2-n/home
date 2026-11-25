@@ -24,8 +24,11 @@
   networking = {
     hostName = "meiframe";
     networkmanager.enable = true;
-    firewall.allowedTCPPorts = [ 25565 28000 28001 28002 ];
-    firewall.allowedUDPPorts = [ 25565 28000 28001 28002 ];
+  };
+
+  services.tailscale = {
+    enable = true;
+    extraSetFlags = [ "--accept-dns=false" "--accept-routes" ];
   };
 
   security.rtkit.enable = true;
@@ -46,24 +49,25 @@
     keepEnv = true;
   }];
 
+
   users.users.eli = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "libvirtd" "networkmanager" "wheel" ];
   };
 
   programs.bash.promptInit = ''
     set_prompt() {
       case $USER in
-        eli)
+        root)
+          sym="#"
+        ;;
+        *)
           if [ -z $IN_NIX_SHELL ]; then
             sym="%"
           else
             sym="$"
           fi
-          ;;
-        root)
-          sym="#"
-          ;;
+        ;;
       esac
 
       PS1="\[\e[31m\]\w \[\e[32m\]''${sym}\''\[\e[0m\] "
@@ -72,34 +76,36 @@
     PROMPT_COMMAND='set_prompt'
   '';
 
-  #services.xserver = {
-  #  enable = true;
-  #  displayManager.startx.enable = true;
-  #  windowManager.fvwm3.enable = true;
-  #};
-
-  programs.labwc.enable = true;
-
-  #xdg.portal = {
-  #  enable = true;
-  #  wlr.enable = true;
-  #  extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  #};
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
 
   services.libinput.mouse.accelProfile = "flat";
   services.udev.extraRules = ''
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", OWNER="eli"
+    # SUBSYSTEM=="hidraw", ATTRS{idVendor}=="056a", TAG+="uaccess", OWNER="eli"
+    # SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTR{idVendor}=="0ac3", ATTR{idProduct}=="ff0f", TAG+="uaccess", OWNER="eli"
   '';
 
   programs.steam.enable = true;
   services.lact.enable = true;
   services.flatpak.enable = true;
+  services.samba.enable = true;
   services.gonic.enable = true;
   services.qbittorrent.enable = true;
+  services.minecraft-servers.enable = false;
+
+  services.openssh.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    micro
+  ];
 
   fonts.packages = with pkgs; [
     unifont uw-ttyp0
-    apple-fonts dejavu_fonts go-font
+    dejavu_fonts go-font
     noto-fonts noto-fonts-color-emoji
   ];
 
@@ -117,4 +123,3 @@
 
   system.stateVersion = "26.05";
 }
-

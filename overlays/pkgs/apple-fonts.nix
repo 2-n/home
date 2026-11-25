@@ -4,18 +4,21 @@
 , p7zip
 }:
 
+# fix install phase, some of these dmgs seem to be formatted differently than
+# each other / how they were previously packaged (have to use bsdtar to extract)
+
 stdenv.mkDerivation rec {
   pname = "apple-fonts";
   version = "7.0.5"; # version from aur
 
   pro = fetchurl {
     url = "https://devimages-cdn.apple.com/design/resources/download/SF-Pro.dmg";
-    sha256 = "sha256-YxGk8IQ6TS5hagsFx3US0x0uqVBFnPUmzbW5CZageU8=";
+    sha256 = "sha256-sn/mYi8fqWpwfHPcpmZtQ5w1sxLVsdR+DimA5hjrSyg=";
   };
 
   compact = fetchurl {
     url = "https://devimages-cdn.apple.com/design/resources/download/SF-Compact.dmg";
-    sha256 = "sha256-/lF6UYS+KQ5m/om4tLbqGFSPztGuFTlJmnEmXjMXJJ8=";
+    sha256 = "sha256-byQRcYdqhBdNS5m69Gm6+z+OJFTOoSPYULM/H7D3D18=";
   };
 
   mono = fetchurl {

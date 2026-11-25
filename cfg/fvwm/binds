@@ -60,7 +60,8 @@ Key   q      A 4S  Close
 
 Key   r      A 4   Raise
 Key   r      A 4S  Lower
-Key   Tab    A 4   Next (CurrentDesk, !Focused, !Iconic, AcceptsFocus) WarpToWindow 50 50
+Key   Tab    A 4   Next (CurrentDesk, !Focused, !Iconic, AcceptsFocus) Focus
+# WarpToWindow 50 50
 Key   Tab    A M   WindowList Root c c CurrentAtEnd, IconifiedAtEnd, NoCurrentDeskTitle, \
                    NoGeometry, NoHotkeys, NotAlphabetic, SelectOnRelease Alt_L
 

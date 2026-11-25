@@ -4,7 +4,6 @@ moveamount 10
 snapdist   20
 sticky     yes
 
-fontname       "SF Compact Display:style=Medium:size=12"
 color font     "#ffffff"
 color selfont  "#ffffff"
 color menubg   "#000000"

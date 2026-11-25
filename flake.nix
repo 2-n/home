@@ -6,9 +6,10 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/release-26.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    mangowm.url = "github:mangowm/mango";
     betterfox-nix.url = "github:HeitorAugustoLN/betterfox-nix";
-    noctalia.url = "github:noctalia-dev/noctalia";
-    noctalia.inputs.nixpkgs.follows = "nixpkgs";
+    subtui.url = "github:MattiaPun/SubTUI";
+    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
   };
 
   outputs = inputs@{
@@ -22,7 +23,10 @@
     pkgs = import nixpkgs {
       inherit system;
       config.allowUnfree = true;
-      overlays = [ (import ./overlays) ];
+      overlays = [
+        (import ./overlays)
+        inputs.nix-minecraft.overlay
+      ];
     };
     pkgs-unstable = import nixpkgs-unstable {
       inherit system;
@@ -36,6 +40,8 @@
         modules = [
           ./hosts/meiframe
           home-manager.nixosModules.home-manager
+          inputs.mangowm.nixosModules.mango
+          inputs.nix-minecraft.nixosModules.minecraft-servers
           {
             nixpkgs.pkgs = pkgs;
             home-manager.useGlobalPkgs = true;

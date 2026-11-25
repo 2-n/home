@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-musdir="/mnt/hdd/mus"
-tordir="/mnt/hdd/tor"
+musdir="/mnt/nvme/mus"
+tordir="/mnt/nvme/tor"
 
 case $1 in
   m|mus)

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+case $1 in
+  s) grim -g "$(slurp)" -t png -l 0 - ;;
+  *) grim -t png -l 0 - ;;
+esac | wl-clip -selection clipboard -t image/png
